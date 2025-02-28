@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import com.example.travelplanner.ui.theme.TravelPlannerTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -44,7 +45,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
+@Preview
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
