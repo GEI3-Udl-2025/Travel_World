@@ -53,5 +53,5 @@ fun HomeScreen(navController: NavController) {
 @Preview
 @Composable
 fun HomePrev() {
-    AboutScreen(navController = rememberNavController())
+    HomeScreen(navController = rememberNavController())
 }
