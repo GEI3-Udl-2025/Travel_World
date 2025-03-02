@@ -34,7 +34,6 @@ cd travel-planner
 
 ```bash
 git checkout master
-
 git pull origin master
 ```
 
@@ -47,7 +46,6 @@ git checkout -b usuario/<tu-nombre>/<descripción>
 Ejemplo de commit:
 ```bash
 git add .
-
 git commit -m "feat: Agrega pantalla de itinerario (#12)"
 ```
 ### 5. Sincroniza con master (opcional)
