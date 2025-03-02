@@ -1,3 +1,4 @@
+// HomeScreen.kt
 package com.example.travelplanner.ui.screens
 
 import androidx.compose.foundation.layout.*
@@ -18,13 +19,31 @@ fun HomeScreen(navController: NavController) {
     ) {
         Text(text = "Home Screen")
         Spacer(modifier = Modifier.height(20.dp))
-        Button(onClick = {
-            var userId = 12345
 
-            // Navigate to the Profile screen passing userId as parameter
+        // Botón para navegar a Profile
+        Button(onClick = {
+            val userId = 12345
             navController.navigate("profile/$userId")
         }) {
             Text(text = "Go to Profile")
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Nuevo botón para navegar a AddTripScreen
+        Button(onClick = {
+            navController.navigate("addTrip") // Usa la misma ruta definida en tu NavGraph
+        }) {
+            Text(text = "Add New Trip")
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Nuevo botón para navegar a AddTripScreen
+        Button(onClick = {
+            navController.navigate("itinerarios") // Usa la misma ruta definida en tu NavGraph
+        }) {
+            Text(text = "Ver Itinerarios")
         }
     }
 }
