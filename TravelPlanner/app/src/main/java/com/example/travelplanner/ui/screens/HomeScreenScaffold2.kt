@@ -10,6 +10,7 @@ import androidx.compose.material3.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Explore
+import androidx.compose.material.icons.filled.FormatListNumbered
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Menu
@@ -95,16 +96,16 @@ fun HomeScreenScaffold2(navController: NavController) {
                     label = { Text("Menú") }
                 )
                 NavigationBarItem(
-                    icon = { Icon(Icons.Filled.List, contentDescription = "itinerarios") },
+                    icon = { Icon(Icons.Default.FormatListNumbered, contentDescription = "itinerarios") },
                     selected = selectedIndex == IndexMode.ITINIERARIO,
-                    onClick = { selectedIndex == IndexMode.ITINIERARIO },
+                    onClick = { navController.navigate("itinerarios") },
                     label = { Text("Itinerarios") }
                 )
                 NavigationBarItem(
                     icon = { Icon(Icons.Filled.Explore, contentDescription = "Explorar") },
                     selected = selectedIndex == IndexMode.EXPLORAR,
                     onClick = { selectedIndex == IndexMode.EXPLORAR },
-                    label = { Text("Explorar") },
+                    label = { Text("Explorar") }
                 )
             }
         },
@@ -117,7 +118,7 @@ fun HomeScreenScaffold2(navController: NavController) {
         },
         content = { padding ->
             // Contenido de la pantalla
-            Column(modifier = Modifier.padding(padding)) {
+            Column(modifier = Modifier.padding(padding).fillMaxSize()) {
                 // Aquí puedes agregar más contenido
                 Button(
                     onClick = {
@@ -128,33 +129,6 @@ fun HomeScreenScaffold2(navController: NavController) {
                     Text("Agregar Nuevo Viaje")
                 }
             }
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(padding)
-            ) {
-                when (selectedIndex) {
-                    IndexMode.MENU -> Itinerator()
-                    IndexMode.ITINIERARIO -> Itinerator()
-                    IndexMode.EXPLORAR -> Itinerator()
-                }
-            }
         }
     )
-}
-
-@Composable
-fun Itinerator() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(text = "Itinerario", style = MaterialTheme.typography.headlineMedium )
-        // Aquí puedes agregar los componentes y lógica de la calculadora básica
-
-        ItinerariosScreen(navController = rememberNavController())
-    }
 }
