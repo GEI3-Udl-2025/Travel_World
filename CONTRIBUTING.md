@@ -1,10 +1,10 @@
-# Guía de Contribución 📝
+# Guía de Contribución
 
 ¡Bienvenido/a al proyecto **Travel Planner**! Sigue estos pasos para contribuir de manera efectiva.
 
 ---
 
-## 🌿 Estrategia de Ramas
+## Estrategia de Ramas
 
 ### Ramas Principales
 1. **`main`**
@@ -23,12 +23,11 @@
 
 ---
 
-## 🚀 Pasos para Contribuir
+## Pasos para Contribuir
 
 ### 1. Clona el Repositorio
 ```bash
 git clone https://github.com/tu-organizacion/travel-planner.git
-cd travel-planner
 ```
 ### 2. Actualiza la Rama master
 
@@ -58,12 +57,9 @@ git pull origin master  # Resuelve conflictos si los hay
 git push origin usuario/<tu-nombre>/<descripción>
 ```
 ### 7. Abre un Pull Request (PR)
-Destino: master
-
-Descripción: Incluye:
-
-Objetivo del PR.
-
-Capturas de pantalla (si aplica).
-
-Issues relacionados (ej: Closes #12).
+- **Destino**: `master`
+- **Descripción**: Incluye:
+  - **Objetivo del PR**: Explica brevemente qué cambios introduces y por qué son necesarios.
+  - **Capturas de pantalla** (si aplica): Adjunta imágenes que muestren los cambios visuales o funcionales.
+  - **Issues relacionados**: Vincula los issues que resuelves con la sintaxis `Closes #<número>` o `Fixes #<número>`.  
+    Ejemplo: `Closes #12`.
