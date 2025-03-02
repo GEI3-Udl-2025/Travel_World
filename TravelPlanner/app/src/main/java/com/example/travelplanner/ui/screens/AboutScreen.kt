@@ -41,7 +41,7 @@ fun AboutScreen(navController: NavController) {
             Text(text = "Aquí describes la aplicación, tu empresa o lo que desees mostrar.")
             // Agrega más elementos básicos
             Divider(thickness = 1.dp)
-            Text(text = "Versión: 1.0.0")
+            Text(text = "Versión: 0.0.1")
             Text(text = "Contacto: contact@example.com")
         }
     }

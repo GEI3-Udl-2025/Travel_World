@@ -48,7 +48,7 @@ fun VersionScreen(navController: NavController) {
         ) {
             Text(text = "Version Screen", style = MaterialTheme.typography.headlineMedium)
             Text(text = "Aplicación: MyApp")
-            Text(text = "Versión actual: 1.0.0")
+            Text(text = "Versión actual: 0.0.1")
             Text(text = "Fecha de lanzamiento: Febrero 2025")
             Divider(thickness = 1.dp)
             Text(text = "Changelog:")
