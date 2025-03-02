@@ -8,8 +8,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.travelplanner.R
 
 @Composable
@@ -23,6 +25,9 @@ fun LoginScreen2(navController: NavController) {
     // Get default values from strings.xml
     val defaultUser = stringResource(id = R.string.default_user)
     val defaultPass = stringResource(id = R.string.default_pass)
+
+    username = defaultUser
+    password = defaultPass
 
     Column(
         modifier = Modifier
@@ -82,4 +87,10 @@ fun LoginScreen2(navController: NavController) {
             }
         )
     }
+}
+
+@Preview
+@Composable
+fun LoginPrev() {
+    LoginScreen2(navController = rememberNavController())
 }
