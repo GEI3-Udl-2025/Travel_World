@@ -20,7 +20,6 @@ import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -82,6 +81,15 @@ fun HomeScreenScaffold2(navController: NavController) {
                                     navController.navigate("settings")
                                 }
                             )
+                            DropdownMenuItem(
+                                leadingIcon = { Icon(Icons.Filled.Info, contentDescription = "Terms Icon") },
+                                text = { Text("Terms & Conditions") },
+                                onClick = {
+                                    showSettingsMenu = false
+                                    navController.navigate("terms")
+                                }
+                            )
+
                         }
                     }
                 }
@@ -133,8 +141,4 @@ fun HomeScreenScaffold2(navController: NavController) {
         }
     )
 }
-@Preview
-@Composable
-fun HomeScreenScaffPrev() {
-    HomeScreenScaffold2(navController = rememberNavController())
-}
+

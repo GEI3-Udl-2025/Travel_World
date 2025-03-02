@@ -9,11 +9,9 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.travelplanner.Trip
 import java.util.Date
 
@@ -44,7 +42,6 @@ fun ItinerariosScreen(navController: NavController) {
             }
         }
     }
-
 }
 
 @Composable
@@ -80,9 +77,9 @@ fun CustomCard( // <- Nombre único
     }
 }
 
-@Preview
+/*@Preview(showBackground = true)
 @Composable
-fun ItinerarioScreenPrev() {
-    ItinerariosScreen(navController = rememberNavController())
+fun ItinerariosScreenPreview() {
+    ItinerariosScreen()
 }
-
+*/

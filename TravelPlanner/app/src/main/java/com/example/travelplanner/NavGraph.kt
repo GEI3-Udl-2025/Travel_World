@@ -18,6 +18,7 @@ import com.example.travelplanner.ui.screens.ItinerariosScreen
 import com.example.travelplanner.ui.screens.LoginScreen2
 import com.example.travelplanner.ui.screens.ProfileScreen
 import com.example.travelplanner.ui.screens.SettingsScreen
+import com.example.travelplanner.ui.screens.TermsConditionsScreen
 import com.example.travelplanner.ui.screens.TripDetailScreen
 import com.example.travelplanner.ui.screens.VersionScreen
 
@@ -50,6 +51,7 @@ fun NavGraph(navController: NavHostController) {
             TripDetailScreen(tripId = tripId.toString()) // <-- Pasa el ID como String si es necesario
         }
         composable("about") { AboutScreen(navController) }
+        composable("terms") { TermsConditionsScreen(navController) }
         composable("version") { VersionScreen(navController) }
         composable("settings") { SettingsScreen(navController) }
         composable("itinerarios") { ItinerariosScreen(navController) }

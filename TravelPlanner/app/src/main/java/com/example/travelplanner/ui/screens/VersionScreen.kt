@@ -16,10 +16,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -47,19 +45,18 @@ fun VersionScreen(navController: NavController) {
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Text(text = "Version Screen", style = MaterialTheme.typography.headlineMedium)
-            Text(text = "Aplicación: MyApp")
+            Text(text = "Aplicación: TravelWorld")
             Text(text = "Versión actual: 0.0.1")
             Text(text = "Fecha de lanzamiento: Febrero 2025")
             Divider(thickness = 1.dp)
             Text(text = "Changelog:")
-            Text(text = "- Se agregó la pantalla de login")
-            Text(text = "- Mejoras de rendimiento")
+            Text(text = "- Home screen was created")
+            Text(text = "- About screen was created")
+            Text(text = "- Terms & Conditions screen was created")
+            Text(text = "- Profile screen was created")
+            Text(text = "- Login screen was created")
+            Text(text = "- Itinerary screen was created")
+            Text(text = "- Setting screen was created")
         }
     }
-}
-
-@Preview
-@Composable
-fun VersionScreenPrev() {
-    VersionScreen(navController = rememberNavController())
 }

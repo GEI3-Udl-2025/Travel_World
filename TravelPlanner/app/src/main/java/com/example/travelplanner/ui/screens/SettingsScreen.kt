@@ -16,10 +16,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -55,10 +53,4 @@ fun SettingsScreen(navController: NavController) {
             Text("Más configuraciones avanzadas...")
         }
     }
-}
-
-@Preview
-@Composable
-fun SettingsScreenPrev() {
-    SettingsScreen(navController = rememberNavController())
 }
