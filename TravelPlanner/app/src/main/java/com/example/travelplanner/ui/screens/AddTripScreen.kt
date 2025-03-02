@@ -1,3 +1,5 @@
+// AddTripScreen.kt
+
 package com.example.travelplanner.ui.screens
 
 import android.app.DatePickerDialog
