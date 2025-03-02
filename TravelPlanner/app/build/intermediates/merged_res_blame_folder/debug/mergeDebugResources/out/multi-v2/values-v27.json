@@ -4,7 +4,7 @@
             "outputFile": "com.example.travelplanner.app-mergeDebugResources-59:/values-v27/values-v27.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\janca\\.gradle\\caches\\8.10.2\\transforms\\4bf0a45d1bde6772d4ca472871263917\\transformed\\core-splashscreen-1.0.1\\res\\values-v27\\values-v27.xml",
+                    "source": "C:\\Users\\LittleDragon\\.gradle\\caches\\8.10.2\\transforms\\4bf0a45d1bde6772d4ca472871263917\\transformed\\core-splashscreen-1.0.1\\res\\values-v27\\values-v27.xml",
                     "from": {
                         "startLines": "2,3,4,7",
                         "startColumns": "4,4,4,4",

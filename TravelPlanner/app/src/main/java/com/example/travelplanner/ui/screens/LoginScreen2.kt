@@ -24,6 +24,9 @@ fun LoginScreen2(navController: NavController) {
     val defaultUser = stringResource(id = R.string.default_user)
     val defaultPass = stringResource(id = R.string.default_pass)
 
+    username = defaultUser
+    password = defaultPass
+
     Column(
         modifier = Modifier
             .fillMaxSize()
