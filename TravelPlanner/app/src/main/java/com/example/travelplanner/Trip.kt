@@ -7,6 +7,5 @@ data class Trip(
     var destination: String,
     var startDate: Date,
     var endDate: Date,
-    var description: String,
     var price: Double
 )

@@ -80,7 +80,6 @@ fun AddTripScreen(navController: NavHostController) {
                         destination = destination,
                         startDate = startDate.value,
                         endDate = endDate.value,
-                        description = "Trip to $destination",  // Aquí conservamos un "description" opcional
                         price = price
                     )
 
