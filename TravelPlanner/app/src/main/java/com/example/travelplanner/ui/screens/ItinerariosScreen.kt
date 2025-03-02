@@ -3,40 +3,42 @@ package com.example.travelplanner.ui.screens
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.travelplanner.Trip
+import java.util.Date
 
 @Composable
 fun ItinerariosScreen(navController: NavController) {
+    var selectedTrip by remember { mutableStateOf<Trip?>(null) }
     // Lista de viajes guardados (puedes reemplazar esto con un ViewModel o almacenamiento real)
     val trips = remember {
         listOf(
-            Trip(id = 1, destination = "Paris", startDate = java.util.Date(), endDate = java.util.Date(), description = "Un hermoso viaje a Paris", price = 1200.0),
-            Trip(id = 2, destination = "Tokyo", startDate = java.util.Date(), endDate = java.util.Date(), description = "Explorando la cultura japonesa", price = 1500.0),
-            Trip(id = 3, destination = "New York", startDate = java.util.Date(), endDate = java.util.Date(), description = "Visitando la gran manzana", price = 1000.0)
+            Trip(id = 1, destination = "Paris", startDate = Date(), endDate = Date(), price = 1200.0),
+            Trip(id = 2, destination = "Tokyo", startDate = Date(), endDate = Date(),  price = 1500.0),
+            Trip(id = 3, destination = "New York", startDate = Date(), endDate = Date(), price = 1000.0)
         )
     }
 
-    Column(modifier = Modifier.padding(16.dp)) {
-        Text("Itinerarios", style = MaterialTheme.typography.titleLarge)
 
+    Column(modifier = Modifier.padding(16.dp)) {
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Mostrar lista de viajes
-        LazyColumn {
-            items(trips.size) { index ->
-                val trip = trips[index]
-                TripItem(trip = trip, onClick = {
-                    // Navegar a una pantalla de detalle si es necesario
-                    navController.navigate("tripDetail/${trip.id}")
-                })
+        LazyColumn(modifier = Modifier.weight(1f)) {
+            items(trips, key = { it.id }) { trip ->
+                TripItem(
+                    trip = trip,
+                    onClick = {
+                        navController.navigate("tripDetail/${trip.id}") // <-- Navega con el ID
+                    }
+                )
             }
         }
     }
@@ -44,7 +46,7 @@ fun ItinerariosScreen(navController: NavController) {
 
 @Composable
 fun TripItem(trip: Trip, onClick: () -> Unit) {
-    Card(
+    CustomCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp)
@@ -58,24 +60,19 @@ fun TripItem(trip: Trip, onClick: () -> Unit) {
         }
     }
 }
+
 @Composable
-fun Card(
+fun CustomCard( // <- Nombre único
     modifier: Modifier = Modifier,
     elevation: Dp = 4.dp,
     content: @Composable () -> Unit
 ) {
-    Card(
+    Card( // <- Ahora sí usa la Card de Material3
         modifier = modifier,
-        elevation = elevation
+        elevation = CardDefaults.cardElevation(defaultElevation = elevation)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             content()
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ItinerariosScreenPreview() {
-    ItinerariosScreen(navController = rememberNavController())
 }
