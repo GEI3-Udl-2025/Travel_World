@@ -13,7 +13,14 @@ jobs:
     name: "Release pushed tag"
     runs-on: "ubuntu-latest"
     steps:
-      - name: "Create release"
+      # Instalar la CLI de GitHub (gh)
+      - name: Install GitHub CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gh
+
+      # Crear el release
+      - name: Create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}
