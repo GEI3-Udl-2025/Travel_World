@@ -76,3 +76,10 @@ fun CustomCard( // <- Nombre único
         }
     }
 }
+
+/*@Preview(showBackground = true)
+@Composable
+fun ItinerariosScreenPreview() {
+    ItinerariosScreen()
+}
+*/

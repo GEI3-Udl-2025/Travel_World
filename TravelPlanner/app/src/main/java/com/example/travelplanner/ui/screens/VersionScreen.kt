@@ -45,13 +45,18 @@ fun VersionScreen(navController: NavController) {
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Text(text = "Version Screen", style = MaterialTheme.typography.headlineMedium)
-            Text(text = "Aplicación: MyApp")
-            Text(text = "Versión actual: 1.0.0")
+            Text(text = "Aplicación: TravelWorld")
+            Text(text = "Versión actual: 0.0.1")
             Text(text = "Fecha de lanzamiento: Febrero 2025")
             Divider(thickness = 1.dp)
             Text(text = "Changelog:")
-            Text(text = "- Se agregó la pantalla de login")
-            Text(text = "- Mejoras de rendimiento")
+            Text(text = "- Home screen was created")
+            Text(text = "- About screen was created")
+            Text(text = "- Terms & Conditions screen was created")
+            Text(text = "- Profile screen was created")
+            Text(text = "- Login screen was created")
+            Text(text = "- Itinerary screen was created")
+            Text(text = "- Setting screen was created")
         }
     }
 }

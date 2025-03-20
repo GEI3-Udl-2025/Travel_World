@@ -81,6 +81,15 @@ fun HomeScreenScaffold2(navController: NavController) {
                                     navController.navigate("settings")
                                 }
                             )
+                            DropdownMenuItem(
+                                leadingIcon = { Icon(Icons.Filled.Info, contentDescription = "Terms Icon") },
+                                text = { Text("Terms & Conditions") },
+                                onClick = {
+                                    showSettingsMenu = false
+                                    navController.navigate("terms")
+                                }
+                            )
+
                         }
                     }
                 }
@@ -132,3 +141,4 @@ fun HomeScreenScaffold2(navController: NavController) {
         }
     )
 }
+
