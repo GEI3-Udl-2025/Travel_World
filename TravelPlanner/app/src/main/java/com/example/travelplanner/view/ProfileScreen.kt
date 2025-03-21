@@ -1,4 +1,4 @@
-package com.example.travelplanner.ui.screens
+package com.example.travelplanner.view
 
 
 
