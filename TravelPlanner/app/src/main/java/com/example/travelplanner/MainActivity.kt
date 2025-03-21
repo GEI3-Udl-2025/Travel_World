@@ -1,4 +1,4 @@
-package com.example.testing
+package com.example.travelplanner
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
