@@ -1,4 +1,4 @@
-package com.example.travelplanner.domain
+package com.example.travelplanner.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

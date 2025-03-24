@@ -11,8 +11,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -22,7 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.travelplanner.domain.TripCard
+import com.example.travelplanner.ui.screens.TripCard
 
 @Preview
 @Composable
@@ -93,29 +91,3 @@ fun ActionButton(
     }
 }
 
-@Composable
-fun TripCard(tripName: String, destination: String, dates: String) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 4.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-    ) {
-        Column(
-            modifier = Modifier.padding(16.dp)
-        ) {
-            Text(
-                text = tripName,
-                style = MaterialTheme.typography.titleMedium
-            )
-            Text(
-                text = destination,
-                style = MaterialTheme.typography.bodyMedium
-            )
-            Text(
-                text = dates,
-                style = MaterialTheme.typography.bodySmall
-            )
-        }
-    }
-}
