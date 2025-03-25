@@ -11,14 +11,21 @@ permissions:
 jobs:
   release:
     name: "Release pushed tag"
-    runs-on: "ubuntu-latest"
+    runs-on: ubuntu-latest
     steps:
-      - name: "Create release"
+      # Paso 1: Instalar GitHub CLI
+      - name: Install GitHub CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gh
+
+      # Paso 2: Crear el release
+      - name: Create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}
         run: |
           gh release create "$tag" \
-              --repo="$GITHUB_REPOSITORY" \
-              --title="${tag#v}" \
+              --repo "$GITHUB_REPOSITORY" \
+              --title "${tag#v}" \
               --generate-notes
