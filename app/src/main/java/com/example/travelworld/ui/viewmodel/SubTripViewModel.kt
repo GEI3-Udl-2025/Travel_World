@@ -15,8 +15,12 @@ class SubTripViewModel @Inject constructor(
     private val repository: TripRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-    // Se espera que "tripId" sea pasado en la navegación
-    val tripId: Int = savedStateHandle["tripId"] ?: 0
+    // Obtener tripId de manera segura
+    val tripId: Int = try {
+        savedStateHandle.get<String>("tripId")?.toIntOrNull() ?: 0
+    } catch (e: Exception) {
+        0
+    }
 
     private val _subTrips = mutableStateListOf<SubTrip>()
     val subTrips: List<SubTrip> get() = _subTrips
@@ -26,8 +30,8 @@ class SubTripViewModel @Inject constructor(
     }
 
     private fun loadSubTrips() {
-        _subTrips.clear()
         viewModelScope.launch {
+            _subTrips.clear()
             _subTrips.addAll(repository.getSubTripsForTrip(tripId))
         }
     }

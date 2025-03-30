@@ -28,7 +28,7 @@ enum class TravelMode {
 @Composable
 fun TravelApp(navController: NavController) {
     // Estado que guarda la pantalla actual
-    var selectedScreen by remember { mutableStateOf(TravelMode.HOME) }
+    var selectedScreen by remember { mutableStateOf(TravelMode.TRIP) }
     var showSettingsMenu by remember { mutableStateOf(false) }
 
     Scaffold(
@@ -91,17 +91,18 @@ fun TravelApp(navController: NavController) {
         },
         bottomBar = {
             NavigationBar {
-                NavigationBarItem(
-                    icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
-                    selected = selectedScreen == TravelMode.HOME,
-                    onClick = { selectedScreen = TravelMode.HOME },
-                    label = { Text("Home") }
-                )
+
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Flight, contentDescription = "Trip") },
                     selected = selectedScreen == TravelMode.TRIP,
                     onClick = { selectedScreen = TravelMode.TRIP },
                     label = { Text("Trip") }
+                )
+                NavigationBarItem(
+                    icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
+                    selected = selectedScreen == TravelMode.HOME,
+                    onClick = { selectedScreen = TravelMode.HOME },
+                    label = { Text("Home") }
                 )
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.List, contentDescription = "Itinerary") },
@@ -158,8 +159,8 @@ fun TripScreen(navController: NavController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Trip Screen", style = MaterialTheme.typography.headlineMedium)
-        //integracion del nueva pantalla trip
+        Text(text = "Trip Screen", style = MaterialTheme.typography.titleLarge)
+
         TripApp(navController = navController)
     }
 }

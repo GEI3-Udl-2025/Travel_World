@@ -1,6 +1,9 @@
 package com.example.travelworld.ui.viewmodel
 
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.travelworld.domain.model.Trip
@@ -22,6 +25,13 @@ class TripViewModel @Inject constructor(
     // Cambia a StateFlow para notificar cambios
     private val _trips = MutableStateFlow<List<Trip>>(emptyList())
     val trips: StateFlow<List<Trip>> = _trips.asStateFlow()
+
+    var lastSelectedTrip by mutableStateOf<Trip?>(null)
+        private set
+
+    fun setSelectedTrip(trip: Trip) {
+        lastSelectedTrip = trip
+    }
 
     init {
         loadTrips()

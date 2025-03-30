@@ -12,18 +12,15 @@ class SharedPrefsManager @Inject constructor(
     private val preferences: SharedPreferences,
     @ApplicationContext private val context: Context
 ) {
-    val languageChangeUtil by lazy {
-        LanguageChangeUtil()
-    }
-
-
+    private val languageChangeUtil = LanguageChangeUtil()
 
     var userLanguage: String?
         get() = preferences.getString("user_language", "en")
         set(value) {
-            preferences.edit().putString("user_language", value).apply()
-
-            languageChangeUtil.changeLanguage(context, value?:"en")
+            value?.let { lang ->
+                preferences.edit().putString("user_language", lang).apply()
+                languageChangeUtil.changeLanguage(context, lang)
+            }
         }
 
     var darkTheme: Boolean

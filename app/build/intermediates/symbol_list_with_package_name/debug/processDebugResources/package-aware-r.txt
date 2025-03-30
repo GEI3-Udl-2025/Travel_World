@@ -971,6 +971,7 @@ string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string androidx_startup
+string app_display_language
 string app_name
 string call_notification_answer_action
 string call_notification_answer_video_action
@@ -981,13 +982,17 @@ string call_notification_ongoing_text
 string call_notification_screening_text
 string close_drawer
 string close_sheet
+string dark_theme
 string default_error_message
 string default_pass
 string default_popup_window_title
 string default_user
 string dropdown_menu
+string enable_dark_mode
+string enable_trip_reminders
 string in_progress
 string indeterminate
+string language
 string m3c_bottom_sheet_collapse_description
 string m3c_bottom_sheet_dismiss_description
 string m3c_bottom_sheet_drag_handle_description
@@ -1046,6 +1051,7 @@ string m3c_tooltip_long_press_label
 string m3c_tooltip_pane_description
 string navigation_menu
 string not_selected
+string notifications
 string range_end
 string range_start
 string search_menu_title

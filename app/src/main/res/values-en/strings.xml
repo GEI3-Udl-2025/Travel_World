@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Travel World</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="enable_dark_mode">Enable dark mode</string>
+    <string name="notifications">Notifications</string>
+    <string name="enable_trip_reminders">Enable trip reminders</string>
+    <string name="app_display_language">App display language</string>
+    <string name="language">Language</string>
+    <string name="default_user">user1</string>
+    <string name="default_pass">1234</string>
+</resources>

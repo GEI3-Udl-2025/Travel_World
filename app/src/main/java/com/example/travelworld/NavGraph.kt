@@ -6,8 +6,10 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.example.travelworld.ui.view.settings_option.AboutScreen
 import com.example.travelworld.ui.view.settings_option.SettingsScreen
 import com.example.travelworld.ui.view.settings_option.TermsConditionsScreen
@@ -25,7 +27,12 @@ fun NavGraph(navController: NavHostController) {
     NavHost(navController = navController, startDestination = "login") {
         composable("login") { LoginScreen(navController) }
         composable("main") { TravelApp(navController) }
-        composable("subtrips/{tripId}") { backStackEntry ->
+        composable(
+            route = "subtrips/{tripId}",
+            arguments = listOf(
+                navArgument("tripId") { type = NavType.StringType }
+            )
+        ) { backStackEntry ->
             val tripId = backStackEntry.arguments?.getString("tripId")?.toIntOrNull() ?: 0
             SubTripApp(navController, tripId)
         }

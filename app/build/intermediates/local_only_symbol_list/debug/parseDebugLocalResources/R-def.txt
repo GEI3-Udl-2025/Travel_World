@@ -17,9 +17,15 @@ mipmap ic_launcher
 mipmap ic_launcher_original
 mipmap ic_launcher_original_round
 mipmap ic_launcher_round
+string app_display_language
 string app_name
+string dark_theme
 string default_pass
 string default_user
+string enable_dark_mode
+string enable_trip_reminders
+string language
+string notifications
 style Theme.App.Starting
 style Theme.TravelPlanner
 xml backup_rules

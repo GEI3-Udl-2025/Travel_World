@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.travelworld.data.AppInfo
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -46,7 +47,10 @@ fun VersionScreen(navController: NavController) {
         ) {
             Text(text = "Version Screen", style = MaterialTheme.typography.headlineMedium)
             Text(text = "Aplicación: TravelWorld")
-            Text(text = "Versión actual: 0.0.1")
+            Text(
+                text = "Versión: ${AppInfo.versionName} (${AppInfo.versionCode})",
+                style = MaterialTheme.typography.bodyLarge
+            )
             Text(text = "Fecha de lanzamiento: Febrero 2025")
             Divider(thickness = 1.dp)
             Text(text = "Changelog:")
