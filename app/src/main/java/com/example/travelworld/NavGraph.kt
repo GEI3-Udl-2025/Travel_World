@@ -1,5 +1,7 @@
 package com.example.travelworld
 
+
+import SubTripApp
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
@@ -23,6 +25,11 @@ fun NavGraph(navController: NavHostController) {
     NavHost(navController = navController, startDestination = "login") {
         composable("login") { LoginScreen(navController) }
         composable("main") { TravelApp(navController) }
+        composable("subtrips/{tripId}") { backStackEntry ->
+            val tripId = backStackEntry.arguments?.getString("tripId")?.toIntOrNull() ?: 0
+            SubTripApp(navController, tripId)
+        }
+
         composable("about") { AboutScreen(navController) }
         composable("terms") { TermsConditionsScreen(navController) }
         composable("version") { VersionScreen(navController) }

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.travelworld.app-mergeDebugResources-59:/values-v29/values-v29.xml",
+            "outputFile": "com.example.travelworld.app-mergeDebugResources-68:/values-v29/values-v29.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\LittleDragon\\.gradle\\caches\\8.10.2\\transforms\\4bf0a45d1bde6772d4ca472871263917\\transformed\\core-splashscreen-1.0.1\\res\\values-v29\\values-v29.xml",
+                    "source": "C:\\Users\\LittleDragon\\.gradle\\caches\\8.10.2\\transforms\\dfe4fd25d1bf4e47aec8210fb06dc76f\\transformed\\core-splashscreen-1.0.1\\res\\values-v29\\values-v29.xml",
                     "from": {
                         "startLines": "2,7",
                         "startColumns": "4,4",

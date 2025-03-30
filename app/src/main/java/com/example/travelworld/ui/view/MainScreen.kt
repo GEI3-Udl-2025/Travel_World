@@ -126,7 +126,7 @@ fun TravelApp(navController: NavController) {
         ) {
             when (selectedScreen) {
                 TravelMode.HOME -> HomeScreen()
-                TravelMode.TRIP -> TripScreen()
+                TravelMode.TRIP -> TripScreen(navController)
                 TravelMode.ITINERARY -> ItineraryScreen()
                 TravelMode.USER_PREFERENCE -> UserPreferenceScreen()
             }
@@ -150,7 +150,7 @@ fun HomeScreen() {
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun TripScreen() {
+fun TripScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -159,9 +159,11 @@ fun TripScreen() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = "Trip Screen", style = MaterialTheme.typography.headlineMedium)
-        TripApp()
+        //integracion del nueva pantalla trip
+        TripApp(navController = navController)
     }
 }
+
 
 @Composable
 fun ItineraryScreen() {
