@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.travelworld.app-mergeDebugResources-68:/values-ca-rES/values-ca-rES.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\LittleDragon\\Documents\\UdL\\AppMob\\TravelWorld\\TravelWorld\\app\\src\\main\\res\\values-ca-rES\\strings.xml",
+                    "from": {
+                        "startLines": "7,2,3,10,9,4,6,8,5",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "368,57,108,531,483,158,284,438,227",
+                        "endColumns": "68,49,48,45,46,67,82,43,55",
+                        "endOffsets": "432,102,152,572,525,221,362,477,278"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,124,174,223,269,316,384,467,511",
+                        "endColumns": "68,49,48,45,46,67,82,43,55",
+                        "endOffsets": "119,169,218,264,311,379,462,506,562"
+                    }
+                }
+            ]
+        }
+    ]
+}
