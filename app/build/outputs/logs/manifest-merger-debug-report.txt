@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:2:1-28:12
-INJECTED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:2:1-28:12
-INJECTED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:2:1-28:12
-INJECTED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:2:1-28:12
+ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:2:1-28:12
 MERGED from [androidx.navigation:navigation-common:2.8.7] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\e97fa61ee48d2756de85b938b66970f1\transformed\navigation-common-2.8.7\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-runtime:2.8.7] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\f9c9607b0593bc585a8f9891af367709\transformed\navigation-runtime-2.8.7\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-common-ktx:2.8.7] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\6abe8dded00203e80180a1740e72b7fc\transformed\navigation-common-ktx-2.8.7\AndroidManifest.xml:2:1-7:12
@@ -74,18 +74,18 @@ MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\LittleDragon\.gradl
 MERGED from [androidx.annotation:annotation-experimental:1.4.1] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\83800cebad1d498c423b9428adcfee7b\transformed\annotation-experimental-1.4.1\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\af95e8b77422c908550581694700b13b\transformed\protolite-well-known-types-18.0.0\AndroidManifest.xml:2:1-11:12
 	package
-		INJECTED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml
 	xmlns:tools
-		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:3:5-51
+		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:3:5-51
 	android:versionCode
-		INJECTED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:2:11-69
+		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:2:11-69
 application
-ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:5:5-26:19
-INJECTED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:5:5-26:19
+ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:5:5-26:19
+INJECTED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:5:5-26:19
 MERGED from [androidx.compose.ui:ui-tooling-android:1.7.2] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\e469120f71485d53577e5cbd9ad3e9b2\transformed\ui-tooling-release\AndroidManifest.xml:22:5-26:19
 MERGED from [androidx.compose.ui:ui-tooling-android:1.7.2] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\e469120f71485d53577e5cbd9ad3e9b2\transformed\ui-tooling-release\AndroidManifest.xml:22:5-26:19
 MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\019e7912830bc0855130c1e0c9d95f44\transformed\emoji2-1.3.0\AndroidManifest.xml:23:5-33:19
@@ -103,51 +103,51 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\LittleDragon\.grad
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\a2b313b00b97bc059b66275754c0ddfb\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\a2b313b00b97bc059b66275754c0ddfb\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
 	android:extractNativeLibs
-		INJECTED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.15.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\c02667651977f9658fc66c0edb88ebe1\transformed\core-1.15.0\AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:12:9-35
+		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:12:9-35
 	android:label
-		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:10:9-41
+		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:10:9-41
 	android:fullBackupContent
-		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:8:9-54
+		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:8:9-54
 	android:roundIcon
-		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:11:9-63
+		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:11:9-63
 	tools:targetApi
-		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:14:9-29
+		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:14:9-29
 	android:icon
-		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:9:9-52
+		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:9:9-52
 	android:allowBackup
-		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:6:9-35
+		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:6:9-35
 	android:theme
-		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:13:9-50
+		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:13:9-50
 	android:dataExtractionRules
-		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:7:9-65
+		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:7:9-65
 activity#com.example.travelworld.MainActivity
-ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:15:9-25:20
+ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:15:9-25:20
 	android:label
-		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:18:13-45
+		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:18:13-45
 	android:exported
-		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:17:13-36
+		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:17:13-36
 	android:theme
-		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:19:13-55
+		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:19:13-55
 	android:name
-		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:16:13-41
+		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:16:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:20:13-24:29
+ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:20:13-24:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:21:17-69
+ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:21:17-69
 	android:name
-		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:21:25-66
+		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:21:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:23:17-77
+ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:23:17-77
 	android:name
-		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml:23:27-74
+		ADDED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml:23:27-74
 uses-sdk
-INJECTED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml
-INJECTED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml
 MERGED from [androidx.navigation:navigation-common:2.8.7] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\e97fa61ee48d2756de85b938b66970f1\transformed\navigation-common-2.8.7\AndroidManifest.xml:20:5-44
 MERGED from [androidx.navigation:navigation-common:2.8.7] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\e97fa61ee48d2756de85b938b66970f1\transformed\navigation-common-2.8.7\AndroidManifest.xml:20:5-44
 MERGED from [androidx.navigation:navigation-runtime:2.8.7] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\f9c9607b0593bc585a8f9891af367709\transformed\navigation-runtime-2.8.7\AndroidManifest.xml:20:5-44
@@ -287,9 +287,9 @@ MERGED from [androidx.annotation:annotation-experimental:1.4.1] C:\Users\LittleD
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\af95e8b77422c908550581694700b13b\transformed\protolite-well-known-types-18.0.0\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\af95e8b77422c908550581694700b13b\transformed\protolite-well-known-types-18.0.0\AndroidManifest.xml:7:5-9:41
 	android:targetSdkVersion
-		INJECTED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelWorld\TravelWorld\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\LittleDragon\Documents\UdL\AppMob\TravelPlanner\app\src\main\AndroidManifest.xml
 activity#androidx.compose.ui.tooling.PreviewActivity
 ADDED from [androidx.compose.ui:ui-tooling-android:1.7.2] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\e469120f71485d53577e5cbd9ad3e9b2\transformed\ui-tooling-release\AndroidManifest.xml:23:9-25:39
 	android:exported
