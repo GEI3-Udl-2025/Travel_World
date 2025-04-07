@@ -1,23 +1,45 @@
 {
     "logs": [
         {
+            "outputFile": "C:\\Users\\LittleDragon\\.gradle\\daemon\\8.10.2\\com.example.travelworld.app-mergeDebugResources-68:\\values-es-rES\\values-es-rES.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\LittleDragon\\Documents\\UdL\\AppMob\\Travel_World\\app\\src\\main\\res\\values-es-rES\\strings.xml",
+                    "from": {
+                        "startLines": "12,7,2,3,10,9,4,6,11,8,5",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "643,373,57,108,540,492,160,289,587,447,231",
+                        "endColumns": "39,72,49,50,45,46,69,82,54,43,56",
+                        "endOffsets": "678,441,102,154,581,534,225,367,637,486,283"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,95,168,218,269,315,362,432,515,570,614",
+                        "endColumns": "39,72,49,50,45,46,69,82,54,43,56",
+                        "endOffsets": "90,163,213,264,310,357,427,510,565,609,666"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "com.example.travelworld.app-mergeDebugResources-68:/values-es-rES/values-es-rES.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\LittleDragon\\Documents\\UdL\\AppMob\\TravelWorld\\TravelWorld\\app\\src\\main\\res\\values-es-rES\\strings.xml",
+                    "source": "C:\\Users\\LittleDragon\\Documents\\UdL\\AppMob\\Travel_World\\app\\src\\main\\res\\values-es-rES\\strings.xml",
                     "from": {
-                        "startLines": "7,2,3,10,9,4,6,8,5",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "373,57,108,540,492,160,289,447,231",
-                        "endColumns": "72,49,50,45,46,69,82,43,56",
-                        "endOffsets": "441,102,154,581,534,225,367,486,283"
+                        "startLines": "12,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
+                        "startColumns": "4,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
+                        "startOffsets": "643,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
+                        "endColumns": "43,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
+                        "endOffsets": "682,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,128,178,229,275,322,392,475,519",
-                        "endColumns": "72,49,50,45,46,69,82,43,56",
-                        "endOffsets": "123,173,224,270,317,387,470,514,571"
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,99,172,222,273,319,366,436,519,574,618",
+                        "endColumns": "43,72,49,50,45,46,69,82,54,43,56",
+                        "endOffsets": "94,167,217,268,314,361,431,514,569,613,670"
                     }
                 }
             ]

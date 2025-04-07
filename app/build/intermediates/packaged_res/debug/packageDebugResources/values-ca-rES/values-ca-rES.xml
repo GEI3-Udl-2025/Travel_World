@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="About">Sobre</string>
     <string name="app_display_language">Idioma de aplicació</string>
     <string name="app_name">Travel World</string>
     <string name="dark_theme">Tema fosc</string>
@@ -7,6 +8,7 @@
     <string name="default_user">user1</string>
     <string name="enable_dark_mode">Habilitar el mode fosc</string>
     <string name="enable_trip_reminders">Habilitar recordatoris de viatge</string>
+    <string name="home_title">Travel App (CA)</string>
     <string name="language">Idioma</string>
     <string name="notifications">Notificacions</string>
 </resources>

@@ -943,6 +943,7 @@ mipmap ic_launcher
 mipmap ic_launcher_original
 mipmap ic_launcher_original_round
 mipmap ic_launcher_round
+string About
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -990,6 +991,7 @@ string default_user
 string dropdown_menu
 string enable_dark_mode
 string enable_trip_reminders
+string home_title
 string in_progress
 string indeterminate
 string language

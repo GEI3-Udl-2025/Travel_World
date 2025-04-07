@@ -24,16 +24,15 @@ class UserPreferencesViewModel @Inject constructor(
         private set
 
     // Estado del idioma - ahora observamos el valor actual
-    var language by mutableStateOf(sharedPrefsManager.userLanguage ?: "en")
+    var language by mutableStateOf(sharedPrefsManager.userLanguage ?: "es")
         private set
 
     // Lista de idiomas disponibles
     val availableLanguages = listOf(
         "en" to "English",
         "es" to "Español",
-        "fr" to "Français",
-        "de" to "Deutsch",
-        "ca" to "Català"
+        "ca" to "Català",
+        "zh" to "中文"
     )
 
     // Actualizar tema oscuro
@@ -51,11 +50,11 @@ class UserPreferencesViewModel @Inject constructor(
         }
     }
 
-    // Actualizar idioma
     fun updateLanguage(newLanguage: String) {
         viewModelScope.launch {
-            language = newLanguage
             sharedPrefsManager.userLanguage = newLanguage
+            language = newLanguage
         }
     }
+
 }

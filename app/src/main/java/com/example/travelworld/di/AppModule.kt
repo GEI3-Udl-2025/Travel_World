@@ -3,7 +3,7 @@ package com.example.travelworld.di
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.room.Room
-import com.example.travelworld.data.SharedPrefsManager
+/*import com.example.travelworld.data.SharedPrefsManager*/
 import com.example.travelworld.data.TripRepositoryImpl
 import com.example.travelworld.data.local.TripDatabase
 import com.example.travelworld.data.local.dao.SubTripDao
@@ -28,13 +28,13 @@ object AppModule {
 
     // context.getSharedPreferences("my_preferences", Context.MODE_PRIVATE) //bad implementation
 
-    @dagger.Provides
+/*    @dagger.Provides
     @Singleton
     fun provideSharedPrefsManager(
         sharedPreferences: SharedPreferences,
         @ApplicationContext context: Context
     ): SharedPrefsManager =
-        SharedPrefsManager(sharedPreferences, context)
+        SharedPrefsManager(sharedPreferences, context)*/
 
 
 

@@ -8,13 +8,15 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="white">#FFFFFFFF</color>
+    <string name="About">About</string>
     <string name="app_display_language">App display language</string>
-    <string name="app_name" translatable="false">Travel World</string>
+    <string name="app_name">Travel World</string>
     <string name="dark_theme">Dark Theme</string>
-    <string name="default_pass" translatable="false">1234</string>
-    <string name="default_user" translatable="false">user1</string>
+    <string name="default_pass">1234</string>
+    <string name="default_user">user1</string>
     <string name="enable_dark_mode">Enable dark mode</string>
     <string name="enable_trip_reminders">Enable trip reminders</string>
+    <string name="home_title">Travel App (EN)</string>
     <string name="language">Language</string>
     <string name="notifications">Notifications</string>
     <style name="Theme.App.Starting" parent="android:Theme.Material.Light.NoActionBar">

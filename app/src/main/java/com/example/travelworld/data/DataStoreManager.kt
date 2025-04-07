@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import java.io.IOException
 
-// Extensión en Context para inicializar DataStore
 val Context.dataStore by preferencesDataStore(name = "settings")
 
 class DataStoreManager(private val context: Context) {
@@ -27,7 +26,7 @@ class DataStoreManager(private val context: Context) {
             if (exception is IOException) emit(emptyPreferences()) else throw exception
         }
         .map { preferences ->
-            preferences[PreferencesKeys.USER_LANGUAGE] ?: "es"
+            preferences[PreferencesKeys.USER_LANGUAGE] ?: "en"
         }
 
     // Flow para el tema (valor por defecto: false = tema claro)

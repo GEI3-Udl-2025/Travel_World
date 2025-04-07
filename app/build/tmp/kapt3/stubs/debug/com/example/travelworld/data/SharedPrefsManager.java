@@ -8,14 +8,14 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 @javax.inject.Singleton()
-@kotlin.Metadata(mv = {1, 9, 0}, k = 1, xi = 48, d1 = {"\u0000,\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u000b\n\u0002\b\u0006\n\u0002\u0018\u0002\n\u0002\u0010\u000e\n\u0002\b\u0006\b\u0007\u0018\u00002\u00020\u0001B\u0019\b\u0007\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u0012\b\b\u0001\u0010\u0004\u001a\u00020\u0005\u00a2\u0006\u0002\u0010\u0006R\u000e\u0010\u0004\u001a\u00020\u0005X\u0082\u0004\u00a2\u0006\u0002\n\u0000R$\u0010\t\u001a\u00020\b2\u0006\u0010\u0007\u001a\u00020\b8F@FX\u0086\u000e\u00a2\u0006\f\u001a\u0004\b\n\u0010\u000b\"\u0004\b\f\u0010\rR\u000e\u0010\u000e\u001a\u00020\u000fX\u0082\u0004\u00a2\u0006\u0002\n\u0000R\u000e\u0010\u0002\u001a\u00020\u0003X\u0082\u0004\u00a2\u0006\u0002\n\u0000R(\u0010\u0011\u001a\u0004\u0018\u00010\u00102\b\u0010\u0007\u001a\u0004\u0018\u00010\u00108F@FX\u0086\u000e\u00a2\u0006\f\u001a\u0004\b\u0012\u0010\u0013\"\u0004\b\u0014\u0010\u0015\u00a8\u0006\u0016"}, d2 = {"Lcom/example/travelworld/data/SharedPrefsManager;", "", "preferences", "Landroid/content/SharedPreferences;", "context", "Landroid/content/Context;", "(Landroid/content/SharedPreferences;Landroid/content/Context;)V", "value", "", "darkTheme", "getDarkTheme", "()Z", "setDarkTheme", "(Z)V", "languageChangeUtil", "Lcom/example/travelworld/utils/LanguageChangeUtil;", "", "userLanguage", "getUserLanguage", "()Ljava/lang/String;", "setUserLanguage", "(Ljava/lang/String;)V", "app_debug"})
+@kotlin.Metadata(mv = {1, 9, 0}, k = 1, xi = 48, d1 = {"\u00000\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u000b\n\u0002\b\u0006\n\u0002\u0018\u0002\n\u0002\b\u0004\n\u0002\u0010\u000e\n\u0002\b\u0006\b\u0007\u0018\u00002\u00020\u0001B\u0019\b\u0007\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u0012\b\b\u0001\u0010\u0004\u001a\u00020\u0005\u00a2\u0006\u0002\u0010\u0006R\u000e\u0010\u0004\u001a\u00020\u0005X\u0082\u0004\u00a2\u0006\u0002\n\u0000R$\u0010\t\u001a\u00020\b2\u0006\u0010\u0007\u001a\u00020\b8F@FX\u0086\u000e\u00a2\u0006\f\u001a\u0004\b\n\u0010\u000b\"\u0004\b\f\u0010\rR\u001b\u0010\u000e\u001a\u00020\u000f8FX\u0086\u0084\u0002\u00a2\u0006\f\n\u0004\b\u0012\u0010\u0013\u001a\u0004\b\u0010\u0010\u0011R\u000e\u0010\u0002\u001a\u00020\u0003X\u0082\u0004\u00a2\u0006\u0002\n\u0000R(\u0010\u0015\u001a\u0004\u0018\u00010\u00142\b\u0010\u0007\u001a\u0004\u0018\u00010\u00148F@FX\u0086\u000e\u00a2\u0006\f\u001a\u0004\b\u0016\u0010\u0017\"\u0004\b\u0018\u0010\u0019\u00a8\u0006\u001a"}, d2 = {"Lcom/example/travelworld/data/SharedPrefsManager;", "", "preferences", "Landroid/content/SharedPreferences;", "context", "Landroid/content/Context;", "(Landroid/content/SharedPreferences;Landroid/content/Context;)V", "value", "", "darkTheme", "getDarkTheme", "()Z", "setDarkTheme", "(Z)V", "languageChangeUtil", "Lcom/example/travelworld/utils/LanguageChangeUtil;", "getLanguageChangeUtil", "()Lcom/example/travelworld/utils/LanguageChangeUtil;", "languageChangeUtil$delegate", "Lkotlin/Lazy;", "", "userLanguage", "getUserLanguage", "()Ljava/lang/String;", "setUserLanguage", "(Ljava/lang/String;)V", "app_debug"})
 public final class SharedPrefsManager {
     @org.jetbrains.annotations.NotNull()
     private final android.content.SharedPreferences preferences = null;
     @org.jetbrains.annotations.NotNull()
     private final android.content.Context context = null;
     @org.jetbrains.annotations.NotNull()
-    private final com.example.travelworld.utils.LanguageChangeUtil languageChangeUtil = null;
+    private final kotlin.Lazy languageChangeUtil$delegate = null;
     
     @javax.inject.Inject()
     public SharedPrefsManager(@org.jetbrains.annotations.NotNull()
@@ -23,6 +23,11 @@ public final class SharedPrefsManager {
     @org.jetbrains.annotations.NotNull()
     android.content.Context context) {
         super();
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final com.example.travelworld.utils.LanguageChangeUtil getLanguageChangeUtil() {
+        return null;
     }
     
     @org.jetbrains.annotations.Nullable()

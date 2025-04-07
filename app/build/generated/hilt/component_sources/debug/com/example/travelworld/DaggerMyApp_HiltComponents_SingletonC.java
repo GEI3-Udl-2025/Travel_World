@@ -12,7 +12,6 @@ import com.example.travelworld.data.local.TripDatabase;
 import com.example.travelworld.data.local.dao.SubTripDao;
 import com.example.travelworld.data.local.dao.TripDao;
 import com.example.travelworld.di.AppModule_ProvideSharedPreferencesFactory;
-import com.example.travelworld.di.AppModule_ProvideSharedPrefsManagerFactory;
 import com.example.travelworld.di.AppModule_ProvideSubTripDaoFactory;
 import com.example.travelworld.di.AppModule_ProvideTripDaoFactory;
 import com.example.travelworld.di.AppModule_ProvideTripDatabaseFactory;
@@ -410,9 +409,9 @@ public final class DaggerMyApp_HiltComponents_SingletonC {
 
       static String com_example_travelworld_ui_viewmodel_TripViewModel = "com.example.travelworld.ui.viewmodel.TripViewModel";
 
-      static String com_example_travelworld_ui_viewmodel_UserPreferencesViewModel = "com.example.travelworld.ui.viewmodel.UserPreferencesViewModel";
-
       static String com_example_travelworld_ui_viewmodel_SubTripViewModel = "com.example.travelworld.ui.viewmodel.SubTripViewModel";
+
+      static String com_example_travelworld_ui_viewmodel_UserPreferencesViewModel = "com.example.travelworld.ui.viewmodel.UserPreferencesViewModel";
 
       @KeepFieldType
       VersionViewModel com_example_travelworld_ui_viewmodel_VersionViewModel2;
@@ -421,10 +420,10 @@ public final class DaggerMyApp_HiltComponents_SingletonC {
       TripViewModel com_example_travelworld_ui_viewmodel_TripViewModel2;
 
       @KeepFieldType
-      UserPreferencesViewModel com_example_travelworld_ui_viewmodel_UserPreferencesViewModel2;
+      SubTripViewModel com_example_travelworld_ui_viewmodel_SubTripViewModel2;
 
       @KeepFieldType
-      SubTripViewModel com_example_travelworld_ui_viewmodel_SubTripViewModel2;
+      UserPreferencesViewModel com_example_travelworld_ui_viewmodel_UserPreferencesViewModel2;
     }
   }
 
@@ -476,22 +475,22 @@ public final class DaggerMyApp_HiltComponents_SingletonC {
 
     @IdentifierNameString
     private static final class LazyClassKeyProvider {
-      static String com_example_travelworld_ui_viewmodel_VersionViewModel = "com.example.travelworld.ui.viewmodel.VersionViewModel";
+      static String com_example_travelworld_ui_viewmodel_SubTripViewModel = "com.example.travelworld.ui.viewmodel.SubTripViewModel";
 
       static String com_example_travelworld_ui_viewmodel_TripViewModel = "com.example.travelworld.ui.viewmodel.TripViewModel";
 
-      static String com_example_travelworld_ui_viewmodel_SubTripViewModel = "com.example.travelworld.ui.viewmodel.SubTripViewModel";
+      static String com_example_travelworld_ui_viewmodel_VersionViewModel = "com.example.travelworld.ui.viewmodel.VersionViewModel";
 
       static String com_example_travelworld_ui_viewmodel_UserPreferencesViewModel = "com.example.travelworld.ui.viewmodel.UserPreferencesViewModel";
 
       @KeepFieldType
-      VersionViewModel com_example_travelworld_ui_viewmodel_VersionViewModel2;
+      SubTripViewModel com_example_travelworld_ui_viewmodel_SubTripViewModel2;
 
       @KeepFieldType
       TripViewModel com_example_travelworld_ui_viewmodel_TripViewModel2;
 
       @KeepFieldType
-      SubTripViewModel com_example_travelworld_ui_viewmodel_SubTripViewModel2;
+      VersionViewModel com_example_travelworld_ui_viewmodel_VersionViewModel2;
 
       @KeepFieldType
       UserPreferencesViewModel com_example_travelworld_ui_viewmodel_UserPreferencesViewModel2;
@@ -525,7 +524,7 @@ public final class DaggerMyApp_HiltComponents_SingletonC {
           return (T) new TripViewModel(singletonCImpl.provideTripRepositoryProvider.get());
 
           case 2: // com.example.travelworld.ui.viewmodel.UserPreferencesViewModel 
-          return (T) new UserPreferencesViewModel(singletonCImpl.provideSharedPrefsManagerProvider.get());
+          return (T) new UserPreferencesViewModel(singletonCImpl.sharedPrefsManagerProvider.get());
 
           case 3: // com.example.travelworld.ui.viewmodel.VersionViewModel 
           return (T) new VersionViewModel();
@@ -616,7 +615,7 @@ public final class DaggerMyApp_HiltComponents_SingletonC {
 
     private Provider<SharedPreferences> provideSharedPreferencesProvider;
 
-    private Provider<SharedPrefsManager> provideSharedPrefsManagerProvider;
+    private Provider<SharedPrefsManager> sharedPrefsManagerProvider;
 
     private SingletonCImpl(ApplicationContextModule applicationContextModuleParam) {
       this.applicationContextModule = applicationContextModuleParam;
@@ -637,7 +636,7 @@ public final class DaggerMyApp_HiltComponents_SingletonC {
       this.provideTripDatabaseProvider = DoubleCheck.provider(new SwitchingProvider<TripDatabase>(singletonCImpl, 1));
       this.provideTripRepositoryProvider = DoubleCheck.provider(new SwitchingProvider<TripRepository>(singletonCImpl, 0));
       this.provideSharedPreferencesProvider = DoubleCheck.provider(new SwitchingProvider<SharedPreferences>(singletonCImpl, 3));
-      this.provideSharedPrefsManagerProvider = DoubleCheck.provider(new SwitchingProvider<SharedPrefsManager>(singletonCImpl, 2));
+      this.sharedPrefsManagerProvider = DoubleCheck.provider(new SwitchingProvider<SharedPrefsManager>(singletonCImpl, 2));
     }
 
     @Override
@@ -680,7 +679,7 @@ public final class DaggerMyApp_HiltComponents_SingletonC {
           return (T) AppModule_ProvideTripDatabaseFactory.provideTripDatabase(ApplicationContextModule_ProvideContextFactory.provideContext(singletonCImpl.applicationContextModule));
 
           case 2: // com.example.travelworld.data.SharedPrefsManager 
-          return (T) AppModule_ProvideSharedPrefsManagerFactory.provideSharedPrefsManager(singletonCImpl.provideSharedPreferencesProvider.get(), ApplicationContextModule_ProvideContextFactory.provideContext(singletonCImpl.applicationContextModule));
+          return (T) new SharedPrefsManager(singletonCImpl.provideSharedPreferencesProvider.get(), ApplicationContextModule_ProvideContextFactory.provideContext(singletonCImpl.applicationContextModule));
 
           case 3: // android.content.SharedPreferences 
           return (T) AppModule_ProvideSharedPreferencesFactory.provideSharedPreferences(ApplicationContextModule_ProvideContextFactory.provideContext(singletonCImpl.applicationContextModule));
