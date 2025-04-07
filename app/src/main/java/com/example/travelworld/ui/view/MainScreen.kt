@@ -11,10 +11,12 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.travelworld.R
 import com.example.travelworld.ui.view.trip_icon.TripApp
 import com.example.travelworld.ui.view.userpref_icon.UserPreferencesApp
 
@@ -34,7 +36,7 @@ fun TravelApp(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Travel App") },
+                title = { Text(text = stringResource(id = R.string.home_title)) },
                 actions = {
                     Box {
                         IconButton(onClick = { showSettingsMenu = !showSettingsMenu }) {
@@ -46,7 +48,7 @@ fun TravelApp(navController: NavController) {
                         ) {
                             DropdownMenuItem(
                                 leadingIcon = { Icon(Icons.Filled.Info, contentDescription = "About Icon") },
-                                text = { Text("About") },
+                                text = { Text(text = stringResource(id = R.string.About)) },
                                 onClick = {
                                     showSettingsMenu = false
                                     navController.navigate("about")
@@ -126,26 +128,12 @@ fun TravelApp(navController: NavController) {
                 .padding(innerPadding)
         ) {
             when (selectedScreen) {
-                TravelMode.HOME -> HomeScreen()
                 TravelMode.TRIP -> TripScreen(navController)
+                TravelMode.HOME -> HomeScreen()
                 TravelMode.ITINERARY -> ItineraryScreen()
                 TravelMode.USER_PREFERENCE -> UserPreferenceScreen()
             }
         }
-    }
-}
-
-@Composable
-fun HomeScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(text = "Home Screen", style = MaterialTheme.typography.headlineMedium)
-        HomeApp()
     }
 }
 
@@ -157,11 +145,25 @@ fun TripScreen(navController: NavController) {
             .fillMaxSize()
             .padding(16.dp),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.Start
     ) {
         Text(text = "Trip Screen", style = MaterialTheme.typography.titleLarge)
 
         TripApp(navController = navController)
+    }
+}
+
+@Composable
+fun HomeScreen() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.Start
+    ) {
+        Text(text = "Home Screen", style = MaterialTheme.typography.titleLarge)
+        HomeApp()
     }
 }
 
@@ -173,9 +175,9 @@ fun ItineraryScreen() {
             .fillMaxSize()
             .padding(16.dp),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.Start
     ) {
-        Text(text = "Itinerary Screen", style = MaterialTheme.typography.headlineMedium)
+        Text(text = "Itinerary Screen", style = MaterialTheme.typography.titleLarge)
 
     }
 }
@@ -187,10 +189,9 @@ fun UserPreferenceScreen() {
             .fillMaxSize()
             .padding(16.dp),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.Start
     ) {
-        Text(text = "User Preference Screen", style = MaterialTheme.typography.headlineMedium)
-        // Aquí puedes agregar los componentes y lógica de la pantalla de preferencias de usuario
+        Text(text = "User Preference Screen", style = MaterialTheme.typography.titleLarge)
         UserPreferencesApp()
     }
 }

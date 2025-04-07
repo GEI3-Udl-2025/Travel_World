@@ -7,4 +7,8 @@
     <string name="enable_trip_reminders">开启通知</string>
     <string name="app_display_language">应用语言</string>
     <string name="language">语言</string>
+    <string name="default_pass">1234</string>
+    <string name="home_title">Travel App (CN/ZH)</string>
+    <string name="default_user">user1</string>
+    <string name="About">关于</string>
 </resources>

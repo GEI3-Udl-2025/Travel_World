@@ -19,24 +19,6 @@ import java.util.Locale
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    override fun attachBaseContext(newBase: Context) {
-        val sharedPrefs = newBase.getSharedPreferences(
-            "${BuildConfig.APPLICATION_ID}_preferences",
-            Context.MODE_PRIVATE
-        )
-        val langCode = sharedPrefs.getString("user_language", "en") ?: "en"
-        super.attachBaseContext(updateBaseContextLocale(newBase, langCode))
-    }
-
-    private fun updateBaseContextLocale(context: Context, languageCode: String): Context {
-        val locale = Locale(languageCode)
-        Locale.setDefault(locale)
-
-        val configuration = Configuration(context.resources.configuration)
-        configuration.setLocale(locale)
-
-        return context.createConfigurationContext(configuration)
-    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,6 +32,8 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+
 }
 @RequiresApi(Build.VERSION_CODES.O)
 @Preview
