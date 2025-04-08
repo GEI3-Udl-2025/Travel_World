@@ -1,32 +1,4 @@
-```mermaid
-graph TD
-    A[MainActivity] --> B[MainScreen]
-    B --> C[NavGraph]
-    C --> D[LoginScreen]
-    C --> E[HomeScreen]
-    C --> F[ProfileScreen]
-    C --> G[AddTripScreen]
-    C --> H[ItinerariosScreen]
-    C --> I[TripDetailScreen]
-    C --> J[AboutScreen]
-    C --> K[TermsConditionsScreen]
-    C --> L[VersionScreen]
-    C --> M[SettingsScreen]
-    
-    E --> N[MenuScreen]
-    N --> O[TripScreen]
-    N --> P[ItineraryScreen]
-    N --> Q[UserPreferenceScreen]
-    
-    style A fill:#f9f,stroke:#333
-    style B fill:#bbf,stroke:#333
-    style C fill:#abc,stroke:#333
-
-
 ### design.md
-
-```markdown
-## Data Model
 
 ```mermaid
 classDiagram
@@ -63,7 +35,7 @@ classDiagram
     User "1" -- "0..*" Trip : owns
     Itinerary "1" -- "1..*" Activity : contains
 
-    flowchart TB
+flowchart TB
     Login -->|Success| Home
     Home --> Profile
     Home --> AddTrip
