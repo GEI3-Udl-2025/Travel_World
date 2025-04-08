@@ -1,4 +1,4 @@
-### design.md
+## Data Model
 
 ```mermaid
 classDiagram
@@ -34,7 +34,11 @@ classDiagram
     Trip "1" -- "1..*" Itinerary : has
     User "1" -- "0..*" Trip : owns
     Itinerary "1" -- "1..*" Activity : contains
+```
 
+## Screen Relationships
+
+```mermaid
 flowchart TB
     Login -->|Success| Home
     Home --> Profile
@@ -45,3 +49,4 @@ flowchart TB
     Home -->|Settings Menu| Terms
     Home -->|Settings Menu| Version
     Home -->|Settings Menu| Settings
+```
