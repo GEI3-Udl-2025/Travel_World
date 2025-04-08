@@ -1,13 +1,52 @@
+# TravelWorld - Documentación Completa
+
+```mermaid
+flowchart TD
+    A[Login] --> B[Main]
+    B --> C[TravelApp]
+    C --> D{{Pantallas Principales}}
+    D --> E[Trips]
+    D --> F[Home]
+    D --> G[Itinerary]
+    D --> H[User Preferences]
+    C --> I{{Menú Configuración}}
+    I --> J[About]
+    I --> K[Version]
+    I --> L[Profile]
+    I --> M[Settings]
+    I --> N[Terms]
+    E --> O[SubTrips]
+```
+
 ```mermaid
 classDiagram
-    direction TB
+    direction BT
     
     class MainActivity {
         +onCreate()
     }
     
     class NavGraph {
-        +composable routes
+        +composable("login")
+        +composable("main")
+        +composable("subtrips/{tripId}")
+        +composable("about")
+        +composable("terms")
+        +composable("version")
+        +composable("settings")
+    }
+    
+    class TravelApp {
+        +selectedScreen: TravelMode
+        +showSettingsMenu: Boolean
+    }
+    
+    class TravelMode {
+        <<enum>>
+        HOME
+        TRIP
+        ITINERARY
+        USER_PREFERENCE
     }
     
     class TripViewModel {
@@ -17,40 +56,18 @@ classDiagram
         +deleteTrip()
     }
     
-    class TripRepository {
-        <<interface>>
-        +getTrips() Flow<List<Trip>>
-        +addTrip()
-        +deleteTrip()
-    }
-    
-    class TripRepositoryImpl {
-        -tripDao: TripDao
-        -subTripDao: SubTripDao
-        +getTrips()
-    }
-    
-    class TripDatabase {
-        +tripDao()
-        +subTripDao()
-    }
-    
-    class Trip {
-        +id: Int
-        +title: String
-        +description: String
-        +subTrips: List<SubTrip>
-    }
-    
-    class SubTrip {
-        +id: Int
-        +parentTripId: Int
-        +title: String
-        +description: String
+    class UserPreferencesViewModel {
+        -sharedPrefsManager: SharedPrefsManager
+        +darkThemeEnabled: Boolean
+        +language: String
+        +updateLanguage()
     }
     
     MainActivity --> NavGraph
-    NavGraph --> TripViewModel
+    NavGraph --> TravelApp
+    TravelApp --> TripViewModel
+    TravelApp --> UserPreferencesViewModel
+    UserPreferencesViewModel --> SharedPrefsManager
     TripViewModel --> TripRepository
     TripRepository <|.. TripRepositoryImpl
     TripRepositoryImpl --> TripDatabase
@@ -60,131 +77,99 @@ classDiagram
 
 ```mermaid
 erDiagram
+    TRIP ||--o{ SUBTRIP : contains
+    
     TRIP {
         int id PK
         string title
         string description
         datetime created_at
     }
-```
-
-```mermaid
-erDiagram
+    
     SUBTRIP {
         int id PK
         int parentTripId FK
         string title
         string description
-        string location
     }
 ```
 
 ```mermaid
-erDiagram
-    TRIP ||--o{ SUBTRIP : "contiene"
-    TRIP {
-        int id
-    } 
-    SUBTRIP {
-        int parentTripId
-    }
-    SUBTRIP }o--|| TRIP : "pertenece a"
-```
-
-```mermaid
-flowchart TD
-    A[Login] --> B[Home]
-    B --> C[Trips]
-    B --> D[Settings]
-    C --> E[SubTrips]
-    D --> F[About]
-    D --> G[Terms]
-    D --> H[Version]
+sequenceDiagram
+    participant Activity as MainActivity
+    participant Nav as NavController
+    participant ViewModel as TripViewModel
+    participant Repo as TripRepository
+    participant DB as TripDatabase
+    
+    Activity->>Nav: setContent(NavGraph)
+    Nav->>ViewModel: init()
+    ViewModel->>Repo: loadTrips()
+    Repo->>DB: getTrips()
+    DB-->>Repo: TripEntities
+    Repo-->>ViewModel: Mapped Trips
+    ViewModel-->>Nav: Update UI State
 ```
 
 ```mermaid
 flowchart LR
     subgraph UI
-        A[Activities] --> B[Composables]
-        B --> C[ViewModels]
+        A[MainActivity] --> B[NavGraph]
+        B --> C[TravelApp]
+        C --> D[Composables]
     end
-
-    subgraph Domain
-        C --> D[Repositories]
+    
+    subgraph Business_Logic
+        D --> E[ViewModels]
+        E --> F[Repositories]
     end
-
+    
     subgraph Data
-        D --> E[Local DB]
-        D --> F[Preferences]
+        F --> G[Room Database]
+        F --> H[SharedPreferences]
+        G --> I[Trip/SubTrip Entities]
+        H --> J[User Settings]
     end
-
-    E --> G[Room]
-    F --> H[DataStore]
-```
-
-```mermaid
-mindmap
-  root(com.example.travelworld)
-    --> MainActivity
-    --> MyApp
-    --> NavGraph
-    --> data
-        --> local
-        --> repository
-        --> model
-    --> domain
-        --> model
-        --> repository
-    --> ui
-        --> view
-        --> viewmodel
-    --> utils
-```
-
-```mermaid
-sequenceDiagram
-    participant UI as Pantalla
-    participant VM as TripViewModel
-    participant Repo as TripRepository
-    participant DB as Room
-
-    UI->>VM: loadTrips()
-    VM->>Repo: getTrips()
-    Repo->>DB: tripDao.getAll()
-    DB-->>Repo: List<TripEntity>
-    Repo->>Repo: mapToDomain()
-    Repo-->>VM: List<Trip>
-    VM-->>UI: update UI State
-```
-
-```mermaid
-sequenceDiagram
-    participant UI as Settings
-    participant VM as PrefsViewModel
-    participant Prefs as SharedPrefs
-    participant Util as LangUtil
-
-    UI->>VM: updateLanguage("es")
-    VM->>Prefs: setLanguage("es")
-    Prefs->>Util: changeLanguage(context, "es")
-    Util-->>UI: updateConfiguration()
 ```
 
 ```mermaid
 pie
-    title Stack Tecnológico
-    "Jetpack Compose" : 35
-    "Room Database" : 25
-    "Hilt DI" : 20
-    "Navigation" : 15
-    "DataStore" : 5
+    title Componentes por Capa
+    "UI (Compose)" : 45
+    "Lógica (ViewModels)" : 30
+    "Datos (Room/SharedPrefs)" : 25
 ```
 
 ```mermaid
-graph LR
-    A[Compose] --> B[ViewModel]
-    B --> C[Coroutines]
-    C --> D[Room]
-    D --> E[Hilt]
-    E --> F[Navigation]
+graph TD
+    S[Settings Menu] --> A[AboutScreen]
+    S --> B[VersionScreen]
+    S --> C[ProfileScreen]
+    S --> D[SettingsScreen]
+    S --> E[TermsConditionsScreen]
+    style S fill:#4CAF50,stroke:#388E3C
 ```
+
+## Key Features:
+1. **4 Pantallas Principales**:
+   - Viajes (Trips)
+   - Inicio (Home)
+   - Itinerario (Itinerary)
+   - Preferencias (User Preferences)
+
+2. **Menú de Configuración con 5 opciones**:
+   - About (información de la app)
+   - Version (detalles de versión)
+   - Profile (gestión de usuario)
+   - Settings (configuración general)
+   - Terms & Conditions (legal)
+
+3. **Flujo de Navegación**:
+   - Login → Main (Home) → (4 pantallas principales)
+   - Acceso directo a SubTrips desde Trips
+   - Menú desplegable con 5 opciones de configuración
+
+4. **Persistencia de Datos**:
+   - Room Database para Trips/SubTrips
+   - SharedPreferences para configuración de usuario
+   - Integración con Hilt para DI
