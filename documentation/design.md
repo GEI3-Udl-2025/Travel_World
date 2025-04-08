@@ -29,7 +29,7 @@ classDiagram
     class NavGraph {
         +composable("login")
         +composable("main")
-        +composable("subtrips/{tripId}")
+        +composable("subtrips")
         +composable("about")
         +composable("terms")
         +composable("version")
@@ -42,7 +42,7 @@ classDiagram
     }
     
     class TravelMode {
-        <<enum>>
+        <<enumeration>>
         HOME
         TRIP
         ITINERARY
@@ -51,16 +51,16 @@ classDiagram
     
     class TripViewModel {
         -repository: TripRepository
-        +trips: StateFlow<List<Trip>>
-        +addTrip()
-        +deleteTrip()
+        +trips: StateFlow~List~Trip~~
+        +addTrip(Trip)
+        +deleteTrip(Int)
     }
     
     class UserPreferencesViewModel {
         -sharedPrefsManager: SharedPrefsManager
         +darkThemeEnabled: Boolean
         +language: String
-        +updateLanguage()
+        +updateLanguage(String)
     }
     
     MainActivity --> NavGraph
@@ -73,8 +73,6 @@ classDiagram
     TripRepositoryImpl --> TripDatabase
     TripDatabase --> Trip
     Trip --> SubTrip
-```
-
 ```mermaid
 erDiagram
     TRIP ||--o{ SUBTRIP : contains
