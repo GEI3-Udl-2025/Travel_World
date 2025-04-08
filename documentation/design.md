@@ -1,3 +1,4 @@
+```mermaid
 classDiagram
     direction TB
     
@@ -55,7 +56,9 @@ classDiagram
     TripRepositoryImpl --> TripDatabase
     TripDatabase --> Trip
     Trip --> SubTrip
-    
+```
+
+```mermaid
 erDiagram
     TRIP {
         int id PK
@@ -63,6 +66,10 @@ erDiagram
         string description
         datetime created_at
     }
+```
+
+```mermaid
+erDiagram
     SUBTRIP {
         int id PK
         int parentTripId FK
@@ -70,7 +77,9 @@ erDiagram
         string description
         string location
     }
+```
 
+```mermaid
 erDiagram
     TRIP ||--o{ SUBTRIP : "contiene"
     TRIP {
@@ -80,8 +89,10 @@ erDiagram
         int parentTripId
     }
     SUBTRIP }o--|| TRIP : "pertenece a"
+```
 
- flowchart TD
+```mermaid
+flowchart TD
     A[Login] --> B[Home]
     B --> C[Trips]
     B --> D[Settings]
@@ -89,7 +100,9 @@ erDiagram
     D --> F[About]
     D --> G[Terms]
     D --> H[Version]
+```
 
+```mermaid
 flowchart LR
     subgraph UI
         A[Activities] --> B[Composables]
@@ -107,7 +120,9 @@ flowchart LR
 
     E --> G[Room]
     F --> H[DataStore]
+```
 
+```mermaid
 mindmap
   root(com.example.travelworld)
     --> MainActivity
@@ -124,7 +139,9 @@ mindmap
         --> view
         --> viewmodel
     --> utils
+```
 
+```mermaid
 sequenceDiagram
     participant UI as Pantalla
     participant VM as TripViewModel
@@ -138,7 +155,9 @@ sequenceDiagram
     Repo->>Repo: mapToDomain()
     Repo-->>VM: List<Trip>
     VM-->>UI: update UI State
+```
 
+```mermaid
 sequenceDiagram
     participant UI as Settings
     participant VM as PrefsViewModel
@@ -149,7 +168,9 @@ sequenceDiagram
     VM->>Prefs: setLanguage("es")
     Prefs->>Util: changeLanguage(context, "es")
     Util-->>UI: updateConfiguration()
+```
 
+```mermaid
 pie
     title Stack Tecnológico
     "Jetpack Compose" : 35
@@ -157,10 +178,13 @@ pie
     "Hilt DI" : 20
     "Navigation" : 15
     "DataStore" : 5
+```
 
+```mermaid
 graph LR
     A[Compose] --> B[ViewModel]
     B --> C[Coroutines]
     C --> D[Room]
     D --> E[Hilt]
     E --> F[Navigation]
+```
