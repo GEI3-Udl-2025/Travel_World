@@ -8,14 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 import com.example.travelworld.data.SharedPrefsManager;
-import com.example.travelworld.data.local.TripDatabase;
-import com.example.travelworld.data.local.dao.SubTripDao;
-import com.example.travelworld.data.local.dao.TripDao;
-import com.example.travelworld.di.AppModule_ProvideSharedPreferencesFactory;
-import com.example.travelworld.di.AppModule_ProvideSubTripDaoFactory;
-import com.example.travelworld.di.AppModule_ProvideTripDaoFactory;
-import com.example.travelworld.di.AppModule_ProvideTripDatabaseFactory;
-import com.example.travelworld.di.AppModule_ProvideTripRepositoryFactory;
 import com.example.travelworld.domain.repository.TripRepository;
 import com.example.travelworld.ui.viewmodel.SubTripViewModel;
 import com.example.travelworld.ui.viewmodel.SubTripViewModel_HiltModules;
@@ -405,25 +397,25 @@ public final class DaggerMyApp_HiltComponents_SingletonC {
 
     @IdentifierNameString
     private static final class LazyClassKeyProvider {
-      static String com_example_travelworld_ui_viewmodel_VersionViewModel = "com.example.travelworld.ui.viewmodel.VersionViewModel";
-
       static String com_example_travelworld_ui_viewmodel_TripViewModel = "com.example.travelworld.ui.viewmodel.TripViewModel";
-
-      static String com_example_travelworld_ui_viewmodel_SubTripViewModel = "com.example.travelworld.ui.viewmodel.SubTripViewModel";
 
       static String com_example_travelworld_ui_viewmodel_UserPreferencesViewModel = "com.example.travelworld.ui.viewmodel.UserPreferencesViewModel";
 
-      @KeepFieldType
-      VersionViewModel com_example_travelworld_ui_viewmodel_VersionViewModel2;
+      static String com_example_travelworld_ui_viewmodel_VersionViewModel = "com.example.travelworld.ui.viewmodel.VersionViewModel";
+
+      static String com_example_travelworld_ui_viewmodel_SubTripViewModel = "com.example.travelworld.ui.viewmodel.SubTripViewModel";
 
       @KeepFieldType
       TripViewModel com_example_travelworld_ui_viewmodel_TripViewModel2;
 
       @KeepFieldType
-      SubTripViewModel com_example_travelworld_ui_viewmodel_SubTripViewModel2;
+      UserPreferencesViewModel com_example_travelworld_ui_viewmodel_UserPreferencesViewModel2;
 
       @KeepFieldType
-      UserPreferencesViewModel com_example_travelworld_ui_viewmodel_UserPreferencesViewModel2;
+      VersionViewModel com_example_travelworld_ui_viewmodel_VersionViewModel2;
+
+      @KeepFieldType
+      SubTripViewModel com_example_travelworld_ui_viewmodel_SubTripViewModel2;
     }
   }
 
@@ -475,13 +467,16 @@ public final class DaggerMyApp_HiltComponents_SingletonC {
 
     @IdentifierNameString
     private static final class LazyClassKeyProvider {
+      static String com_example_travelworld_ui_viewmodel_UserPreferencesViewModel = "com.example.travelworld.ui.viewmodel.UserPreferencesViewModel";
+
       static String com_example_travelworld_ui_viewmodel_SubTripViewModel = "com.example.travelworld.ui.viewmodel.SubTripViewModel";
 
       static String com_example_travelworld_ui_viewmodel_TripViewModel = "com.example.travelworld.ui.viewmodel.TripViewModel";
 
       static String com_example_travelworld_ui_viewmodel_VersionViewModel = "com.example.travelworld.ui.viewmodel.VersionViewModel";
 
-      static String com_example_travelworld_ui_viewmodel_UserPreferencesViewModel = "com.example.travelworld.ui.viewmodel.UserPreferencesViewModel";
+      @KeepFieldType
+      UserPreferencesViewModel com_example_travelworld_ui_viewmodel_UserPreferencesViewModel2;
 
       @KeepFieldType
       SubTripViewModel com_example_travelworld_ui_viewmodel_SubTripViewModel2;
@@ -491,9 +486,6 @@ public final class DaggerMyApp_HiltComponents_SingletonC {
 
       @KeepFieldType
       VersionViewModel com_example_travelworld_ui_viewmodel_VersionViewModel2;
-
-      @KeepFieldType
-      UserPreferencesViewModel com_example_travelworld_ui_viewmodel_UserPreferencesViewModel2;
     }
 
     private static final class SwitchingProvider<T> implements Provider<T> {
@@ -524,7 +516,7 @@ public final class DaggerMyApp_HiltComponents_SingletonC {
           return (T) new TripViewModel(singletonCImpl.provideTripRepositoryProvider.get());
 
           case 2: // com.example.travelworld.ui.viewmodel.UserPreferencesViewModel 
-          return (T) new UserPreferencesViewModel(singletonCImpl.sharedPrefsManagerProvider.get());
+          return (T) new UserPreferencesViewModel(singletonCImpl.provideSharedPrefsManagerProvider.get());
 
           case 3: // com.example.travelworld.ui.viewmodel.VersionViewModel 
           return (T) new VersionViewModel();
@@ -609,13 +601,11 @@ public final class DaggerMyApp_HiltComponents_SingletonC {
 
     private final SingletonCImpl singletonCImpl = this;
 
-    private Provider<TripDatabase> provideTripDatabaseProvider;
-
     private Provider<TripRepository> provideTripRepositoryProvider;
 
     private Provider<SharedPreferences> provideSharedPreferencesProvider;
 
-    private Provider<SharedPrefsManager> sharedPrefsManagerProvider;
+    private Provider<SharedPrefsManager> provideSharedPrefsManagerProvider;
 
     private SingletonCImpl(ApplicationContextModule applicationContextModuleParam) {
       this.applicationContextModule = applicationContextModuleParam;
@@ -623,20 +613,11 @@ public final class DaggerMyApp_HiltComponents_SingletonC {
 
     }
 
-    private TripDao tripDao() {
-      return AppModule_ProvideTripDaoFactory.provideTripDao(provideTripDatabaseProvider.get());
-    }
-
-    private SubTripDao subTripDao() {
-      return AppModule_ProvideSubTripDaoFactory.provideSubTripDao(provideTripDatabaseProvider.get());
-    }
-
     @SuppressWarnings("unchecked")
     private void initialize(final ApplicationContextModule applicationContextModuleParam) {
-      this.provideTripDatabaseProvider = DoubleCheck.provider(new SwitchingProvider<TripDatabase>(singletonCImpl, 1));
       this.provideTripRepositoryProvider = DoubleCheck.provider(new SwitchingProvider<TripRepository>(singletonCImpl, 0));
-      this.provideSharedPreferencesProvider = DoubleCheck.provider(new SwitchingProvider<SharedPreferences>(singletonCImpl, 3));
-      this.sharedPrefsManagerProvider = DoubleCheck.provider(new SwitchingProvider<SharedPrefsManager>(singletonCImpl, 2));
+      this.provideSharedPreferencesProvider = DoubleCheck.provider(new SwitchingProvider<SharedPreferences>(singletonCImpl, 2));
+      this.provideSharedPrefsManagerProvider = DoubleCheck.provider(new SwitchingProvider<SharedPrefsManager>(singletonCImpl, 1));
     }
 
     @Override
@@ -673,15 +654,12 @@ public final class DaggerMyApp_HiltComponents_SingletonC {
       public T get() {
         switch (id) {
           case 0: // com.example.travelworld.domain.repository.TripRepository 
-          return (T) AppModule_ProvideTripRepositoryFactory.provideTripRepository(singletonCImpl.tripDao(), singletonCImpl.subTripDao());
+          return (T) AppModule_ProvideTripRepositoryFactory.provideTripRepository();
 
-          case 1: // com.example.travelworld.data.local.TripDatabase 
-          return (T) AppModule_ProvideTripDatabaseFactory.provideTripDatabase(ApplicationContextModule_ProvideContextFactory.provideContext(singletonCImpl.applicationContextModule));
+          case 1: // com.example.travelworld.data.SharedPrefsManager 
+          return (T) AppModule_ProvideSharedPrefsManagerFactory.provideSharedPrefsManager(singletonCImpl.provideSharedPreferencesProvider.get(), ApplicationContextModule_ProvideContextFactory.provideContext(singletonCImpl.applicationContextModule));
 
-          case 2: // com.example.travelworld.data.SharedPrefsManager 
-          return (T) new SharedPrefsManager(singletonCImpl.provideSharedPreferencesProvider.get(), ApplicationContextModule_ProvideContextFactory.provideContext(singletonCImpl.applicationContextModule));
-
-          case 3: // android.content.SharedPreferences 
+          case 2: // android.content.SharedPreferences 
           return (T) AppModule_ProvideSharedPreferencesFactory.provideSharedPreferences(ApplicationContextModule_ProvideContextFactory.provideContext(singletonCImpl.applicationContextModule));
 
           default: throw new AssertionError(id);

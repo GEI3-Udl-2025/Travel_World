@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="About">关于</string>
+    <string name="app_display_language">应用语言</string>
+    <string name="app_name">Travel World</string>
+    <string name="dark_theme">深色</string>
+    <string name="default_pass">1234</string>
+    <string name="default_user">user1</string>
+    <string name="enable_dark_mode">开启深色模式</string>
+    <string name="enable_trip_reminders">开启通知</string>
+    <string name="home_title">Travel App (CN/ZH)</string>
+    <string name="language">语言</string>
+    <string name="notifications">通知</string>
+</resources>

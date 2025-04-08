@@ -5,7 +5,7 @@ import com.example.travelworld.domain.model.Trip
 import kotlinx.coroutines.flow.Flow
 
 interface TripRepository {
-    fun getTrips(): Flow<List<Trip>>
+    fun getTrips(): List<Trip>
     suspend fun addTrip(trip: Trip)
     suspend fun deleteTrip(tripId: Int)
     suspend fun updateTrip(trip: Trip)

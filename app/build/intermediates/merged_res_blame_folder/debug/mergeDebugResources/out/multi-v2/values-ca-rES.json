@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\LittleDragon\\.gradle\\daemon\\8.10.2\\com.example.travelworld.app-mergeDebugResources-68:\\values-ca-rES\\values-ca-rES.xml",
+            "outputFile": "com.example.travelworld.app-mergeDebugResources-68:/values-ca-rES/values-ca-rES.xml",
             "map": [
                 {
                     "source": "C:\\Users\\LittleDragon\\Documents\\UdL\\AppMob\\Travel_World\\app\\src\\main\\res\\values-ca-rES\\strings.xml",
@@ -9,30 +9,8 @@
                         "startLines": "12,7,2,3,10,9,4,6,11,8,5",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
                         "startOffsets": "634,368,57,108,531,483,158,284,578,438,227",
-                        "endColumns": "43,68,49,48,45,46,67,82,54,43,55",
-                        "endOffsets": "673,432,102,152,572,525,221,362,628,477,278"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,99,168,218,267,313,360,428,511,566,610",
-                        "endColumns": "43,68,49,48,45,46,67,82,54,43,55",
-                        "endOffsets": "94,163,213,262,308,355,423,506,561,605,661"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "com.example.travelworld.app-mergeDebugResources-68:/values-ca-rES/values-ca-rES.xml",
-            "map": [
-                {
-                    "source": "C:\\Users\\LittleDragon\\Documents\\UdL\\AppMob\\Travel_World\\app\\src\\main\\res\\values-ca-rES\\strings.xml",
-                    "from": {
-                        "startLines": "12,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
-                        "startColumns": "4,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
-                        "startOffsets": "634,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
-                        "endColumns": "39,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
-                        "endOffsets": "669,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1"
+                        "endColumns": "39,68,49,48,45,46,67,82,54,43,55",
+                        "endOffsets": "669,432,102,152,572,525,221,362,628,477,278"
                     },
                     "to": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12",

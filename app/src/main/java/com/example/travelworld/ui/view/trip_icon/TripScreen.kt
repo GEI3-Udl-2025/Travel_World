@@ -27,6 +27,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -43,11 +44,10 @@ fun TripApp(
     navController: NavController,
     viewModel: TripViewModel = hiltViewModel()
 ) {
-    val trips by viewModel.trips.collectAsState(initial = emptyList())
-    val lastSelectedTrip = viewModel.lastSelectedTrip
+    val trips = viewModel.trips
     var showTripDialog by remember { mutableStateOf(false) }
     var isEditingTrip by remember { mutableStateOf(false) }
-    var currentTripId by remember { mutableStateOf(0) }
+    var currentTripId by remember { mutableIntStateOf(0) }
     var tripTitle by remember { mutableStateOf("") }
     var tripDescription by remember { mutableStateOf("") }
 
@@ -90,7 +90,7 @@ fun TripApp(
                                 showTripDialog = true
                             },
                             onOpen = {
-                                viewModel.setSelectedTrip(trip)
+
                                 navController.navigate("subtrips/${trip.id}")
                             },
                             onDelete = {
@@ -158,6 +158,7 @@ fun TripApp(
         }
     }
 }
+
 @Composable
 fun TripItem(
     trip: Trip,
