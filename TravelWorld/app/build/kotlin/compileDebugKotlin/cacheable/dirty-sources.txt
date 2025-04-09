@@ -1,7 +1,0 @@
-C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\TravelWorld\app\src\main\java\com\example\travelworld\NavGraph.kt
-C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\TravelWorld\app\src\main\java\com\example\travelworld\ui\theme\Theme.kt
-C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\TravelWorld\app\src\main\java\com\example\travelworld\ui\theme\Color.kt
-C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\TravelWorld\app\src\main\java\com\example\travelworld\MainActivity.kt
-C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\TravelWorld\app\src\main\java\com\example\travelworld\ui\view\MainScreen.kt
-C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\TravelWorld\app\src\main\java\com\example\travelworld\ui\theme\Type.kt
-C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\TravelWorld\app\src\main\java\com\example\travelworld\ui\view\LoginScreen.kt
