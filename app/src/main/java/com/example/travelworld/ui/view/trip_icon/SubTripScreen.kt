@@ -35,7 +35,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -110,7 +109,7 @@ fun SubTripApp(
                                 isEditing = true
                                 currentSubTripId = subTrip.id
                                 subTripTitle = subTrip.title
-                                subTripDescription = subTrip.description
+                                subTripDescription = subTrip.note
                                 showDialog = true
                             },
                             onDelete = { viewModel.deleteSubTrip(subTrip.id) }
@@ -153,7 +152,10 @@ fun SubTripApp(
                                     id = currentSubTripId,
                                     parentTripId = tripId,
                                     title = subTripTitle,
-                                    description = subTripDescription
+                                    date = "",
+                                    time = "",
+                                    location = "",
+                                    note = subTripDescription
                                 )
                             )
                         } else {
@@ -161,7 +163,10 @@ fun SubTripApp(
                                 SubTrip(
                                     parentTripId = tripId,
                                     title = subTripTitle,
-                                    description = subTripDescription
+                                    date = "",
+                                    time = "",
+                                    location = "",
+                                    note = subTripDescription
                                 )
                             )
                         }
@@ -210,10 +215,10 @@ fun SubTripItem(
                     text = subTrip.title,
                     style = MaterialTheme.typography.titleMedium
                 )
-                if (subTrip.description.isNotBlank()) {
+                if (subTrip.note.isNotBlank()) {
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = subTrip.description,
+                        text = subTrip.note,
                         style = MaterialTheme.typography.bodyMedium
                     )
                 }

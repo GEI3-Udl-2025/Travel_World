@@ -397,25 +397,25 @@ public final class DaggerMyApp_HiltComponents_SingletonC {
 
     @IdentifierNameString
     private static final class LazyClassKeyProvider {
-      static String com_example_travelworld_ui_viewmodel_TripViewModel = "com.example.travelworld.ui.viewmodel.TripViewModel";
+      static String com_example_travelworld_ui_viewmodel_VersionViewModel = "com.example.travelworld.ui.viewmodel.VersionViewModel";
 
       static String com_example_travelworld_ui_viewmodel_UserPreferencesViewModel = "com.example.travelworld.ui.viewmodel.UserPreferencesViewModel";
 
-      static String com_example_travelworld_ui_viewmodel_VersionViewModel = "com.example.travelworld.ui.viewmodel.VersionViewModel";
-
       static String com_example_travelworld_ui_viewmodel_SubTripViewModel = "com.example.travelworld.ui.viewmodel.SubTripViewModel";
 
-      @KeepFieldType
-      TripViewModel com_example_travelworld_ui_viewmodel_TripViewModel2;
-
-      @KeepFieldType
-      UserPreferencesViewModel com_example_travelworld_ui_viewmodel_UserPreferencesViewModel2;
+      static String com_example_travelworld_ui_viewmodel_TripViewModel = "com.example.travelworld.ui.viewmodel.TripViewModel";
 
       @KeepFieldType
       VersionViewModel com_example_travelworld_ui_viewmodel_VersionViewModel2;
 
       @KeepFieldType
+      UserPreferencesViewModel com_example_travelworld_ui_viewmodel_UserPreferencesViewModel2;
+
+      @KeepFieldType
       SubTripViewModel com_example_travelworld_ui_viewmodel_SubTripViewModel2;
+
+      @KeepFieldType
+      TripViewModel com_example_travelworld_ui_viewmodel_TripViewModel2;
     }
   }
 
@@ -467,25 +467,25 @@ public final class DaggerMyApp_HiltComponents_SingletonC {
 
     @IdentifierNameString
     private static final class LazyClassKeyProvider {
-      static String com_example_travelworld_ui_viewmodel_UserPreferencesViewModel = "com.example.travelworld.ui.viewmodel.UserPreferencesViewModel";
-
       static String com_example_travelworld_ui_viewmodel_SubTripViewModel = "com.example.travelworld.ui.viewmodel.SubTripViewModel";
-
-      static String com_example_travelworld_ui_viewmodel_TripViewModel = "com.example.travelworld.ui.viewmodel.TripViewModel";
 
       static String com_example_travelworld_ui_viewmodel_VersionViewModel = "com.example.travelworld.ui.viewmodel.VersionViewModel";
 
-      @KeepFieldType
-      UserPreferencesViewModel com_example_travelworld_ui_viewmodel_UserPreferencesViewModel2;
+      static String com_example_travelworld_ui_viewmodel_UserPreferencesViewModel = "com.example.travelworld.ui.viewmodel.UserPreferencesViewModel";
+
+      static String com_example_travelworld_ui_viewmodel_TripViewModel = "com.example.travelworld.ui.viewmodel.TripViewModel";
 
       @KeepFieldType
       SubTripViewModel com_example_travelworld_ui_viewmodel_SubTripViewModel2;
 
       @KeepFieldType
-      TripViewModel com_example_travelworld_ui_viewmodel_TripViewModel2;
+      VersionViewModel com_example_travelworld_ui_viewmodel_VersionViewModel2;
 
       @KeepFieldType
-      VersionViewModel com_example_travelworld_ui_viewmodel_VersionViewModel2;
+      UserPreferencesViewModel com_example_travelworld_ui_viewmodel_UserPreferencesViewModel2;
+
+      @KeepFieldType
+      TripViewModel com_example_travelworld_ui_viewmodel_TripViewModel2;
     }
 
     private static final class SwitchingProvider<T> implements Provider<T> {

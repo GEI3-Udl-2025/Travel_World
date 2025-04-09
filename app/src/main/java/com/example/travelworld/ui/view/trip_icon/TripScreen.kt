@@ -1,5 +1,7 @@
 package com.example.travelworld.ui.view.trip_icon
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,7 +27,6 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -33,12 +34,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.travelworld.domain.model.Trip
 import com.example.travelworld.ui.viewmodel.TripViewModel
+import java.time.LocalDate
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun TripApp(
     navController: NavController,
@@ -48,16 +52,23 @@ fun TripApp(
     var showTripDialog by remember { mutableStateOf(false) }
     var isEditingTrip by remember { mutableStateOf(false) }
     var currentTripId by remember { mutableIntStateOf(0) }
-    var tripTitle by remember { mutableStateOf("") }
-    var tripDescription by remember { mutableStateOf("") }
+    var tripDestination by remember { mutableStateOf("") }
+    var tripStartDate by remember { mutableStateOf("") }
+    var tripEndDate by remember { mutableStateOf("") }
+    var tripNote by remember { mutableStateOf("") }
+
+    var tripSubTrips by remember { mutableStateOf(emptyList<Trip>()) }
+    var tripId by remember { mutableIntStateOf(0) }
 
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
                     isEditingTrip = false
-                    tripTitle = ""
-                    tripDescription = ""
+                    tripDestination = ""
+                    tripStartDate = LocalDate.now().toString()
+                    tripEndDate = LocalDate.now().plusDays(7).toString()
+                    tripNote = ""
                     showTripDialog = true
                 }
             ) {
@@ -85,8 +96,10 @@ fun TripApp(
                             onEdit = {
                                 isEditingTrip = true
                                 currentTripId = trip.id
-                                tripTitle = trip.title
-                                tripDescription = trip.description
+                                tripDestination = trip.destination
+                                tripStartDate = trip.startDate
+                                tripEndDate = trip.endDate
+                                tripNote = trip.note
                                 showTripDialog = true
                             },
                             onOpen = {
@@ -108,46 +121,81 @@ fun TripApp(
                     text = {
                         Column {
                             OutlinedTextField(
-                                value = tripTitle,
-                                onValueChange = { tripTitle = it },
-                                label = { Text("Title") },
-                                modifier = Modifier.fillMaxWidth()
+                                value = tripDestination,
+                                onValueChange = { tripDestination = it },
+                                label = { Text("Destination") },
+                                singleLine = true,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(8.dp)
                             )
+
+                            Row {
+                                OutlinedTextField(
+                                    value = tripStartDate,
+                                    onValueChange = {  tripStartDate = it },
+                                    label = { Text("Start Date (YYYY-MM-DD)") },
+                                    singleLine = true,
+                                    modifier = Modifier
+                                        .weight(1f)
+                                        .padding(8.dp)
+                                )
+
+                                OutlinedTextField(
+                                    value = tripEndDate,
+                                    onValueChange = { tripEndDate = it },
+                                    label = { Text("End Date (YYYY-MM-DD)") },
+                                    singleLine = true,
+                                    modifier = Modifier
+                                        .weight(1f)
+                                        .padding(8.dp)
+                                )
+                            }
+
                             OutlinedTextField(
-                                value = tripDescription,
-                                onValueChange = { tripDescription = it },
+                                value = tripNote,
+                                onValueChange = { tripNote = it },
                                 label = { Text("Description") },
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(top = 8.dp)
+                                    .padding(8.dp)
                             )
                         }
                     },
+
                     confirmButton = {
                         Button(
                             onClick = {
+                                if (tripDestination.isBlank()) {
+                                    return@Button
+                                }
                                 if (isEditingTrip) {
                                     viewModel.updateTrip(
                                         Trip(
-                                            id = currentTripId,
-                                            title = tripTitle,
-                                            description = tripDescription
+                                            id = (trips.maxOfOrNull { it.id } ?: 0) + 1,
+                                            destination = tripDestination,
+                                            startDate = tripStartDate,
+                                            endDate = tripEndDate,
+                                            note = tripNote,
                                         )
                                     )
                                 } else {
                                     viewModel.addTrip(
                                         Trip(
-                                            title = tripTitle,
-                                            description = tripDescription
+                                            destination = tripDestination,
+                                            startDate = tripStartDate,
+                                            endDate = tripEndDate,
+                                            note = tripNote,
                                         )
                                     )
                                 }
                                 showTripDialog = false
                             }
                         ) {
-                            Text("Save")
+                            Text("Add Trip")
                         }
                     },
+
                     dismissButton = {
                         Button(onClick = { showTripDialog = false }) {
                             Text("Cancel")
@@ -180,24 +228,30 @@ fun TripItem(
         ) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = trip.title,
-                    style = MaterialTheme.typography.titleMedium
+                    text = trip.destination,
+                    style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)
                 )
-                if (trip.description.isNotBlank()) {
+                Text(
+                    text = "${trip.startDate} to ${trip.endDate}",
+                    style = MaterialTheme.typography.bodyMedium,
+
+                )
+                if (trip.note.isNotBlank()) {
                     Text(
-                        text = trip.description,
+                        text = trip.note,
                         style = MaterialTheme.typography.bodyMedium,
-                        modifier = Modifier.padding(top = 4.dp)
+                        modifier = Modifier.padding(top = 8.dp)
                     )
                 }
             }
 
+            IconButton(onClick = onOpen) {
+                Icon(Icons.Filled.ArrowForward, "View Subtrips")
+            }
             IconButton(onClick = onEdit) {
                 Icon(Icons.Filled.Edit, "Edit Trip")
             }
-            IconButton(onClick = onOpen) {
-                Icon(Icons.Filled.ArrowForward, "Open Trip")
-            }
+
             IconButton(onClick = onDelete) {
                 Icon(Icons.Filled.Delete, "Delete Trip")
             }

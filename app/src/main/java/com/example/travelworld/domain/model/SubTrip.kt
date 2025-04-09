@@ -4,6 +4,9 @@ package com.example.travelworld.domain.model
 data class SubTrip(
     val id: Int = 0,
     val parentTripId: Int,
-    val title: String,
-    val description: String,
+    var title: String,
+    var date: String,
+    var time: String,
+    var location: String,
+    var note: String,
 )
