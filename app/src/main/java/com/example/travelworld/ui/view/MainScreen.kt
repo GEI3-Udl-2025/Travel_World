@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.travelworld.R
+import com.example.travelworld.ui.view.itinerary_icon.TripAppv1
 import com.example.travelworld.ui.view.trip_icon.TripApp
 import com.example.travelworld.ui.view.userpref_icon.UserPreferencesApp
 
@@ -148,7 +149,6 @@ fun TripScreen(navController: NavController) {
         horizontalAlignment = Alignment.Start
     ) {
         Text(text = "Trip Screen", style = MaterialTheme.typography.titleLarge)
-
         TripApp(navController = navController)
     }
 }
@@ -168,6 +168,7 @@ fun HomeScreen() {
 }
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ItineraryScreen() {
     Column(
@@ -178,7 +179,7 @@ fun ItineraryScreen() {
         horizontalAlignment = Alignment.Start
     ) {
         Text(text = "Itinerary Screen", style = MaterialTheme.typography.titleLarge)
-
+        TripAppv1()
     }
 }
 
