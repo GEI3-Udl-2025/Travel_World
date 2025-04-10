@@ -39,10 +39,4 @@ object AppModule {
     @Singleton
     fun provideTripRepository(): TripRepository = TripRepositoryImpl()
 
-/*    @Provides
-    @Singleton
-    fun provideFormValidationViewModel(
-        @ApplicationContext context: Context
-    ): FormValidationViewModel = FormValidationViewModel(context)*/
-
 }
