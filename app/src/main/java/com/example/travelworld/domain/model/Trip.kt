@@ -7,5 +7,5 @@ data class Trip(
     var startDate: String,
     var endDate: String,
     var note: String,
-    var subTrips: List<SubTrip> = emptyList()
+    var subTrips: List<SubTrip> = emptyList(),
 )

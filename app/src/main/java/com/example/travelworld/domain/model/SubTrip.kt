@@ -8,5 +8,5 @@ data class SubTrip(
     var date: String,
     var time: String,
     var location: String,
-    var note: String,
+    var description: String,
 )

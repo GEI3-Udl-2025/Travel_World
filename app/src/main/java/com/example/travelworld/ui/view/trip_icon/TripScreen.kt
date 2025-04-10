@@ -57,9 +57,6 @@ fun TripApp(
     var tripEndDate by remember { mutableStateOf("") }
     var tripNote by remember { mutableStateOf("") }
 
-    var tripSubTrips by remember { mutableStateOf(emptyList<Trip>()) }
-    var tripId by remember { mutableIntStateOf(0) }
-
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -103,7 +100,6 @@ fun TripApp(
                                 showTripDialog = true
                             },
                             onOpen = {
-
                                 navController.navigate("subtrips/${trip.id}")
                             },
                             onDelete = {
@@ -114,7 +110,7 @@ fun TripApp(
                 }
             }
 
-            if (showTripDialog) {
+            /*if (showTripDialog) {
                 AlertDialog(
                     onDismissRequest = { showTripDialog = false },
                     title = { Text(text = if (isEditingTrip) "Edit Trip" else "New Trip") },
@@ -172,7 +168,7 @@ fun TripApp(
                                 if (isEditingTrip) {
                                     viewModel.updateTrip(
                                         Trip(
-                                            id = (trips.maxOfOrNull { it.id } ?: 0) + 1,
+                                            id = currentTripId,
                                             destination = tripDestination,
                                             startDate = tripStartDate,
                                             endDate = tripEndDate,
@@ -202,11 +198,156 @@ fun TripApp(
                         }
                     }
                 )
+            }*/
+            //con validación de los campos
+            if (showTripDialog) {
+                var errorMessage by remember { mutableStateOf<String?>(null) }
+
+                AlertDialog(
+                    onDismissRequest = {
+                        showTripDialog = false
+                        errorMessage = null
+                    },
+                    title = { Text(text = if (isEditingTrip) "Editar Viaje" else "Nuevo Viaje") },
+                    text = {
+                        Column {
+                            if (errorMessage != null) {
+                                Text(
+                                    text = errorMessage!!,
+                                    color = MaterialTheme.colorScheme.error,
+                                    modifier = Modifier.padding(bottom = 8.dp)
+                                )
+                            }
+
+                            OutlinedTextField(
+                                value = tripDestination,
+                                onValueChange = { tripDestination = it },
+                                label = { Text("Destino*") },
+                                singleLine = true,
+                                isError = errorMessage != null && tripDestination.isEmpty(),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(8.dp)
+                            )
+
+                            Row {
+                                OutlinedTextField(
+                                    value = tripStartDate,
+                                    onValueChange = { tripStartDate = it },
+                                    label = { Text("Fecha Inicio* (YYYY-MM-DD)") },
+                                    singleLine = true,
+                                    isError = errorMessage != null && (tripStartDate.isEmpty() || !isValidDate(tripStartDate)),
+                                    modifier = Modifier
+                                        .weight(1f)
+                                        .padding(8.dp)
+                                )
+
+                                OutlinedTextField(
+                                    value = tripEndDate,
+                                    onValueChange = { tripEndDate = it },
+                                    label = { Text("Fecha Fin* (YYYY-MM-DD)") },
+                                    singleLine = true,
+                                    isError = errorMessage != null && (tripEndDate.isEmpty() || !isValidDate(tripEndDate)),
+                                    modifier = Modifier
+                                        .weight(1f)
+                                        .padding(8.dp)
+                                )
+                            }
+
+                            OutlinedTextField(
+                                value = tripNote,
+                                onValueChange = { tripNote = it },
+                                label = { Text("Notas") },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(8.dp)
+                            )
+                        }
+                    },
+                    confirmButton = {
+                        Button(
+                            onClick = {
+                                when {
+                                    tripDestination.isBlank() -> {
+                                        errorMessage = "El destino es requerido"
+                                    }
+                                    tripStartDate.isBlank() -> {
+                                        errorMessage = "La fecha de inicio es requerida"
+                                    }
+                                    !isValidDate(tripStartDate) -> {
+                                        errorMessage = "Formato de fecha inicio inválido (YYYY-MM-DD)"
+                                    }
+                                    tripEndDate.isBlank() -> {
+                                        errorMessage = "La fecha de fin es requerida"
+                                    }
+                                    !isValidDate(tripEndDate) -> {
+                                        errorMessage = "Formato de fecha fin inválido (YYYY-MM-DD)"
+                                    }
+                                    !isEndDateAfterStartDate(tripStartDate, tripEndDate) -> {
+                                        errorMessage = "La fecha fin debe ser posterior a la fecha inicio"
+                                    }
+                                    else -> {
+                                        if (isEditingTrip) {
+                                            viewModel.updateTrip(
+                                                Trip(
+                                                    id = currentTripId,
+                                                    destination = tripDestination,
+                                                    startDate = tripStartDate,
+                                                    endDate = tripEndDate,
+                                                    note = tripNote,
+                                                )
+                                            )
+                                        } else {
+                                            viewModel.addTrip(
+                                                Trip(
+                                                    destination = tripDestination,
+                                                    startDate = tripStartDate,
+                                                    endDate = tripEndDate,
+                                                    note = tripNote,
+                                                )
+                                            )
+                                        }
+                                        showTripDialog = false
+                                    }
+                                }
+                            }
+                        ) {
+                            Text(if (isEditingTrip) "Actualizar" else "Crear")
+                        }
+                    },
+                    dismissButton = {
+                        Button(onClick = {
+                            showTripDialog = false
+                            errorMessage = null
+                        }) {
+                            Text("Cancelar")
+                        }
+                    }
+                )
             }
         }
     }
 }
+@RequiresApi(Build.VERSION_CODES.O)
+private fun isValidDate(dateStr: String): Boolean {
+    return try {
+        LocalDate.parse(dateStr)
+        true
+    } catch (e: Exception) {
+        false
+    }
+}
 
+@RequiresApi(Build.VERSION_CODES.O)
+private fun isEndDateAfterStartDate(startDateStr: String, endDateStr: String): Boolean {
+    return try {
+        val startDate = LocalDate.parse(startDateStr)
+        val endDate = LocalDate.parse(endDateStr)
+        endDate.isAfter(startDate) || endDate.isEqual(startDate)
+    } catch (e: Exception) {
+        false
+    }
+}
 @Composable
 fun TripItem(
     trip: Trip,
