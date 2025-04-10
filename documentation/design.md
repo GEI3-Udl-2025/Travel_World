@@ -18,15 +18,6 @@ flowchart TD
     E --> O[SubTrips]
 ```
 
-```mermaid
-graph TD
-    S[Settings Menu] --> A[AboutScreen]
-    S --> B[VersionScreen]
-    S --> C[ProfileScreen]
-    S --> D[SettingsScreen]
-    S --> E[TermsConditionsScreen]
-    style S fill:#4CAF50,stroke:#388E3C
-```
 
 ## Key Features:
 1. **4 Pantallas Principales**:
