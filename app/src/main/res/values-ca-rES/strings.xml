@@ -10,5 +10,14 @@
     <string name="default_user">user1</string>
     <string name="default_pass">1234</string>
     <string name="home_title">Travel App (CA)</string>
-    <string name="About">Sobre</string>
+    <string name="about">Sobre</string>
+    <string name="new_trip">Viatge Nou</string>
+    <string name="explore">Explorar</string>
+    <string name="recent_trips">Viatge Recent</string>
+    <string name="trip">Viatge</string>
+    <string name="destination">Destination</string>
+    <string name="add_new_trip">Afegeix viatge nou</string>
+    <string name="plan_a_new_trip">Plan a New Trip</string>
+    <string name="start_date">Start Date</string>
+    <string name="add_activity_to">Add Activity to</string>
 </resources>

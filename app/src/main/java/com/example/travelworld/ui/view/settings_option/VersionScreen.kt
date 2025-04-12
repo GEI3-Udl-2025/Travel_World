@@ -16,8 +16,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.travelworld.R
 import com.example.travelworld.data.AppInfo
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -26,7 +28,7 @@ fun VersionScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Version") },
+                title = { stringResource(id = R.string.version_screen) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(

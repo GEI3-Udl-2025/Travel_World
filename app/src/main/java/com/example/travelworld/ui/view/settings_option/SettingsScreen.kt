@@ -16,8 +16,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.travelworld.R
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -26,7 +28,7 @@ fun SettingsScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Settings") },
+                title = { stringResource(id = R.string.settings) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
@@ -45,7 +47,7 @@ fun SettingsScreen(navController: NavController) {
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Text("Settings Screen", style = MaterialTheme.typography.headlineMedium)
+            Text(stringResource(id = R.string.settings_screen), style = MaterialTheme.typography.headlineMedium)
             Text("Ajustes de notificaciones")
             Text("Ajustes de idioma")
             Text("Tema oscuro o claro")

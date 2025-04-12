@@ -34,10 +34,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.example.travelworld.R
 import com.example.travelworld.domain.model.Trip
 import com.example.travelworld.ui.viewmodel.TripViewModel
 import java.time.LocalDate
@@ -83,7 +85,7 @@ fun TripApp(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text("No trips available. Add your first trip!")
+                    Text(text = stringResource(id = R.string.no_trips))
                 }
             } else {
                 LazyColumn(modifier = Modifier.fillMaxSize()) {
@@ -120,7 +122,7 @@ fun TripApp(
                         showTripDialog = false
                         errorMessage = null
                     },
-                    title = { Text(text = if (isEditingTrip) "Editar Viaje" else "Nuevo Viaje") },
+                    title = { Text(text = if (isEditingTrip) stringResource(id = R.string.edit_trip) else stringResource(id = R.string.new_trip)) },
                     text = {
                         Column {
                             if (errorMessage != null) {
@@ -134,7 +136,7 @@ fun TripApp(
                             OutlinedTextField(
                                 value = tripDestination,
                                 onValueChange = { tripDestination = it },
-                                label = { Text("Destino*") },
+                                label = { stringResource(id = R.string.destination) + "*" },
                                 singleLine = true,
                                 isError = errorMessage != null && tripDestination.isEmpty(),
                                 modifier = Modifier
@@ -146,7 +148,7 @@ fun TripApp(
                                 OutlinedTextField(
                                     value = tripStartDate,
                                     onValueChange = { tripStartDate = it },
-                                    label = { Text("Fecha Inicio* (YYYY-MM-DD)") },
+                                    label = { stringResource(id = R.string.start_date) + "*" },
                                     singleLine = true,
                                     isError = errorMessage != null && (tripStartDate.isEmpty() || !isValidDate(tripStartDate)),
                                     modifier = Modifier
@@ -157,7 +159,7 @@ fun TripApp(
                                 OutlinedTextField(
                                     value = tripEndDate,
                                     onValueChange = { tripEndDate = it },
-                                    label = { Text("Fecha Fin* (YYYY-MM-DD)") },
+                                    label = { stringResource(id = R.string.end_date) + "*" },
                                     singleLine = true,
                                     isError = errorMessage != null && (tripEndDate.isEmpty() || !isValidDate(tripEndDate)),
                                     modifier = Modifier
@@ -169,7 +171,7 @@ fun TripApp(
                             OutlinedTextField(
                                 value = tripNote,
                                 onValueChange = { tripNote = it },
-                                label = { Text("Notas") },
+                                label = { Text(text = stringResource(id = R.string.notes)) },
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .padding(8.dp)
@@ -181,22 +183,22 @@ fun TripApp(
                             onClick = {
                                 when {
                                     tripDestination.isBlank() -> {
-                                        errorMessage = "El destino es requerido"
+                                        errorMessage = "The destination is required"
                                     }
                                     tripStartDate.isBlank() -> {
-                                        errorMessage = "La fecha de inicio es requerida"
+                                        errorMessage = "The start date is required"
                                     }
                                     !isValidDate(tripStartDate) -> {
-                                        errorMessage = "Formato de fecha inicio inválido (YYYY-MM-DD)"
+                                        errorMessage = "Invalid start date format (YYYY-MM-DD)"
                                     }
                                     tripEndDate.isBlank() -> {
-                                        errorMessage = "La fecha de fin es requerida"
+                                        errorMessage = "The end date is required"
                                     }
                                     !isValidDate(tripEndDate) -> {
-                                        errorMessage = "Formato de fecha fin inválido (YYYY-MM-DD)"
+                                        errorMessage = "Invalid end date format (YYYY-MM-DD)"
                                     }
                                     !isEndDateAfterStartDate(tripStartDate, tripEndDate) -> {
-                                        errorMessage = "La fecha fin debe ser posterior a la fecha inicio"
+                                        errorMessage = "The end date must be after the start date"
                                     }
                                     else -> {
                                         if (isEditingTrip) {
@@ -224,7 +226,7 @@ fun TripApp(
                                 }
                             }
                         ) {
-                            Text(if (isEditingTrip) "Actualizar" else "Crear")
+                            Text(if (isEditingTrip) stringResource(id = R.string.refresh) else stringResource(id = R.string.create))
                         }
                     },
                     dismissButton = {
@@ -232,7 +234,7 @@ fun TripApp(
                             showTripDialog = false
                             errorMessage = null
                         }) {
-                            Text("Cancelar")
+                            Text(stringResource(id = R.string.cancel))
                         }
                     }
                 )
