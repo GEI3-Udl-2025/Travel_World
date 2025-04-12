@@ -136,7 +136,7 @@ fun TripApp(
                             OutlinedTextField(
                                 value = tripDestination,
                                 onValueChange = { tripDestination = it },
-                                label = { stringResource(id = R.string.destination) + "*" },
+                                label = { Text(stringResource(id = R.string.destination) + "*") },
                                 singleLine = true,
                                 isError = errorMessage != null && tripDestination.isEmpty(),
                                 modifier = Modifier
@@ -148,7 +148,7 @@ fun TripApp(
                                 OutlinedTextField(
                                     value = tripStartDate,
                                     onValueChange = { tripStartDate = it },
-                                    label = { stringResource(id = R.string.start_date) + "*" },
+                                    label = { Text(stringResource(id = R.string.start_date) + "*") },
                                     singleLine = true,
                                     isError = errorMessage != null && (tripStartDate.isEmpty() || !isValidDate(tripStartDate)),
                                     modifier = Modifier
@@ -159,7 +159,7 @@ fun TripApp(
                                 OutlinedTextField(
                                     value = tripEndDate,
                                     onValueChange = { tripEndDate = it },
-                                    label = { stringResource(id = R.string.end_date) + "*" },
+                                    label = { Text(stringResource(id = R.string.end_date) + "*")},
                                     singleLine = true,
                                     isError = errorMessage != null && (tripEndDate.isEmpty() || !isValidDate(tripEndDate)),
                                     modifier = Modifier

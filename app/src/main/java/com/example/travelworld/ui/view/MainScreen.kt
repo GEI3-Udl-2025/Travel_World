@@ -57,7 +57,7 @@ fun TravelApp(navController: NavController) {
                             )
                             DropdownMenuItem(
                                 leadingIcon = { Icon(Icons.Filled.Build, contentDescription = "Version Icon") },
-                                text = { stringResource(id = R.string.version) },
+                                text = { Text(stringResource(id = R.string.version))},
                                 onClick = {
                                     showSettingsMenu = false
                                     navController.navigate("version")
@@ -65,7 +65,7 @@ fun TravelApp(navController: NavController) {
                             )
                             DropdownMenuItem(
                                 leadingIcon = { Icon(Icons.Filled.Person, contentDescription = "Profile Icon") },
-                                text = { stringResource(id = R.string.profile) },
+                                text = { Text(stringResource(id = R.string.profile)) },
                                 onClick = {
                                     showSettingsMenu = false
                                     navController.navigate("profile")
@@ -73,7 +73,7 @@ fun TravelApp(navController: NavController) {
                             )
                             DropdownMenuItem(
                                 leadingIcon = { Icon(Icons.Filled.Settings, contentDescription = "Settings Icon") },
-                                text = { stringResource(id = R.string.settings) },
+                                text = { Text(stringResource(id = R.string.settings)) },
                                 onClick = {
                                     showSettingsMenu = false
                                     navController.navigate("settings")
@@ -81,7 +81,7 @@ fun TravelApp(navController: NavController) {
                             )
                             DropdownMenuItem(
                                 leadingIcon = {Icon (Icons.Filled.Policy, contentDescription = "Terms & Conditions") },
-                                text = { stringResource(id = R.string.terms_conditions) },
+                                text = { Text(stringResource(id = R.string.terms_conditions)) },
                                 onClick = {
                                     showSettingsMenu = false
                                     navController.navigate("terms")
@@ -99,7 +99,7 @@ fun TravelApp(navController: NavController) {
                     icon = { Icon(Icons.Default.Flight, contentDescription = "Trip") },
                     selected = selectedScreen == TravelMode.TRIP,
                     onClick = { selectedScreen = TravelMode.TRIP },
-                    label = { stringResource(id = R.string.trip) }
+                    label = { Text(stringResource(id = R.string.trip))}
                 )
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Home, contentDescription = "Home") },

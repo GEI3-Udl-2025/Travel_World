@@ -168,13 +168,13 @@ fun TripAppv1() {
     if (showAddTripDialog) {
         AlertDialog(
             onDismissRequest = { showAddTripDialog = false },
-            title = { stringResource(id = R.string.plan_a_new_trip)},
+            title = { Text(stringResource(id = R.string.plan_a_new_trip))},
             text = {
                 Column {
                     OutlinedTextField(
                         value = destination,
                         onValueChange = { destination = it },
-                        label = { stringResource(id = R.string.destination) },
+                        label = { Text(stringResource(id = R.string.destination)) },
                         singleLine = true,
                         modifier = Modifier
                             .fillMaxWidth()
@@ -185,7 +185,7 @@ fun TripAppv1() {
                         OutlinedTextField(
                             value = startDate,
                             onValueChange = { startDate = it },
-                            label = {stringResource(id = R.string.start_date) + "(YYYY-MM-DD)" },
+                            label = {Text(stringResource(id = R.string.start_date) + "(YYYY-MM-DD)") },
                             singleLine = true,
                             modifier = Modifier
                                 .weight(1f)
@@ -195,7 +195,7 @@ fun TripAppv1() {
                         OutlinedTextField(
                             value = endDate,
                             onValueChange = { endDate = it },
-                            label = { stringResource(id = R.string.end_date) + "(YYYY-MM-DD)"},
+                            label = { Text(stringResource(id = R.string.end_date) + "(YYYY-MM-DD)")},
                             singleLine = true,
                             modifier = Modifier
                                 .weight(1f)
@@ -206,7 +206,7 @@ fun TripAppv1() {
                     OutlinedTextField(
                         value = tripNotes,
                         onValueChange = { tripNotes = it },
-                        label = { stringResource(id = R.string.trip_notes) },
+                        label = { Text(stringResource(id = R.string.trip_notes))},
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(8.dp)
@@ -256,13 +256,13 @@ fun TripAppv1() {
         val trip = trips.find { it.id == showAddSubTripDialog }
         AlertDialog(
             onDismissRequest = { showAddSubTripDialog = -1 },
-            title = { stringResource(id = R.string.add_activity_to) + " ${trip?.destination ?: stringResource(id = R.string.trip)}"},
+            title = { Text(stringResource(id = R.string.add_activity_to) + " ${trip?.destination ?: stringResource(id = R.string.trip)}")},
             text = {
                 Column {
                     OutlinedTextField(
                         value = subTripTitle,
                         onValueChange = { subTripTitle = it },
-                        label = { stringResource(id = R.string.actiivity_title)},
+                        label = { Text(stringResource(id = R.string.actiivity_title))},
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(8.dp)
@@ -271,7 +271,7 @@ fun TripAppv1() {
                     OutlinedTextField(
                         value = subTripDate,
                         onValueChange = { subTripDate = it },
-                        label = { stringResource(id = R.string.date) + " (YYYY-MM-DD)" },
+                        label = { Text(stringResource(id = R.string.date) + " (YYYY-MM-DD)") },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(8.dp)
@@ -280,7 +280,7 @@ fun TripAppv1() {
                     OutlinedTextField(
                         value = subTripLocation,
                         onValueChange = { subTripLocation = it },
-                        label = { stringResource(id = R.string.location) },
+                        label = { Text(stringResource(id = R.string.location)) },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(8.dp)
@@ -289,7 +289,7 @@ fun TripAppv1() {
                     OutlinedTextField(
                         value = subTripNotes,
                         onValueChange = { subTripNotes = it },
-                        label = { stringResource(id = R.string.notes)},
+                        label = { Text(stringResource(id = R.string.notes))},
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(8.dp)

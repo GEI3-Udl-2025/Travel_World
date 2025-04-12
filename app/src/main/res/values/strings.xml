@@ -57,9 +57,11 @@
     <string name="profile">Profile</string>
     <string name="home">Home</string>
     <string name="itinerary">Itinerary</string>
-    <string name="user_preference">User Preferences</string>
+    <string name="user_preference">Preferences</string>
     <string name="trip_screen">Trip Screen</string>
     <string name="home_screen">Home Screen</string>
     <string name="itinerary_screen">Itinerary Screen</string>
     <string name="user_preference_screen">User Preferences Screen</string>
+    <string name="edit_subtrip">Edit Activity</string>
+    <string name="new_subtrip">New Activity</string>
 </resources>

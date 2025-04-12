@@ -159,7 +159,7 @@ fun SubTripApp(
                     OutlinedTextField(
                         value = subTripTitle,
                         onValueChange = { subTripTitle = it },
-                        label = { stringResource(id = R.string.title)+"*" },
+                        label = { Text(stringResource(id = R.string.title)+"*" )},
                         singleLine = true,
                         isError = errorMessage != null && subTripTitle.isEmpty(),
                         modifier = Modifier
@@ -171,7 +171,7 @@ fun SubTripApp(
                         OutlinedTextField(
                             value = subTripDate,
                             onValueChange = { subTripDate = it },
-                            label = {stringResource(id = R.string.date) + "* (YYYY-MM-DD)" },
+                            label = {Text(stringResource(id = R.string.date) + "* (YYYY-MM-DD)" )},
                             singleLine = true,
                             isError = errorMessage != null && (subTripDate.isEmpty() || !isValidDate(subTripDate)),
                             modifier = Modifier
@@ -182,7 +182,7 @@ fun SubTripApp(
                         OutlinedTextField(
                             value = subTripTime,
                             onValueChange = { subTripTime = it },
-                            label = { stringResource(id = R.string.time) + "* (HH:MM)"},
+                            label = { Text(stringResource(id = R.string.time) + "* (HH:MM)")},
                             singleLine = true,
                             isError = errorMessage != null && (subTripTime.isEmpty() || !isValidTime(subTripTime)),
                             modifier = Modifier
@@ -194,7 +194,7 @@ fun SubTripApp(
                     OutlinedTextField(
                         value = subTripLocation,
                         onValueChange = { subTripLocation = it },
-                        label = { stringResource(id = R.string.location) + "*"},
+                        label = { Text(stringResource(id = R.string.location) + "*")},
                         singleLine = true,
                         isError = errorMessage != null && subTripLocation.isEmpty(),
                         modifier = Modifier
@@ -205,7 +205,7 @@ fun SubTripApp(
                     OutlinedTextField(
                         value = subTripDescription,
                         onValueChange = { subTripDescription = it },
-                        label = { stringResource(id = R.string.description) },
+                        label = { Text(stringResource(id = R.string.description)) },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(8.dp)
