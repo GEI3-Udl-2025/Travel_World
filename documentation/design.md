@@ -26,8 +26,7 @@ flowchart TD
     C --> D{{"Pantallas Principales\n(MainScreen.kt)"}}
     D --> E[TripScreen]
     D --> F[HomeScreen]
-    D --> G[ItineraryScreen]
-    D --> H[UserPreferencesScreen]
+    D --> G[UserPreferencesScreen]
     C --> I{{"Menú Configuración\n(TopAppBar in MainScreen)"}}
     I --> J[AboutScreen]
     I --> K[VersionScreen]
@@ -39,7 +38,7 @@ flowchart TD
     %% ===== Data Connections =====
     E -->|"Uses"| P[TripViewModel]
     O -->|"Uses"| Q[SubTripViewModel]
-    h -->|"Uses"| R[UserPreferencesViewModel]
+    G -->|"Uses"| R[UserPreferencesViewModel]
     K -->|"Uses"| S[VersionViewModel]
     
     P & Q -->|"Depends on"| T[TripRepository]
