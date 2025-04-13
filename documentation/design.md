@@ -56,22 +56,37 @@ LoginScreen --> MainScreen: Successful login
 ```
 
 ```mermaid
-graph TD
-    A[LoginScreen] -->|Valid Credentials| B[MainScreen/TravelApp]
-    B --> C[HomeScreen]
-    B --> D[TripScreen]
-    B --> E[ItineraryScreen]
-    B --> F[UserPreferenceScreen]
-    B --> G[SettingsMenu]
-    G --> H[AboutScreen]
-    G --> I[ProfileScreen]
-    G --> J[TermsConditionsScreen]
-    G --> K[VersionScreen]
-    G --> L[SettingsScreen]
-    D --> M[SubTripScreen]
-    
+%% Itinerary Flow Diagram
+flowchart TD
+    %% ===== T2.1 Interaction Structure =====
+    A[User] -->|"1. Views Trip List"| B[ItineraryScreen]
+    B --> C[TripCard]
+    C -->|"Expand/Collapse"| D[SubTrip List]
+    A -->|"2. Clicks 'Add Trip'"| E[AddTripDialog]
+    A -->|"3. Edits Trip"| F[EditTripDialog]
+    A -->|"4. Adds Activity"| G[AddSubTripDialog]
 
-    class A,B,C,D,E,F,G,H,I,J,K,L,M screen;
+    %% ===== T2.2 UI Components =====
+    subgraph UI_Flow
+        B -->|LazyColumn| C
+        C -->|Dynamic Height| D
+        E -->|Form| H["Inputs:\n- Destination\n- Dates\n- Notes"]
+        G -->|Form| I["Inputs:\n- Title\n- Date/Location\n- Notes"]
+    end
+
+    %% ===== T2.3 Data Flow =====
+    subgraph Data_Flow["Dynamic Updates (ViewModel)"]
+        J[ItineraryViewModel] -->|"State Holder"| K["trips: List<Trip>"]
+        K -->|"Observed by"| B
+        E -->|"onConfirm"| J
+        G -->|"onConfirm"| J
+        J -->|"Triggers Recomposition"| B
+    end
+
+    %% ===== Legend =====
+    style A fill:#ff9,stroke:#333
+    style UI_Flow fill:#e6f3ff,stroke:#0066cc
+    style Data_Flow fill:#e6ffe6,stroke:#009900
 ```
 
 ## Key Features:
