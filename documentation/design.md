@@ -1,4 +1,147 @@
 # TravelWorld - Documentación Completa
+```mermaid
+classDiagram
+    %% ===== Core Components =====
+    class MainActivity {
+        +onCreate()
+    }
+
+    class MyApp {
+        +HiltAndroidApp
+    }
+
+    class NavGraph {
+        +Composable navigation
+    }
+
+    %% ===== Screens =====
+    class LoginScreen
+    class MainScreen {
+        +TravelMode enum
+    }
+    class TripScreen
+    class ItineraryScreen
+    class UserPreferenceScreen
+    class SettingsScreen
+    class AboutScreen
+    class TermsConditionsScreen
+    class ProfileScreen
+    class VersionScreen
+    class SubTripScreen
+
+    %% ===== ViewModels =====
+    class TripViewModel
+    class SubTripViewModel
+    class UserPreferencesViewModel
+    class VersionViewModel
+
+    %% ===== Data Layer =====
+    class Trip {
+        +id: Int
+        +destination: String
+        +startDate: String
+        +endDate: String
+        +note: String
+    }
+
+    class SubTrip {
+        +parentTripId: Int
+        +title: String
+        +date: String
+        +time: String
+        +location: String
+    }
+
+    class TripRepository {
+        <<Interface>>
+        +getTrips()
+        +addTrip()
+        +deleteTrip()
+    }
+
+    class TripRepositoryImpl {
+        -Trips: MutableList~Trip~
+        -subTrips: MutableList~SubTrip~
+    }
+
+    class SharedPrefsManager {
+        +userLanguage: String?
+        +darkTheme: Boolean
+    }
+
+    class DataStoreManager {
+        +userLanguageFlow: Flow~String~
+        +isDarkThemeFlow: Flow~Boolean~
+    }
+
+    class AppInfo {
+        +versionName: String
+        +versionCode: Int
+    }
+
+    %% ===== DI & Utils =====
+    class AppModule {
+        +provideSharedPreferences()
+        +provideTripRepository()
+    }
+
+    class LanguageChangeUtil {
+        +changeLanguage()
+        +getLanguageCode()
+    }
+
+    %% ===== UI Components =====
+    class TripCard {
+        +tripName: String
+        +destination: String
+        +dates: String
+    }
+
+    %% ===== Relationships =====
+    MainActivity --> NavGraph
+    MyApp --> MainActivity
+
+    NavGraph --> LoginScreen
+    NavGraph --> MainScreen
+    NavGraph --> TripScreen
+    NavGraph --> SubTripScreen
+    NavGraph --> SettingsScreen
+    NavGraph --> AboutScreen
+    NavGraph --> TermsConditionsScreen
+    NavGraph --> ProfileScreen
+    NavGraph --> VersionScreen
+
+    MainScreen --> TripScreen
+    MainScreen --> ItineraryScreen
+    MainScreen --> UserPreferenceScreen
+
+    TripScreen --> TripViewModel
+    SubTripScreen --> SubTripViewModel
+    UserPreferenceScreen --> UserPreferencesViewModel
+    VersionScreen --> VersionViewModel
+
+    TripViewModel --> TripRepository
+    SubTripViewModel --> TripRepository
+    TripRepository <|-- TripRepositoryImpl
+
+    UserPreferencesViewModel --> SharedPrefsManager
+    SharedPrefsManager --> LanguageChangeUtil
+    SharedPrefsManager --> DataStoreManager
+
+    TripRepositoryImpl --> Trip
+    Trip --> SubTrip
+
+    AppModule --> SharedPrefsManager
+    AppModule --> TripRepositoryImpl
+
+    TripScreen --> TripCard
+    MainScreen --> TripCard
+
+    note for Trip "Main trip entity"
+    note for SubTrip "Child activities of trips"
+    note for TripRepository "Central data operations"
+    note for SharedPrefsManager "Persists user preferences"
+```
 
 ```mermaid
 flowchart TD
