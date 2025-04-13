@@ -55,6 +55,25 @@ LoginScreen --> MainScreen: Successful login
     }
 ```
 
+```mermaid
+graph TD
+    A[LoginScreen] -->|Valid Credentials| B[MainScreen/TravelApp]
+    B --> C[HomeScreen]
+    B --> D[TripScreen]
+    B --> E[ItineraryScreen]
+    B --> F[UserPreferenceScreen]
+    B --> G[SettingsMenu]
+    G --> H[AboutScreen]
+    G --> I[ProfileScreen]
+    G --> J[TermsConditionsScreen]
+    G --> K[VersionScreen]
+    G --> L[SettingsScreen]
+    D --> M[SubTripScreen]
+    
+    classDef screen fill:#f9f,stroke:#333;
+    class A,B,C,D,E,F,G,H,I,J,K,L,M screen;
+```
+
 ## Key Features:
 1. **4 Pantallas Principales**:
     - Viajes (Trips)
