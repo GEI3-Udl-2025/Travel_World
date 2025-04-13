@@ -11,8 +11,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.travelworld.R
 import com.example.travelworld.ui.viewmodel.UserPreferencesViewModel
 
 @Composable
@@ -63,8 +65,8 @@ private fun PreferenceItemsSection(
         ) {
             PreferenceItem(
                 icon = Icons.Default.DarkMode,
-                title = "Dark Theme",
-                description = "Enable dark mode",
+                title = stringResource(id = R.string.dark_theme),
+                description = stringResource(id = R.string.enable_dark_mode),
                 checked = darkThemeEnabled,
                 onCheckedChange = onThemeChange
             )
@@ -77,8 +79,8 @@ private fun PreferenceItemsSection(
 
             PreferenceItem(
                 icon = Icons.Default.Notifications,
-                title = "Notifications",
-                description = "Enable trip reminders",
+                title = stringResource(id = R.string.notifications),
+                description = stringResource(id = R.string.enable_trip_reminders),
                 checked = notificationEnabled,
                 onCheckedChange = onNotificationsChange
             )
@@ -151,7 +153,7 @@ fun LanguageDropdown(
 
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(
-            text = "Select Language",
+            text = stringResource(id = R.string.select_language),
             style = MaterialTheme.typography.labelMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.padding(bottom = 8.dp, start = 4.dp)

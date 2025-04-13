@@ -5,6 +5,7 @@ import SubTripApp
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -16,6 +17,7 @@ import com.example.travelworld.ui.view.settings_option.TermsConditionsScreen
 
 import com.example.travelworld.ui.view.TravelApp
 import com.example.travelworld.ui.view.LoginScreen
+import com.example.travelworld.ui.view.settings_option.ProfileScreen
 import com.example.travelworld.ui.view.settings_option.VersionScreen
 
 
@@ -38,6 +40,7 @@ fun NavGraph(navController: NavHostController) {
         }
 
         composable("about") { AboutScreen(navController) }
+        composable("profile") { ProfileScreen(navController, userId = R.string.default_user) }
         composable("terms") { TermsConditionsScreen(navController) }
         composable("version") { VersionScreen(navController) }
         composable("settings") { SettingsScreen(navController) }

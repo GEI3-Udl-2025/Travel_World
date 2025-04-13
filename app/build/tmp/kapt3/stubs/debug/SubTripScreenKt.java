@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment;
 import androidx.compose.ui.Modifier;
 import androidx.compose.ui.text.font.FontWeight;
 import androidx.navigation.NavController;
+import com.example.travelworld.R;
 import com.example.travelworld.domain.model.SubTrip;
 import com.example.travelworld.ui.viewmodel.SubTripViewModel;
 import java.time.LocalDate;

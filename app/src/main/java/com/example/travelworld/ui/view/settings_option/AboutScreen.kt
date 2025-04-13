@@ -6,9 +6,11 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.travelworld.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -16,7 +18,7 @@ fun AboutScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("About") },
+                title = { Text(stringResource(id = R.string.about))},
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
@@ -35,7 +37,7 @@ fun AboutScreen(navController: NavController) {
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Text(text = "About Screen", style = MaterialTheme.typography.headlineMedium)
+            Text(text = stringResource(id = R.string.about_screen), style = MaterialTheme.typography.headlineMedium)
             Text(text = "Authors: Xiao Long Ji and Jan Castells Sanllehi")
             Text(
                 text = "Your perfect companion for planning unforgettable trips. Organize itineraries, discover destinations and enjoy every adventure.",

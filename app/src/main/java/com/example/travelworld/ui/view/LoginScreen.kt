@@ -34,19 +34,19 @@ fun LoginScreen(navController: NavController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Login Screen", style = MaterialTheme.typography.headlineMedium)
+        Text(text = stringResource(id = R.string.login_screen), style = MaterialTheme.typography.headlineMedium)
         Spacer(modifier = Modifier.height(20.dp))
         OutlinedTextField(
             value = username,
             onValueChange = { username = it },
-            label = { Text("Username") },
+            label = { stringResource(id = R.string.username) },
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(10.dp))
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
-            label = { Text("Password") },
+            label = { stringResource(id = R.string.password) },
             modifier = Modifier.fillMaxWidth(),
             visualTransformation = PasswordVisualTransformation()
         )
@@ -68,7 +68,7 @@ fun LoginScreen(navController: NavController) {
                 contentColor = Color.White
             )
         ) {
-            Text(text = "Login")
+            Text(text = stringResource(id = R.string.login))
         }
     }
 
@@ -80,7 +80,7 @@ fun LoginScreen(navController: NavController) {
             text = { Text("Invalid username or password.") },
             confirmButton = {
                 Button(onClick = { showAlert = false }) {
-                    Text("OK")
+                    Text(stringResource(id = R.string.ok))
                 }
             }
         )

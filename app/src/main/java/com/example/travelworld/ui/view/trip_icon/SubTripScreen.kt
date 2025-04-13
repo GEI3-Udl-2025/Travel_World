@@ -38,10 +38,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.example.travelworld.R
 import com.example.travelworld.domain.model.SubTrip
 import com.example.travelworld.ui.viewmodel.SubTripViewModel
 import java.time.LocalDate
@@ -71,7 +73,7 @@ fun SubTripApp(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("SubTrip") },
+                title = { stringResource(id = R.string.SubTrip) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.Filled.ArrowBack, contentDescription = "Volver")
@@ -107,8 +109,7 @@ fun SubTripApp(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text("No hay SubTrip disponibles")
-                    Text("Presiona el botón + para añadir una")
+                    Text(stringResource(id = R.string.no_subtrips))
                 }
             } else {
                 LazyColumn(
@@ -136,113 +137,6 @@ fun SubTripApp(
         }
     }
 
-    /*if (showDialog) {
-        AlertDialog(
-            onDismissRequest = { showDialog = false },
-            title = { Text(if (isEditing) "Editar Subtarea" else "Nueva Subtarea") },
-            text = {
-                Column {
-                    OutlinedTextField(
-                        value = subTripTitle,
-                        onValueChange = { subTripTitle = it },
-                        label = { Text("Title") },
-                        singleLine = true,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(8.dp)
-                    )
-                    Row {
-                        OutlinedTextField(
-                            value = subTripDate,
-                            onValueChange = { subTripDate = it },
-                            label = { Text("Date (YYYY-MM-DD)") },
-                            singleLine = true,
-                            modifier = Modifier
-                                .weight(1f)
-                                .padding(8.dp)
-                        )
-
-                        OutlinedTextField(
-                            value = subTripTime,
-                            onValueChange = { subTripTime = it },
-                            label = { Text("Time (HH:MM)") },
-                            singleLine = true,
-                            modifier = Modifier
-                                .weight(1f)
-                                .padding(8.dp)
-                        )
-                    }
-
-                    OutlinedTextField(
-                        value = subTripLocation,
-                        onValueChange = { subTripLocation = it },
-                        label = { Text("Location") },
-                        singleLine = true,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(8.dp)
-                    )
-
-                    Spacer(modifier = Modifier.height(8.dp))
-
-                    OutlinedTextField(
-                        value = subTripDescription,
-                        onValueChange = { subTripDescription = it },
-                        label = { Text("Description") },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(8.dp)
-                    )
-                }
-            },
-            confirmButton = {
-                Button(
-                    onClick = {
-                        if (subTripTitle.isBlank() || subTripDate.isBlank()  || subTripLocation.isBlank()) {
-                            return@Button
-                        }
-                        if (isEditing) {
-                            viewModel.updateSubTrip(
-                                SubTrip(
-                                    id = currentSubTripId,
-                                    parentTripId = tripId,
-                                    title = subTripTitle,
-                                    date = subTripDate,
-                                    time = subTripTime,
-                                    location = subTripLocation,
-                                    description = subTripDescription
-                                )
-                            )
-                        } else {
-                            viewModel.addSubTrip(
-                                SubTrip(
-                                    parentTripId = tripId,
-                                    title = subTripTitle,
-                                    date = subTripDate,
-                                    time = subTripTime,
-                                    location = subTripLocation,
-                                    description = subTripDescription
-                                )
-                            )
-                        }
-                        showDialog = false
-                    }
-                ) {
-                    Text("Guardar")
-                }
-            },
-            dismissButton = {
-                Button(
-                    onClick = { showDialog = false },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.surfaceVariant
-                    )
-                ) {
-                    Text("Cancelar")
-                }
-            }
-        )
-    }*/
     if (showDialog) {
         var errorMessage by remember { mutableStateOf<String?>(null) }
 
@@ -251,7 +145,7 @@ fun SubTripApp(
                 showDialog = false
                 errorMessage = null
             },
-            title = { Text(if (isEditing) "Editar Subtrip" else "Nuevo Subtrip") },
+            title = { Text(if (isEditing) stringResource(id = R.string.edit_subtrip) else stringResource(id = R.string.new_subtrip)) },
             text = {
                 Column {
                     if (errorMessage != null) {
@@ -265,7 +159,7 @@ fun SubTripApp(
                     OutlinedTextField(
                         value = subTripTitle,
                         onValueChange = { subTripTitle = it },
-                        label = { Text("Título*") },
+                        label = { Text(stringResource(id = R.string.title)+"*" )},
                         singleLine = true,
                         isError = errorMessage != null && subTripTitle.isEmpty(),
                         modifier = Modifier
@@ -277,7 +171,7 @@ fun SubTripApp(
                         OutlinedTextField(
                             value = subTripDate,
                             onValueChange = { subTripDate = it },
-                            label = { Text("Fecha* (YYYY-MM-DD)") },
+                            label = {Text(stringResource(id = R.string.date) + "* (YYYY-MM-DD)" )},
                             singleLine = true,
                             isError = errorMessage != null && (subTripDate.isEmpty() || !isValidDate(subTripDate)),
                             modifier = Modifier
@@ -288,7 +182,7 @@ fun SubTripApp(
                         OutlinedTextField(
                             value = subTripTime,
                             onValueChange = { subTripTime = it },
-                            label = { Text("Hora* (HH:MM)") },
+                            label = { Text(stringResource(id = R.string.time) + "* (HH:MM)")},
                             singleLine = true,
                             isError = errorMessage != null && (subTripTime.isEmpty() || !isValidTime(subTripTime)),
                             modifier = Modifier
@@ -300,7 +194,7 @@ fun SubTripApp(
                     OutlinedTextField(
                         value = subTripLocation,
                         onValueChange = { subTripLocation = it },
-                        label = { Text("Ubicación*") },
+                        label = { Text(stringResource(id = R.string.location) + "*")},
                         singleLine = true,
                         isError = errorMessage != null && subTripLocation.isEmpty(),
                         modifier = Modifier
@@ -311,7 +205,7 @@ fun SubTripApp(
                     OutlinedTextField(
                         value = subTripDescription,
                         onValueChange = { subTripDescription = it },
-                        label = { Text("Descripción") },
+                        label = { Text(stringResource(id = R.string.description)) },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(8.dp)
@@ -323,22 +217,22 @@ fun SubTripApp(
                     onClick = {
                         when {
                             subTripTitle.isBlank() -> {
-                                errorMessage = "El título es requerido"
+                                errorMessage = "The title is required"
                             }
                             subTripDate.isBlank() -> {
-                                errorMessage = "La fecha es requerida"
+                                errorMessage = "The date is required"
                             }
                             !isValidDate(subTripDate) -> {
-                                errorMessage = "Formato de fecha inválido (YYYY-MM-DD)"
+                                errorMessage = "Date format is invalid (YYYY-MM-DD)"
                             }
                             subTripTime.isBlank() -> {
-                                errorMessage = "La hora es requerida"
+                                errorMessage = "The time is required"
                             }
                             !isValidTime(subTripTime) -> {
-                                errorMessage = "Formato de hora inválido (HH:MM)"
+                                errorMessage = "Time format is invalid (HH:MM)"
                             }
                             subTripLocation.isBlank() -> {
-                                errorMessage = "La ubicación es requerida"
+                                errorMessage = "The location is required"
                             }
                             else -> {
                                 if (isEditing) {
@@ -370,7 +264,7 @@ fun SubTripApp(
                         }
                     }
                 ) {
-                    Text("Guardar")
+                    Text(stringResource(id = R.string.save))
                 }
             },
             dismissButton = {
@@ -383,7 +277,7 @@ fun SubTripApp(
                         containerColor = MaterialTheme.colorScheme.surfaceVariant
                     )
                 ) {
-                    Text("Cancelar")
+                    Text(stringResource(id = R.string.cancel))
                 }
             }
         )
