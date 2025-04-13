@@ -95,9 +95,6 @@ flowchart TD
     style U fill:#f8f9fa,stroke:#6c757d,color:#212529
     style UI_Flow fill:#e7f5ff,stroke:#4dabf7,color:#1864ab
     style Data_Flow fill:#ebfbee,stroke:#40c057,color:#2b8a3e
-    style TS,TC,STL fill:#ffffff,stroke:#495057,color:#212529
-    style ATD,ETD,ASD fill:#fff3bf,stroke:#fcc419,color:#5f3dc4
-    style TVM,STVM fill:#f3f0ff,stroke:#9775fa,color:#5f3dc4
 
     %% ===== Visual Optimization =====
     classDef default font-family:Helvetica,font-size:14px
