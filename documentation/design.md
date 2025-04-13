@@ -27,7 +27,7 @@ flowchart TD
     D --> E[TripScreen]
     D --> F[HomeScreen]
     D --> G[ItineraryScreen]
-    D --> G[UserPreferencesScreen]
+    D --> H[UserPreferencesScreen]
     C --> I{{"Menú Configuración\n(TopAppBar in MainScreen)"}}
     I --> J[AboutScreen]
     I --> K[VersionScreen]
