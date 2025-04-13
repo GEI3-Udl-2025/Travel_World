@@ -74,35 +74,34 @@ flowchart TD
     U -->|3. Edits Trip| ETD[EditTripDialog]
     U -->|4. Adds Activity| ASD[AddSubTripDialog]
 
-    %% ===== T2.2 UI Components (from your files) =====
-    subgraph UI_Flow["UI Implementation (TripScreen.kt/SubTripScreen.kt)"]
+    %% ===== T2.2 UI Components =====
+    subgraph UI_Flow["UI Implementation"]
         TS -->|"TripCard.kt"| TC
         TC -->|"SubTrip List"| STL
-        ATD -->|"Form:\n- Destination\n- Dates\n- Notes"| TS
-        ASD -->|"Form:\n- Title\n- Date/Time\n- Location"| STL
+        ATD -->|"Form Fields"| TS
+        ASD -->|"Form Fields"| STL
     end
 
-    %% ===== T2.3 Data Flow (from your ViewModels) =====
-    subgraph Data_Flow["Dynamic Updates (TripViewModel.kt/SubTripViewModel.kt)"]
-        TVM[TripViewModel] -->|"State:\ntrips: List<Trip>"| TS
-        STVM[SubTripViewModel] -->|"State:\nsubTrips: List<SubTrip>"| STL
-        ATD -->|"onConfirm()"| TVM
-        ETD -->|"updateTrip()"| TVM
-        ASD -->|"addSubTrip()"| STVM
-        TVM -->|"Triggers\nRecomposition"| TS
+    %% ===== T2.3 Data Flow =====
+    subgraph Data_Flow["Data Management"]
+        TVM[TripViewModel] -->|"Live State"| TS
+        STVM[SubTripViewModel] -->|"Live State"| STL
+        ATD -->|"Saves Data"| TVM
+        ETD -->|"Updates Data"| TVM
+        ASD -->|"Saves Data"| STVM
     end
-
-    %% ===== File References =====
-    click TS "TripScreen.kt"
-    click STL "SubTripScreen.kt"
-    click TVM "TripViewModel.kt"
-    click STVM "SubTripViewModel.kt"
-    click TC "TripCard.kt"
 
     %% ===== Styling =====
-    style U fill:#ff9,stroke:#333
-    style UI_Flow fill:#e6f3ff,stroke:#0066cc
-    style Data_Flow fill:#e6ffe6,stroke:#009900
+    style U fill:#f8f9fa,stroke:#6c757d,color:#212529
+    style UI_Flow fill:#e7f5ff,stroke:#4dabf7,color:#1864ab
+    style Data_Flow fill:#ebfbee,stroke:#40c057,color:#2b8a3e
+    style TS,TC,STL fill:#ffffff,stroke:#495057,color:#212529
+    style ATD,ETD,ASD fill:#fff3bf,stroke:#fcc419,color:#5f3dc4
+    style TVM,STVM fill:#f3f0ff,stroke:#9775fa,color:#5f3dc4
+
+    %% ===== Visual Optimization =====
+    classDef default font-family:Helvetica,font-size:14px
+    linkStyle default stroke:#adb5bd,stroke-width:1.5px
 ```
 
 ## Key Features:
