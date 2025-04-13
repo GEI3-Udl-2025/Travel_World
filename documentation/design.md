@@ -64,6 +64,47 @@ flowchart TD
     linkStyle 16,17 stroke:#1abc9c,stroke-width:2px
 ```
 
+```mermaid
+flowchart TD
+    %% ===== T2.1 User Interaction Structure =====
+    U[User] -->|1. Views Trips| TS[TripScreen]
+    TS -->|LazyColumn| TC[TripCard]
+    TC -->|Expand| STL[SubTrip List]
+    U -->|2. Clicks '+'| ATD[AddTripDialog]
+    U -->|3. Edits Trip| ETD[EditTripDialog]
+    U -->|4. Adds Activity| ASD[AddSubTripDialog]
+
+    %% ===== T2.2 UI Components (from your files) =====
+    subgraph UI_Flow["UI Implementation (TripScreen.kt/SubTripScreen.kt)"]
+        TS -->|"TripCard.kt"| TC
+        TC -->|"SubTrip List"| STL
+        ATD -->|"Form:\n- Destination\n- Dates\n- Notes"| TS
+        ASD -->|"Form:\n- Title\n- Date/Time\n- Location"| STL
+    end
+
+    %% ===== T2.3 Data Flow (from your ViewModels) =====
+    subgraph Data_Flow["Dynamic Updates (TripViewModel.kt/SubTripViewModel.kt)"]
+        TVM[TripViewModel] -->|"State:\ntrips: List<Trip>"| TS
+        STVM[SubTripViewModel] -->|"State:\nsubTrips: List<SubTrip>"| STL
+        ATD -->|"onConfirm()"| TVM
+        ETD -->|"updateTrip()"| TVM
+        ASD -->|"addSubTrip()"| STVM
+        TVM -->|"Triggers\nRecomposition"| TS
+    end
+
+    %% ===== File References =====
+    click TS "TripScreen.kt"
+    click STL "SubTripScreen.kt"
+    click TVM "TripViewModel.kt"
+    click STVM "SubTripViewModel.kt"
+    click TC "TripCard.kt"
+
+    %% ===== Styling =====
+    style U fill:#ff9,stroke:#333
+    style UI_Flow fill:#e6f3ff,stroke:#0066cc
+    style Data_Flow fill:#e6ffe6,stroke:#009900
+```
+
 ## Key Features:
 1. **4 Pantallas Principales**:
     - Viajes (Trips)
