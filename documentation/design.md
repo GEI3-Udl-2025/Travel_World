@@ -58,13 +58,13 @@ LoginScreen --> MainScreen: Successful login
 ```mermaid
 flowchart TD
     %% ===== Main Flow =====
-    A[LoginScreen] -->|Successful login| B[MainScreen]
+    A[LoginScreen] -->|"Credentials valid"| B[MainScreen]
     B --> C[TravelApp]
-    C --> D{{Pantallas Principales}}
+    C --> D{{"Pantallas Principales\n(MainScreen.kt)"}}
     D --> E[TripScreen]
     D --> F[HomeScreen]
     D --> G[UserPreferencesScreen]
-    C --> I{{Menú Configuración}}
+    C --> I{{"Menú Configuración\n(TopAppBar in MainScreen)"}}
     I --> J[AboutScreen]
     I --> K[VersionScreen]
     I --> L[ProfileScreen]
@@ -72,35 +72,34 @@ flowchart TD
     I --> N[TermsConditionsScreen]
     E --> O[SubTripScreen]
 
-    %% ===== Component Relationships =====
-    C -->|Manages| P[NavGraph]
-    P -->|Routes| A
-    P -->|Routes| B
-    P -->|Routes| E
-    P -->|Routes| O
-    P -->|Routes| J
-    P -->|Routes| K
-    P -->|Routes| L
-    P -->|Routes| M
-    P -->|Routes| N
-
-    %% ===== Data Flow =====
-    E -->|Uses| Q[TripViewModel]
-    O -->|Uses| R[SubTripViewModel]
-    G -->|Uses| S[UserPreferencesViewModel]
-    K -->|Uses| T[VersionViewModel]
-    Q & R -->|Depends on| U[TripRepository]
-    U -->|Implements| V[TripRepositoryImpl]
-    S -->|Manages| W[SharedPrefsManager]
-    W -->|Uses| X[LanguageChangeUtil]
-    W -->|Alternative| Y[DataStoreManager]
+    %% ===== Data Connections =====
+    E -->|"Uses"| P[TripViewModel]
+    O -->|"Uses"| Q[SubTripViewModel]
+    G -->|"Uses"| R[UserPreferencesViewModel]
+    K -->|"Uses"| S[VersionViewModel]
+    
+    P & Q -->|"Depends on"| T[TripRepository]
+    T -->|"Implemented by"| U[TripRepositoryImpl]
+    R -->|"Manages"| V[SharedPrefsManager]
+    V -->|"Uses"| W[LanguageChangeUtil]
+    V -->|"Alternative"| X[DataStoreManager]
 
     %% ===== Style =====
-    style A fill:#9f9,stroke:#090
-    style B fill:#9f9,stroke:#090
-    style D fill:#bbf,stroke:#33f
-    style I fill:#fbb,stroke:#f33
-    style Q,R,S,T fill:#ff9,stroke:#990
+    style A fill:#2ecc71,stroke:#27ae60
+    style B fill:#2ecc71,stroke:#27ae60
+    style D fill:#3498db,stroke:#2980b9
+    style I fill:#e74c3c,stroke:#c0392b
+    style P,Q,R,S fill:#f39c12,stroke:#d35400
+    style T,U fill:#9b59b6,stroke:#8e44ad
+    style V,W,X fill:#1abc9c,stroke:#16a085
+
+    %% ===== Legend =====
+    linkStyle 0 stroke:#27ae60,stroke-width:2px
+    linkStyle 1,2,3,4 stroke:#2980b9,stroke-width:2px
+    linkStyle 5,6,7,8,9 stroke:#c0392b,stroke-width:2px
+    linkStyle 10,11,12,13 stroke:#f39c12,stroke-width:2px
+    linkStyle 14,15 stroke:#9b59b6,stroke-width:2px
+    linkStyle 16,17 stroke:#1abc9c,stroke-width:2px
 ```
 
 ## Key Features:
