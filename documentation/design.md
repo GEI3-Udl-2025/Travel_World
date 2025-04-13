@@ -18,43 +18,6 @@ flowchart TD
     E --> O[SubTrips]
 ```
 
-
-```mermaid
-stateDiagram-v2
-[*] --> LoginScreen
-LoginScreen --> MainScreen: Successful login
-
-    state MainScreen {
-        [*] --> TripTab
-        TripTab --> TripList
-        TripList --> AddTripDialog: "Add Trip" clicked
-        TripList --> EditTripDialog: "Edit" clicked
-        TripList --> SubTripScreen: Trip selected
-        
-        AddTripDialog --> TripList: Save
-        EditTripDialog --> TripList: Update
-        
-        state SubTripScreen {
-            [*] --> SubTripList
-            SubTripList --> AddSubTripDialog: "Add Activity" clicked
-            SubTripList --> EditSubTripDialog: "Edit" clicked
-            
-            AddSubTripDialog --> SubTripList: Save
-            EditSubTripDialog --> SubTripList: Update
-        }
-    }
-    
-    state DataFlow {
-        TripList --> TripViewModel: Load trips
-        TripViewModel --> TripRepository: Fetch data
-        TripRepository --> TripList: Update UI
-        
-        SubTripList --> SubTripViewModel: Load subtrips
-        SubTripViewModel --> TripRepository: Fetch data
-        TripRepository --> SubTripList: Update UI
-    }
-```
-
 ```mermaid
 flowchart TD
     %% ===== Main Flow =====
