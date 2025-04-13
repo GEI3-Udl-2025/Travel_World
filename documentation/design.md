@@ -1,147 +1,4 @@
 # TravelWorld - Documentación Completa
-```mermaid
-classDiagram
-    %% ===== Core Components =====
-    class MainActivity {
-        +onCreate()
-    }
-
-    class MyApp {
-        +HiltAndroidApp
-    }
-
-    class NavGraph {
-        +Composable navigation
-    }
-
-    %% ===== Screens =====
-    class LoginScreen
-    class MainScreen {
-        +TravelMode enum
-    }
-    class TripScreen
-    class ItineraryScreen
-    class UserPreferenceScreen
-    class SettingsScreen
-    class AboutScreen
-    class TermsConditionsScreen
-    class ProfileScreen
-    class VersionScreen
-    class SubTripScreen
-
-    %% ===== ViewModels =====
-    class TripViewModel
-    class SubTripViewModel
-    class UserPreferencesViewModel
-    class VersionViewModel
-
-    %% ===== Data Layer =====
-    class Trip {
-        +id: Int
-        +destination: String
-        +startDate: String
-        +endDate: String
-        +note: String
-    }
-
-    class SubTrip {
-        +parentTripId: Int
-        +title: String
-        +date: String
-        +time: String
-        +location: String
-    }
-
-    class TripRepository {
-        <<Interface>>
-        +getTrips()
-        +addTrip()
-        +deleteTrip()
-    }
-
-    class TripRepositoryImpl {
-        -Trips: MutableList~Trip~
-        -subTrips: MutableList~SubTrip~
-    }
-
-    class SharedPrefsManager {
-        +userLanguage: String?
-        +darkTheme: Boolean
-    }
-
-    class DataStoreManager {
-        +userLanguageFlow: Flow~String~
-        +isDarkThemeFlow: Flow~Boolean~
-    }
-
-    class AppInfo {
-        +versionName: String
-        +versionCode: Int
-    }
-
-    %% ===== DI & Utils =====
-    class AppModule {
-        +provideSharedPreferences()
-        +provideTripRepository()
-    }
-
-    class LanguageChangeUtil {
-        +changeLanguage()
-        +getLanguageCode()
-    }
-
-    %% ===== UI Components =====
-    class TripCard {
-        +tripName: String
-        +destination: String
-        +dates: String
-    }
-
-    %% ===== Relationships =====
-    MainActivity --> NavGraph
-    MyApp --> MainActivity
-
-    NavGraph --> LoginScreen
-    NavGraph --> MainScreen
-    NavGraph --> TripScreen
-    NavGraph --> SubTripScreen
-    NavGraph --> SettingsScreen
-    NavGraph --> AboutScreen
-    NavGraph --> TermsConditionsScreen
-    NavGraph --> ProfileScreen
-    NavGraph --> VersionScreen
-
-    MainScreen --> TripScreen
-    MainScreen --> ItineraryScreen
-    MainScreen --> UserPreferenceScreen
-
-    TripScreen --> TripViewModel
-    SubTripScreen --> SubTripViewModel
-    UserPreferenceScreen --> UserPreferencesViewModel
-    VersionScreen --> VersionViewModel
-
-    TripViewModel --> TripRepository
-    SubTripViewModel --> TripRepository
-    TripRepository <|-- TripRepositoryImpl
-
-    UserPreferencesViewModel --> SharedPrefsManager
-    SharedPrefsManager --> LanguageChangeUtil
-    SharedPrefsManager --> DataStoreManager
-
-    TripRepositoryImpl --> Trip
-    Trip --> SubTrip
-
-    AppModule --> SharedPrefsManager
-    AppModule --> TripRepositoryImpl
-
-    TripScreen --> TripCard
-    MainScreen --> TripCard
-
-    note for Trip "Main trip entity"
-    note for SubTrip "Child activities of trips"
-    note for TripRepository "Central data operations"
-    note for SharedPrefsManager "Persists user preferences"
-```
 
 ```mermaid
 flowchart TD
@@ -199,37 +56,143 @@ LoginScreen --> MainScreen: Successful login
 ```
 
 ```mermaid
-%% Itinerary Flow Diagram
-flowchart TD
-    %% ===== T2.1 Interaction Structure =====
-    A[User] -->|"1. Views Trip List"| B[ItineraryScreen]
-    B --> C[TripCard]
-    C -->|"Expand/Collapse"| D[SubTrip List]
-    A -->|"2. Clicks 'Add Trip'"| E[AddTripDialog]
-    A -->|"3. Edits Trip"| F[EditTripDialog]
-    A -->|"4. Adds Activity"| G[AddSubTripDialog]
+classDiagram
+    %% ===== Core Application Structure =====
+    class MainActivity {
+        +onCreate()
+    }
+    
+    class MyApp {
+        +HiltAndroidApp
+    }
+    
+    class NavGraph {
+        +setupNavigation()
+    }
 
-    %% ===== T2.2 UI Components =====
-    subgraph UI_Flow
-        B -->|LazyColumn| C
-        C -->|Dynamic Height| D
-        E -->|Form| H["Inputs:\n- Destination\n- Dates\n- Notes"]
-        G -->|Form| I["Inputs:\n- Title\n- Date/Location\n- Notes"]
-    end
+    %% ===== Screen Components =====
+    class LoginScreen
+    class MainScreen
+    class TripScreen
+    class SubTripScreen
+    class UserPreferencesScreen
+    class SettingsScreen
+    class AboutScreen
+    class TermsConditionsScreen
+    class ProfileScreen
+    class VersionScreen
 
-    %% ===== T2.3 Data Flow =====
-    subgraph Data_Flow["Dynamic Updates (ViewModel)"]
-        J[ItineraryViewModel] -->|"State Holder"| K["trips: List<Trip>"]
-        K -->|"Observed by"| B
-        E -->|"onConfirm"| J
-        G -->|"onConfirm"| J
-        J -->|"Triggers Recomposition"| B
-    end
+    %% ===== Data Models =====
+    class Trip {
+        +id: Int
+        +destination: String
+        +startDate: String
+        +endDate: String
+        +note: String
+    }
+    
+    class SubTrip {
+        +parentTripId: Int
+        +title: String
+        +date: String
+        +time: String
+        +location: String
+    }
 
-    %% ===== Legend =====
-    style A fill:#ff9,stroke:#333
-    style UI_Flow fill:#e6f3ff,stroke:#0066cc
-    style Data_Flow fill:#e6ffe6,stroke:#009900
+    %% ===== ViewModels =====
+    class TripViewModel
+    class SubTripViewModel
+    class UserPreferencesViewModel
+    class VersionViewModel
+
+    %% ===== Data Layer =====
+    class TripRepository {
+        <<Interface>>
+        +getTrips()
+        +addTrip()
+        +updateTrip()
+        +deleteTrip()
+    }
+    
+    class TripRepositoryImpl {
+        -trips: MutableList~Trip~
+        -subTrips: MutableList~SubTrip~
+    }
+    
+    class SharedPrefsManager {
+        +userLanguage: String?
+        +darkTheme: Boolean
+    }
+    
+    class DataStoreManager {
+        +userLanguageFlow: Flow~String~
+        +isDarkThemeFlow: Flow~Boolean~
+    }
+
+    %% ===== DI & Utilities =====
+    class AppModule {
+        +provideSharedPrefs()
+        +provideTripRepository()
+    }
+    
+    class LanguageChangeUtil {
+        +changeLanguage()
+        +getLanguageCode()
+    }
+    
+    class AppInfo {
+        +versionName: String
+        +versionCode: Int
+    }
+
+    %% ===== UI Components =====
+    class TripCard {
+        +tripName: String
+        +destination: String
+        +dates: String
+    }
+
+    %% ===== Relationships =====
+    MainActivity --> NavGraph
+    MyApp --> MainActivity
+    
+    NavGraph --> LoginScreen
+    NavGraph --> MainScreen
+    NavGraph --> TripScreen
+    NavGraph --> SubTripScreen
+    NavGraph --> UserPreferencesScreen
+    NavGraph --> SettingsScreen
+    NavGraph --> AboutScreen
+    NavGraph --> TermsConditionsScreen
+    NavGraph --> ProfileScreen
+    NavGraph --> VersionScreen
+    
+    TripScreen --> TripViewModel
+    SubTripScreen --> SubTripViewModel
+    UserPreferencesScreen --> UserPreferencesViewModel
+    VersionScreen --> VersionViewModel
+    
+    TripViewModel --> TripRepository
+    SubTripViewModel --> TripRepository
+    TripRepository <|.. TripRepositoryImpl
+    
+    UserPreferencesViewModel --> SharedPrefsManager
+    SharedPrefsManager --> LanguageChangeUtil
+    SharedPrefsManager --> DataStoreManager
+    
+    TripRepositoryImpl --> Trip
+    Trip --> SubTrip
+    
+    AppModule --> SharedPrefsManager
+    AppModule --> TripRepositoryImpl
+    
+    MainScreen --> TripCard
+    TripScreen --> TripCard
+
+    note for Trip "Contains list of SubTrips"
+    note for TripRepository "Central data operations interface"
+    note for SharedPrefsManager "Manages user preferences"
+    note for NavGraph "Handles all navigation routes"
 ```
 
 ## Key Features:
