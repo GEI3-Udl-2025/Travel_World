@@ -26,7 +26,7 @@ flowchart TD
     C --> D{{"Pantallas Principales\n(MainScreen.kt)"}}
     D --> E[TripScreen]
     D --> F[HomeScreen]
-    D --> G[Itinerary]
+    D --> G[ItineraryScreen]
     D --> G[UserPreferencesScreen]
     C --> I{{"Menú Configuración\n(TopAppBar in MainScreen)"}}
     I --> J[AboutScreen]
