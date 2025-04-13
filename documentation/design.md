@@ -70,7 +70,7 @@ graph TD
     G --> L[SettingsScreen]
     D --> M[SubTripScreen]
     
-    classDef screen fill:#f9f,stroke:#333;
+
     class A,B,C,D,E,F,G,H,I,J,K,L,M screen;
 ```
 
