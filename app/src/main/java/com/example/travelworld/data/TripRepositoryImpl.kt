@@ -19,8 +19,8 @@ class TripRepositoryImpl @Inject constructor(
 ) : TripRepository {
 
     // Listas mutables para almacenar datos en memoria
-    //private val trips = mutableListOf<Trip>()
-    //private val subTrips = mutableListOf<SubTrip>()
+    private val trips = mutableListOf<Trip>()
+    private val subTrips = mutableListOf<SubTrip>()
 
     override fun getTrips(): Flow<List<Trip>> {
         return tripDao.getTripsFlow().map { tripEntities ->

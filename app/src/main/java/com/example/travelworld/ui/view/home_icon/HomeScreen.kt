@@ -18,8 +18,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.travelworld.R
 import com.example.travelworld.ui.view.home_icon.TripCard
 
 @Preview
@@ -41,13 +43,13 @@ fun HomeApp() {
         ) {
             ActionButton(
                 icon = Icons.Default.Add,
-                label = "New Trip",
+                label = stringResource(id = R.string.new_trip),
                 onClick = { /* TODO: Navigate to trip creation */ },
                 modifier = Modifier.weight(1f) // Ocupa la mitad del espacio
             )
             ActionButton(
                 icon = Icons.Default.Search,
-                label = "Explore",
+                label = stringResource(id = R.string.explore),
                 onClick = { /* TODO: Navigate to explore */ },
                 modifier = Modifier.weight(1f) // Ocupa la otra mitad del espacio
             )
@@ -55,7 +57,7 @@ fun HomeApp() {
 
         // Recent Trips Section
         Text(
-            text = "Recent Trips",
+            text = stringResource(id = R.string.recent_trips),
             style = MaterialTheme.typography.titleLarge
         )
         LazyColumn(
@@ -64,8 +66,8 @@ fun HomeApp() {
         ) {
             items(5) { index ->
                 TripCard(
-                    tripName = "Trip ${index + 1}",
-                    destination = "Destination ${index + 1}",
+                    tripName = stringResource(id = R.string.trip) + " ${index + 1}",
+                    destination = stringResource(id = R.string.destination ) + " ${index + 1}",
                     dates = "Jan 1 - Jan 7, 2024"
                 )
             }

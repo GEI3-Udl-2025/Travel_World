@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.travelworld.R
+import com.example.travelworld.ui.view.itinerary_icon.TripAppv1
 import com.example.travelworld.ui.view.trip_icon.TripApp
 import com.example.travelworld.ui.view.userpref_icon.UserPreferencesApp
 
@@ -48,7 +49,7 @@ fun TravelApp(navController: NavController) {
                         ) {
                             DropdownMenuItem(
                                 leadingIcon = { Icon(Icons.Filled.Info, contentDescription = "About Icon") },
-                                text = { Text(text = stringResource(id = R.string.About)) },
+                                text = { Text(text = stringResource(id = R.string.about)) },
                                 onClick = {
                                     showSettingsMenu = false
                                     navController.navigate("about")
@@ -56,7 +57,7 @@ fun TravelApp(navController: NavController) {
                             )
                             DropdownMenuItem(
                                 leadingIcon = { Icon(Icons.Filled.Build, contentDescription = "Version Icon") },
-                                text = { Text("Version") },
+                                text = { Text(stringResource(id = R.string.version))},
                                 onClick = {
                                     showSettingsMenu = false
                                     navController.navigate("version")
@@ -64,7 +65,7 @@ fun TravelApp(navController: NavController) {
                             )
                             DropdownMenuItem(
                                 leadingIcon = { Icon(Icons.Filled.Person, contentDescription = "Profile Icon") },
-                                text = { Text("Profile") },
+                                text = { Text(stringResource(id = R.string.profile)) },
                                 onClick = {
                                     showSettingsMenu = false
                                     navController.navigate("profile")
@@ -72,7 +73,7 @@ fun TravelApp(navController: NavController) {
                             )
                             DropdownMenuItem(
                                 leadingIcon = { Icon(Icons.Filled.Settings, contentDescription = "Settings Icon") },
-                                text = { Text("Settings") },
+                                text = { Text(stringResource(id = R.string.settings)) },
                                 onClick = {
                                     showSettingsMenu = false
                                     navController.navigate("settings")
@@ -80,7 +81,7 @@ fun TravelApp(navController: NavController) {
                             )
                             DropdownMenuItem(
                                 leadingIcon = {Icon (Icons.Filled.Policy, contentDescription = "Terms & Conditions") },
-                                text = { Text("Term&Conditions") },
+                                text = { Text(stringResource(id = R.string.terms_conditions)) },
                                 onClick = {
                                     showSettingsMenu = false
                                     navController.navigate("terms")
@@ -98,25 +99,25 @@ fun TravelApp(navController: NavController) {
                     icon = { Icon(Icons.Default.Flight, contentDescription = "Trip") },
                     selected = selectedScreen == TravelMode.TRIP,
                     onClick = { selectedScreen = TravelMode.TRIP },
-                    label = { Text("Trip") }
+                    label = { Text(stringResource(id = R.string.trip))}
                 )
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
                     selected = selectedScreen == TravelMode.HOME,
                     onClick = { selectedScreen = TravelMode.HOME },
-                    label = { Text("Home") }
+                    label = { Text(stringResource(id = R.string.home)) }
                 )
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.List, contentDescription = "Itinerary") },
                     selected = selectedScreen == TravelMode.ITINERARY,
                     onClick = { selectedScreen = TravelMode.ITINERARY },
-                    label = { Text("Itinerary") }
+                    label = { Text(stringResource(id = R.string.itinerary)) }
                 )
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Person, contentDescription = "User Preference") },
                     selected = selectedScreen == TravelMode.USER_PREFERENCE,
                     onClick = { selectedScreen = TravelMode.USER_PREFERENCE },
-                    label = { Text("Preferences") }
+                    label = { Text(stringResource(id = R.string.user_preference)) }
                 )
             }
         }
@@ -147,8 +148,7 @@ fun TripScreen(navController: NavController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.Start
     ) {
-        Text(text = "Trip Screen", style = MaterialTheme.typography.titleLarge)
-
+        Text(text = stringResource(id = R.string.trip_screen), style = MaterialTheme.typography.titleLarge)
         TripApp(navController = navController)
     }
 }
@@ -162,12 +162,13 @@ fun HomeScreen() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.Start
     ) {
-        Text(text = "Home Screen", style = MaterialTheme.typography.titleLarge)
-        HomeApp()
+        Text(text = stringResource(id = R.string.home_screen), style = MaterialTheme.typography.titleLarge)
+
     }
 }
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ItineraryScreen() {
     Column(
@@ -177,7 +178,7 @@ fun ItineraryScreen() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.Start
     ) {
-        Text(text = "Itinerary Screen", style = MaterialTheme.typography.titleLarge)
+        Text(text = stringResource(id = R.string.itinerary_screen), style = MaterialTheme.typography.titleLarge)
 
     }
 }
@@ -191,7 +192,7 @@ fun UserPreferenceScreen() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.Start
     ) {
-        Text(text = "User Preference Screen", style = MaterialTheme.typography.titleLarge)
+        Text(text = stringResource(id = R.string.user_preference_screen), style = MaterialTheme.typography.titleLarge)
         UserPreferencesApp()
     }
 }
