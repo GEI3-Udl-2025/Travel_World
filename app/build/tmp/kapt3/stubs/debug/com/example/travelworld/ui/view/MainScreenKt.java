@@ -33,6 +33,7 @@ public final class MainScreenKt {
     public static final void HomeScreen() {
     }
     
+    @androidx.annotation.RequiresApi(value = android.os.Build.VERSION_CODES.O)
     @androidx.compose.runtime.Composable()
     public static final void ItineraryScreen() {
     }

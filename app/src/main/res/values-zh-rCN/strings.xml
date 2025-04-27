@@ -65,4 +65,5 @@
     <string name="user_preference_screen">用户偏好页面</string>
     <string name="edit_subtrip">编辑活动</string>
     <string name="new_subtrip">新建活动</string>
+    <string name="SignOut">登出</string>
 </resources>

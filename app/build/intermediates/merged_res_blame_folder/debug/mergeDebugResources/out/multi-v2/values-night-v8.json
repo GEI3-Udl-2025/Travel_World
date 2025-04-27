@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.travelworld.app-mergeDebugResources-68:/values-night-v8/values-night-v8.xml",
+            "outputFile": "com.example.travelworld.app-mergeDebugResources-79:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\LittleDragon\\.gradle\\caches\\8.10.2\\transforms\\dfe4fd25d1bf4e47aec8210fb06dc76f\\transformed\\core-splashscreen-1.0.1\\res\\values-night-v8\\values-night-v8.xml",
+                    "source": "C:\\Users\\LittleDragon\\.gradle\\caches\\8.10.2\\transforms\\ea414c1439badf4f3d4ac6db1826d583\\transformed\\core-splashscreen-1.0.1\\res\\values-night-v8\\values-night-v8.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\LittleDragon\\.gradle\\caches\\8.10.2\\transforms\\57847f3517a39df08be90ea128e309b7\\transformed\\appcompat-1.7.0\\res\\values-night-v8\\values-night-v8.xml",
+                    "source": "C:\\Users\\LittleDragon\\.gradle\\caches\\8.10.2\\transforms\\3d1a30abf6e8dba3c1306f3a335a27ce\\transformed\\appcompat-1.7.0\\res\\values-night-v8\\values-night-v8.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

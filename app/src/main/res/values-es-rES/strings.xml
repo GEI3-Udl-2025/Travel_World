@@ -65,4 +65,5 @@
     <string name="user_preference_screen">Pantalla de preferencias</string>
     <string name="edit_subtrip">Editar actividad</string>
     <string name="new_subtrip">Nueva actividad</string>
+    <string name="SignOut">Cerrar Sesión</string>
 </resources>

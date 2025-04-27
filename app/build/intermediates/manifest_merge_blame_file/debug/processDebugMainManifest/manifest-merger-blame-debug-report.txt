@@ -8,151 +8,374 @@
 8        android:minSdkVersion="24"
 9        android:targetSdkVersion="35" />
 10
-11    <permission
-11-->[androidx.core:core:1.15.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\784733d49dbc522781932de4f2e2306d\transformed\core-1.15.0\AndroidManifest.xml:22:5-24:47
-12        android:name="com.example.travelworld.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-12-->[androidx.core:core:1.15.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\784733d49dbc522781932de4f2e2306d\transformed\core-1.15.0\AndroidManifest.xml:23:9-81
-13        android:protectionLevel="signature" />
-13-->[androidx.core:core:1.15.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\784733d49dbc522781932de4f2e2306d\transformed\core-1.15.0\AndroidManifest.xml:24:9-44
-14
-15    <uses-permission android:name="com.example.travelworld.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-15-->[androidx.core:core:1.15.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\784733d49dbc522781932de4f2e2306d\transformed\core-1.15.0\AndroidManifest.xml:26:5-97
-15-->[androidx.core:core:1.15.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\784733d49dbc522781932de4f2e2306d\transformed\core-1.15.0\AndroidManifest.xml:26:22-94
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:25:5-67
+11-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:25:22-64
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:26:5-79
+12-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:26:22-76
+13    <uses-permission android:name="android.permission.USE_BIOMETRIC" /> <!-- suppress DeprecatedClassUsageInspection -->
+13-->[androidx.biometric:biometric:1.1.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\a4f90bab794b30e8d269f2ad9f409132\transformed\biometric-1.1.0\AndroidManifest.xml:24:5-72
+13-->[androidx.biometric:biometric:1.1.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\a4f90bab794b30e8d269f2ad9f409132\transformed\biometric-1.1.0\AndroidManifest.xml:24:22-69
+14    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+14-->[androidx.biometric:biometric:1.1.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\a4f90bab794b30e8d269f2ad9f409132\transformed\biometric-1.1.0\AndroidManifest.xml:27:5-74
+14-->[androidx.biometric:biometric:1.1.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\a4f90bab794b30e8d269f2ad9f409132\transformed\biometric-1.1.0\AndroidManifest.xml:27:22-71
+15    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+15-->[com.google.android.recaptcha:recaptcha:18.6.1] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\b2073bc84dc22e069d27c89f56a79355\transformed\recaptcha-18.6.1\AndroidManifest.xml:9:5-98
+15-->[com.google.android.recaptcha:recaptcha:18.6.1] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\b2073bc84dc22e069d27c89f56a79355\transformed\recaptcha-18.6.1\AndroidManifest.xml:9:22-95
 16
-17    <application
-17-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:5:5-27:19
-18        android:name="com.example.travelworld.MyApp"
-18-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:6:9-30
-19        android:allowBackup="true"
-19-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:7:9-35
-20        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-20-->[androidx.core:core:1.15.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\784733d49dbc522781932de4f2e2306d\transformed\core-1.15.0\AndroidManifest.xml:28:18-86
-21        android:dataExtractionRules="@xml/data_extraction_rules"
-21-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:8:9-65
-22        android:debuggable="true"
-23        android:extractNativeLibs="false"
-24        android:fullBackupContent="@xml/backup_rules"
-24-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:9:9-54
-25        android:icon="@mipmap/ic_launcher_original"
-25-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:10:9-52
-26        android:label="@string/app_name"
-26-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:11:9-41
-27        android:roundIcon="@mipmap/ic_launcher_original_round"
-27-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:12:9-63
-28        android:supportsRtl="true"
-28-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:13:9-35
-29        android:testOnly="true"
-30        android:theme="@style/Theme.App.Starting" >
-30-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:14:9-50
-31        <activity
-31-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:16:9-26:20
-32            android:name="com.example.travelworld.MainActivity"
-32-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:17:13-41
-33            android:exported="true"
-33-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:18:13-36
-34            android:label="@string/app_name"
-34-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:19:13-45
-35            android:theme="@style/Theme.TravelPlanner" >
-35-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:20:13-55
-36            <intent-filter>
-36-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:21:13-25:29
-37                <action android:name="android.intent.action.MAIN" />
-37-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:22:17-69
-37-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:22:25-66
-38
-39                <category android:name="android.intent.category.LAUNCHER" />
-39-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:24:17-77
-39-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:24:27-74
-40            </intent-filter>
-41        </activity>
-42        <activity
-42-->[androidx.compose.ui:ui-tooling-android:1.7.2] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\a8cc5f0cd473f6229443e6f0efaa36d2\transformed\ui-tooling-release\AndroidManifest.xml:23:9-25:39
-43            android:name="androidx.compose.ui.tooling.PreviewActivity"
-43-->[androidx.compose.ui:ui-tooling-android:1.7.2] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\a8cc5f0cd473f6229443e6f0efaa36d2\transformed\ui-tooling-release\AndroidManifest.xml:24:13-71
-44            android:exported="true" />
-44-->[androidx.compose.ui:ui-tooling-android:1.7.2] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\a8cc5f0cd473f6229443e6f0efaa36d2\transformed\ui-tooling-release\AndroidManifest.xml:25:13-36
-45
-46        <provider
-46-->[androidx.emoji2:emoji2:1.3.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\fc7fffee3620838836867409cbeeb964\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
-47            android:name="androidx.startup.InitializationProvider"
-47-->[androidx.emoji2:emoji2:1.3.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\fc7fffee3620838836867409cbeeb964\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
-48            android:authorities="com.example.travelworld.androidx-startup"
-48-->[androidx.emoji2:emoji2:1.3.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\fc7fffee3620838836867409cbeeb964\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
-49            android:exported="false" >
-49-->[androidx.emoji2:emoji2:1.3.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\fc7fffee3620838836867409cbeeb964\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
-50            <meta-data
-50-->[androidx.emoji2:emoji2:1.3.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\fc7fffee3620838836867409cbeeb964\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
-51                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-51-->[androidx.emoji2:emoji2:1.3.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\fc7fffee3620838836867409cbeeb964\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
-52                android:value="androidx.startup" />
-52-->[androidx.emoji2:emoji2:1.3.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\fc7fffee3620838836867409cbeeb964\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
-53            <meta-data
-53-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\c8a6f569da2347c28b2345460c9f6a7d\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:29:13-31:52
-54                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-54-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\c8a6f569da2347c28b2345460c9f6a7d\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:30:17-78
-55                android:value="androidx.startup" />
-55-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\c8a6f569da2347c28b2345460c9f6a7d\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:31:17-49
-56            <meta-data
-56-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\eefeb97b3718b5b932bc49113ce628ec\transformed\profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
-57                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-57-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\eefeb97b3718b5b932bc49113ce628ec\transformed\profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
-58                android:value="androidx.startup" />
-58-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\eefeb97b3718b5b932bc49113ce628ec\transformed\profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
-59        </provider>
-60
-61        <activity
-61-->[androidx.compose.ui:ui-test-manifest:1.7.2] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\d56a0729091b56ade110c314984dc0f9\transformed\ui-test-manifest-1.7.2\AndroidManifest.xml:23:9-25:39
-62            android:name="androidx.activity.ComponentActivity"
-62-->[androidx.compose.ui:ui-test-manifest:1.7.2] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\d56a0729091b56ade110c314984dc0f9\transformed\ui-test-manifest-1.7.2\AndroidManifest.xml:24:13-63
-63            android:exported="true" />
-63-->[androidx.compose.ui:ui-test-manifest:1.7.2] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\d56a0729091b56ade110c314984dc0f9\transformed\ui-test-manifest-1.7.2\AndroidManifest.xml:25:13-36
-64
-65        <service
-65-->[androidx.room:room-runtime:2.6.1] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\5075c8a8026a2e8a1efee421d6708f99\transformed\room-runtime-2.6.1\AndroidManifest.xml:24:9-28:63
-66            android:name="androidx.room.MultiInstanceInvalidationService"
-66-->[androidx.room:room-runtime:2.6.1] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\5075c8a8026a2e8a1efee421d6708f99\transformed\room-runtime-2.6.1\AndroidManifest.xml:25:13-74
-67            android:directBootAware="true"
-67-->[androidx.room:room-runtime:2.6.1] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\5075c8a8026a2e8a1efee421d6708f99\transformed\room-runtime-2.6.1\AndroidManifest.xml:26:13-43
-68            android:exported="false" />
-68-->[androidx.room:room-runtime:2.6.1] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\5075c8a8026a2e8a1efee421d6708f99\transformed\room-runtime-2.6.1\AndroidManifest.xml:27:13-37
-69
-70        <receiver
-70-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\eefeb97b3718b5b932bc49113ce628ec\transformed\profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
-71            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-71-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\eefeb97b3718b5b932bc49113ce628ec\transformed\profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
-72            android:directBootAware="false"
-72-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\eefeb97b3718b5b932bc49113ce628ec\transformed\profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
-73            android:enabled="true"
-73-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\eefeb97b3718b5b932bc49113ce628ec\transformed\profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
-74            android:exported="true"
-74-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\eefeb97b3718b5b932bc49113ce628ec\transformed\profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
-75            android:permission="android.permission.DUMP" >
-75-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\eefeb97b3718b5b932bc49113ce628ec\transformed\profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
-76            <intent-filter>
-76-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\eefeb97b3718b5b932bc49113ce628ec\transformed\profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
-77                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-77-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\eefeb97b3718b5b932bc49113ce628ec\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
-77-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\eefeb97b3718b5b932bc49113ce628ec\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
-78            </intent-filter>
-79            <intent-filter>
-79-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\eefeb97b3718b5b932bc49113ce628ec\transformed\profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
-80                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-80-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\eefeb97b3718b5b932bc49113ce628ec\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
-80-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\eefeb97b3718b5b932bc49113ce628ec\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
-81            </intent-filter>
-82            <intent-filter>
-82-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\eefeb97b3718b5b932bc49113ce628ec\transformed\profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
-83                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-83-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\eefeb97b3718b5b932bc49113ce628ec\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
-83-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\eefeb97b3718b5b932bc49113ce628ec\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
-84            </intent-filter>
-85            <intent-filter>
-85-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\eefeb97b3718b5b932bc49113ce628ec\transformed\profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
-86                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-86-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\eefeb97b3718b5b932bc49113ce628ec\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
-86-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\eefeb97b3718b5b932bc49113ce628ec\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
-87            </intent-filter>
-88        </receiver>
-89    </application>
-90
-91</manifest>
+17    <permission
+17-->[androidx.core:core:1.15.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\abaab7513d49aee9ac7a274b33e21e34\transformed\core-1.15.0\AndroidManifest.xml:22:5-24:47
+18        android:name="com.example.travelworld.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+18-->[androidx.core:core:1.15.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\abaab7513d49aee9ac7a274b33e21e34\transformed\core-1.15.0\AndroidManifest.xml:23:9-81
+19        android:protectionLevel="signature" />
+19-->[androidx.core:core:1.15.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\abaab7513d49aee9ac7a274b33e21e34\transformed\core-1.15.0\AndroidManifest.xml:24:9-44
+20
+21    <uses-permission android:name="com.example.travelworld.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+21-->[androidx.core:core:1.15.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\abaab7513d49aee9ac7a274b33e21e34\transformed\core-1.15.0\AndroidManifest.xml:26:5-97
+21-->[androidx.core:core:1.15.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\abaab7513d49aee9ac7a274b33e21e34\transformed\core-1.15.0\AndroidManifest.xml:26:22-94
+22
+23    <application
+23-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:5:5-27:19
+24        android:name="com.example.travelworld.MyApp"
+24-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:6:9-30
+25        android:allowBackup="true"
+25-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:7:9-35
+26        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+26-->[androidx.core:core:1.15.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\abaab7513d49aee9ac7a274b33e21e34\transformed\core-1.15.0\AndroidManifest.xml:28:18-86
+27        android:dataExtractionRules="@xml/data_extraction_rules"
+27-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:8:9-65
+28        android:debuggable="true"
+29        android:extractNativeLibs="false"
+30        android:fullBackupContent="@xml/backup_rules"
+30-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:9:9-54
+31        android:icon="@mipmap/ic_launcher_original"
+31-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:10:9-52
+32        android:label="@string/app_name"
+32-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:11:9-41
+33        android:roundIcon="@mipmap/ic_launcher_original_round"
+33-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:12:9-63
+34        android:supportsRtl="true"
+34-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:13:9-35
+35        android:testOnly="true"
+36        android:theme="@style/Theme.App.Starting" >
+36-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:14:9-50
+37        <activity
+37-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:16:9-26:20
+38            android:name="com.example.travelworld.MainActivity"
+38-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:17:13-41
+39            android:exported="true"
+39-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:18:13-36
+40            android:label="@string/app_name"
+40-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:19:13-45
+41            android:theme="@style/Theme.TravelPlanner" >
+41-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:20:13-55
+42            <intent-filter>
+42-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:21:13-25:29
+43                <action android:name="android.intent.action.MAIN" />
+43-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:22:17-69
+43-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:22:25-66
+44
+45                <category android:name="android.intent.category.LAUNCHER" />
+45-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:24:17-77
+45-->C:\Users\LittleDragon\Documents\UdL\AppMob\Travel_World\app\src\main\AndroidManifest.xml:24:27-74
+46            </intent-filter>
+47        </activity>
+48        <activity
+48-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:29:9-46:20
+49            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
+49-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:30:13-80
+50            android:excludeFromRecents="true"
+50-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:31:13-46
+51            android:exported="true"
+51-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:32:13-36
+52            android:launchMode="singleTask"
+52-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:33:13-44
+53            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+53-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:34:13-72
+54            <intent-filter>
+54-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:35:13-45:29
+55                <action android:name="android.intent.action.VIEW" />
+55-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:36:17-69
+55-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:36:25-66
+56
+57                <category android:name="android.intent.category.DEFAULT" />
+57-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:38:17-76
+57-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:38:27-73
+58                <category android:name="android.intent.category.BROWSABLE" />
+58-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:39:17-78
+58-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:39:27-75
+59
+60                <data
+60-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:41:17-44:51
+61                    android:host="firebase.auth"
+61-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:42:21-49
+62                    android:path="/"
+62-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:43:21-37
+63                    android:scheme="genericidp" />
+63-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:44:21-48
+64            </intent-filter>
+65        </activity>
+66        <activity
+66-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:47:9-64:20
+67            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
+67-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:48:13-79
+68            android:excludeFromRecents="true"
+68-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:49:13-46
+69            android:exported="true"
+69-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:50:13-36
+70            android:launchMode="singleTask"
+70-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:51:13-44
+71            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+71-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:52:13-72
+72            <intent-filter>
+72-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:53:13-63:29
+73                <action android:name="android.intent.action.VIEW" />
+73-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:36:17-69
+73-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:36:25-66
+74
+75                <category android:name="android.intent.category.DEFAULT" />
+75-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:38:17-76
+75-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:38:27-73
+76                <category android:name="android.intent.category.BROWSABLE" />
+76-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:39:17-78
+76-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:39:27-75
+77
+78                <data
+78-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:41:17-44:51
+79                    android:host="firebase.auth"
+79-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:42:21-49
+80                    android:path="/"
+80-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:43:21-37
+81                    android:scheme="recaptcha" />
+81-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:44:21-48
+82            </intent-filter>
+83        </activity>
+84
+85        <service
+85-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:66:9-72:19
+86            android:name="com.google.firebase.components.ComponentDiscoveryService"
+86-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:67:13-84
+87            android:directBootAware="true"
+87-->[com.google.firebase:firebase-common:21.0.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\6ba59c1b2436a7899b1624830e2ab41a\transformed\firebase-common-21.0.0\AndroidManifest.xml:32:13-43
+88            android:exported="false" >
+88-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:68:13-37
+89            <meta-data
+89-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:69:13-71:85
+90                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+90-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:70:17-109
+91                android:value="com.google.firebase.components.ComponentRegistrar" />
+91-->[com.google.firebase:firebase-auth:23.2.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\8a7c94d2910ab7ab344c66b2fd001a19\transformed\firebase-auth-23.2.0\AndroidManifest.xml:71:17-82
+92            <meta-data
+92-->[com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\7156b9890829ab9f03ebe059da865ad7\transformed\firebase-common-ktx-21.0.0\AndroidManifest.xml:12:13-14:85
+93                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar"
+93-->[com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\7156b9890829ab9f03ebe059da865ad7\transformed\firebase-common-ktx-21.0.0\AndroidManifest.xml:13:17-116
+94                android:value="com.google.firebase.components.ComponentRegistrar" />
+94-->[com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\7156b9890829ab9f03ebe059da865ad7\transformed\firebase-common-ktx-21.0.0\AndroidManifest.xml:14:17-82
+95            <meta-data
+95-->[com.google.firebase:firebase-common:21.0.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\6ba59c1b2436a7899b1624830e2ab41a\transformed\firebase-common-21.0.0\AndroidManifest.xml:35:13-37:85
+96                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
+96-->[com.google.firebase:firebase-common:21.0.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\6ba59c1b2436a7899b1624830e2ab41a\transformed\firebase-common-21.0.0\AndroidManifest.xml:36:17-109
+97                android:value="com.google.firebase.components.ComponentRegistrar" />
+97-->[com.google.firebase:firebase-common:21.0.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\6ba59c1b2436a7899b1624830e2ab41a\transformed\firebase-common-21.0.0\AndroidManifest.xml:37:17-82
+98        </service>
+99        <service
+99-->[androidx.credentials:credentials-play-services-auth:1.5.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\c9380d0ad15688b92d1dbdd3341e0be1\transformed\credentials-play-services-auth-1.5.0\AndroidManifest.xml:24:9-32:19
+100            android:name="androidx.credentials.playservices.CredentialProviderMetadataHolder"
+100-->[androidx.credentials:credentials-play-services-auth:1.5.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\c9380d0ad15688b92d1dbdd3341e0be1\transformed\credentials-play-services-auth-1.5.0\AndroidManifest.xml:25:13-94
+101            android:enabled="true"
+101-->[androidx.credentials:credentials-play-services-auth:1.5.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\c9380d0ad15688b92d1dbdd3341e0be1\transformed\credentials-play-services-auth-1.5.0\AndroidManifest.xml:26:13-35
+102            android:exported="false" >
+102-->[androidx.credentials:credentials-play-services-auth:1.5.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\c9380d0ad15688b92d1dbdd3341e0be1\transformed\credentials-play-services-auth-1.5.0\AndroidManifest.xml:27:13-37
+103            <meta-data
+103-->[androidx.credentials:credentials-play-services-auth:1.5.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\c9380d0ad15688b92d1dbdd3341e0be1\transformed\credentials-play-services-auth-1.5.0\AndroidManifest.xml:29:13-31:104
+104                android:name="androidx.credentials.CREDENTIAL_PROVIDER_KEY"
+104-->[androidx.credentials:credentials-play-services-auth:1.5.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\c9380d0ad15688b92d1dbdd3341e0be1\transformed\credentials-play-services-auth-1.5.0\AndroidManifest.xml:30:17-76
+105                android:value="androidx.credentials.playservices.CredentialProviderPlayServicesImpl" />
+105-->[androidx.credentials:credentials-play-services-auth:1.5.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\c9380d0ad15688b92d1dbdd3341e0be1\transformed\credentials-play-services-auth-1.5.0\AndroidManifest.xml:31:17-101
+106        </service>
+107
+108        <activity
+108-->[androidx.credentials:credentials-play-services-auth:1.5.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\c9380d0ad15688b92d1dbdd3341e0be1\transformed\credentials-play-services-auth-1.5.0\AndroidManifest.xml:34:9-41:20
+109            android:name="androidx.credentials.playservices.HiddenActivity"
+109-->[androidx.credentials:credentials-play-services-auth:1.5.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\c9380d0ad15688b92d1dbdd3341e0be1\transformed\credentials-play-services-auth-1.5.0\AndroidManifest.xml:35:13-76
+110            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+110-->[androidx.credentials:credentials-play-services-auth:1.5.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\c9380d0ad15688b92d1dbdd3341e0be1\transformed\credentials-play-services-auth-1.5.0\AndroidManifest.xml:36:13-87
+111            android:enabled="true"
+111-->[androidx.credentials:credentials-play-services-auth:1.5.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\c9380d0ad15688b92d1dbdd3341e0be1\transformed\credentials-play-services-auth-1.5.0\AndroidManifest.xml:37:13-35
+112            android:exported="false"
+112-->[androidx.credentials:credentials-play-services-auth:1.5.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\c9380d0ad15688b92d1dbdd3341e0be1\transformed\credentials-play-services-auth-1.5.0\AndroidManifest.xml:38:13-37
+113            android:fitsSystemWindows="true"
+113-->[androidx.credentials:credentials-play-services-auth:1.5.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\c9380d0ad15688b92d1dbdd3341e0be1\transformed\credentials-play-services-auth-1.5.0\AndroidManifest.xml:39:13-45
+114            android:theme="@style/Theme.Hidden" >
+114-->[androidx.credentials:credentials-play-services-auth:1.5.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\c9380d0ad15688b92d1dbdd3341e0be1\transformed\credentials-play-services-auth-1.5.0\AndroidManifest.xml:40:13-48
+115        </activity>
+116        <activity
+116-->[androidx.credentials:credentials-play-services-auth:1.5.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\c9380d0ad15688b92d1dbdd3341e0be1\transformed\credentials-play-services-auth-1.5.0\AndroidManifest.xml:42:9-49:20
+117            android:name="androidx.credentials.playservices.IdentityCredentialApiHiddenActivity"
+117-->[androidx.credentials:credentials-play-services-auth:1.5.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\c9380d0ad15688b92d1dbdd3341e0be1\transformed\credentials-play-services-auth-1.5.0\AndroidManifest.xml:43:13-97
+118            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+118-->[androidx.credentials:credentials-play-services-auth:1.5.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\c9380d0ad15688b92d1dbdd3341e0be1\transformed\credentials-play-services-auth-1.5.0\AndroidManifest.xml:44:13-87
+119            android:enabled="true"
+119-->[androidx.credentials:credentials-play-services-auth:1.5.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\c9380d0ad15688b92d1dbdd3341e0be1\transformed\credentials-play-services-auth-1.5.0\AndroidManifest.xml:45:13-35
+120            android:exported="false"
+120-->[androidx.credentials:credentials-play-services-auth:1.5.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\c9380d0ad15688b92d1dbdd3341e0be1\transformed\credentials-play-services-auth-1.5.0\AndroidManifest.xml:46:13-37
+121            android:fitsSystemWindows="true"
+121-->[androidx.credentials:credentials-play-services-auth:1.5.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\c9380d0ad15688b92d1dbdd3341e0be1\transformed\credentials-play-services-auth-1.5.0\AndroidManifest.xml:47:13-45
+122            android:theme="@style/Theme.Hidden" >
+122-->[androidx.credentials:credentials-play-services-auth:1.5.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\c9380d0ad15688b92d1dbdd3341e0be1\transformed\credentials-play-services-auth-1.5.0\AndroidManifest.xml:48:13-48
+123        </activity>
+124        <activity
+124-->[com.google.android.gms:play-services-auth:21.1.1] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\fc8c86de2f8b9eee9199a50698420f95\transformed\play-services-auth-21.1.1\AndroidManifest.xml:23:9-27:75
+125            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+125-->[com.google.android.gms:play-services-auth:21.1.1] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\fc8c86de2f8b9eee9199a50698420f95\transformed\play-services-auth-21.1.1\AndroidManifest.xml:24:13-93
+126            android:excludeFromRecents="true"
+126-->[com.google.android.gms:play-services-auth:21.1.1] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\fc8c86de2f8b9eee9199a50698420f95\transformed\play-services-auth-21.1.1\AndroidManifest.xml:25:13-46
+127            android:exported="false"
+127-->[com.google.android.gms:play-services-auth:21.1.1] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\fc8c86de2f8b9eee9199a50698420f95\transformed\play-services-auth-21.1.1\AndroidManifest.xml:26:13-37
+128            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+128-->[com.google.android.gms:play-services-auth:21.1.1] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\fc8c86de2f8b9eee9199a50698420f95\transformed\play-services-auth-21.1.1\AndroidManifest.xml:27:13-72
+129        <!--
+130            Service handling Google Sign-In user revocation. For apps that do not integrate with
+131            Google Sign-In, this service will never be started.
+132        -->
+133        <service
+133-->[com.google.android.gms:play-services-auth:21.1.1] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\fc8c86de2f8b9eee9199a50698420f95\transformed\play-services-auth-21.1.1\AndroidManifest.xml:33:9-37:51
+134            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+134-->[com.google.android.gms:play-services-auth:21.1.1] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\fc8c86de2f8b9eee9199a50698420f95\transformed\play-services-auth-21.1.1\AndroidManifest.xml:34:13-89
+135            android:exported="true"
+135-->[com.google.android.gms:play-services-auth:21.1.1] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\fc8c86de2f8b9eee9199a50698420f95\transformed\play-services-auth-21.1.1\AndroidManifest.xml:35:13-36
+136            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+136-->[com.google.android.gms:play-services-auth:21.1.1] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\fc8c86de2f8b9eee9199a50698420f95\transformed\play-services-auth-21.1.1\AndroidManifest.xml:36:13-107
+137            android:visibleToInstantApps="true" />
+137-->[com.google.android.gms:play-services-auth:21.1.1] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\fc8c86de2f8b9eee9199a50698420f95\transformed\play-services-auth-21.1.1\AndroidManifest.xml:37:13-48
+138
+139        <provider
+139-->[com.google.firebase:firebase-common:21.0.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\6ba59c1b2436a7899b1624830e2ab41a\transformed\firebase-common-21.0.0\AndroidManifest.xml:23:9-28:39
+140            android:name="com.google.firebase.provider.FirebaseInitProvider"
+140-->[com.google.firebase:firebase-common:21.0.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\6ba59c1b2436a7899b1624830e2ab41a\transformed\firebase-common-21.0.0\AndroidManifest.xml:24:13-77
+141            android:authorities="com.example.travelworld.firebaseinitprovider"
+141-->[com.google.firebase:firebase-common:21.0.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\6ba59c1b2436a7899b1624830e2ab41a\transformed\firebase-common-21.0.0\AndroidManifest.xml:25:13-72
+142            android:directBootAware="true"
+142-->[com.google.firebase:firebase-common:21.0.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\6ba59c1b2436a7899b1624830e2ab41a\transformed\firebase-common-21.0.0\AndroidManifest.xml:26:13-43
+143            android:exported="false"
+143-->[com.google.firebase:firebase-common:21.0.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\6ba59c1b2436a7899b1624830e2ab41a\transformed\firebase-common-21.0.0\AndroidManifest.xml:27:13-37
+144            android:initOrder="100" />
+144-->[com.google.firebase:firebase-common:21.0.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\6ba59c1b2436a7899b1624830e2ab41a\transformed\firebase-common-21.0.0\AndroidManifest.xml:28:13-36
+145
+146        <service
+146-->[androidx.room:room-runtime:2.6.1] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\d8fc789a04120142288cd637f8850164\transformed\room-runtime-2.6.1\AndroidManifest.xml:24:9-28:63
+147            android:name="androidx.room.MultiInstanceInvalidationService"
+147-->[androidx.room:room-runtime:2.6.1] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\d8fc789a04120142288cd637f8850164\transformed\room-runtime-2.6.1\AndroidManifest.xml:25:13-74
+148            android:directBootAware="true"
+148-->[androidx.room:room-runtime:2.6.1] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\d8fc789a04120142288cd637f8850164\transformed\room-runtime-2.6.1\AndroidManifest.xml:26:13-43
+149            android:exported="false" />
+149-->[androidx.room:room-runtime:2.6.1] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\d8fc789a04120142288cd637f8850164\transformed\room-runtime-2.6.1\AndroidManifest.xml:27:13-37
+150
+151        <activity
+151-->[androidx.compose.ui:ui-test-manifest:1.7.2] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\fb4d7db83dd74d50045a034e65c84ad8\transformed\ui-test-manifest-1.7.2\AndroidManifest.xml:23:9-25:39
+152            android:name="androidx.activity.ComponentActivity"
+152-->[androidx.compose.ui:ui-test-manifest:1.7.2] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\fb4d7db83dd74d50045a034e65c84ad8\transformed\ui-test-manifest-1.7.2\AndroidManifest.xml:24:13-63
+153            android:exported="true" />
+153-->[androidx.compose.ui:ui-test-manifest:1.7.2] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\fb4d7db83dd74d50045a034e65c84ad8\transformed\ui-test-manifest-1.7.2\AndroidManifest.xml:25:13-36
+154        <activity
+154-->[androidx.compose.ui:ui-tooling-android:1.7.2] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\5d18d47c530490ed1028530fd3d4352b\transformed\ui-tooling-release\AndroidManifest.xml:23:9-25:39
+155            android:name="androidx.compose.ui.tooling.PreviewActivity"
+155-->[androidx.compose.ui:ui-tooling-android:1.7.2] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\5d18d47c530490ed1028530fd3d4352b\transformed\ui-tooling-release\AndroidManifest.xml:24:13-71
+156            android:exported="true" />
+156-->[androidx.compose.ui:ui-tooling-android:1.7.2] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\5d18d47c530490ed1028530fd3d4352b\transformed\ui-tooling-release\AndroidManifest.xml:25:13-36
+157
+158        <provider
+158-->[androidx.emoji2:emoji2:1.3.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\024212cdca9b138c9d7d20f98ea87bb4\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+159            android:name="androidx.startup.InitializationProvider"
+159-->[androidx.emoji2:emoji2:1.3.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\024212cdca9b138c9d7d20f98ea87bb4\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
+160            android:authorities="com.example.travelworld.androidx-startup"
+160-->[androidx.emoji2:emoji2:1.3.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\024212cdca9b138c9d7d20f98ea87bb4\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
+161            android:exported="false" >
+161-->[androidx.emoji2:emoji2:1.3.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\024212cdca9b138c9d7d20f98ea87bb4\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
+162            <meta-data
+162-->[androidx.emoji2:emoji2:1.3.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\024212cdca9b138c9d7d20f98ea87bb4\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+163                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+163-->[androidx.emoji2:emoji2:1.3.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\024212cdca9b138c9d7d20f98ea87bb4\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
+164                android:value="androidx.startup" />
+164-->[androidx.emoji2:emoji2:1.3.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\024212cdca9b138c9d7d20f98ea87bb4\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
+165            <meta-data
+165-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\46c7c525aa049c15039be2f1f8158ee4\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:29:13-31:52
+166                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+166-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\46c7c525aa049c15039be2f1f8158ee4\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:30:17-78
+167                android:value="androidx.startup" />
+167-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\46c7c525aa049c15039be2f1f8158ee4\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:31:17-49
+168            <meta-data
+168-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\67ccfe49a0c36fdc14112a91dd88be9c\transformed\profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
+169                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+169-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\67ccfe49a0c36fdc14112a91dd88be9c\transformed\profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
+170                android:value="androidx.startup" />
+170-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\67ccfe49a0c36fdc14112a91dd88be9c\transformed\profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
+171        </provider>
+172
+173        <activity
+173-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\d1fb6ac0b70e0061d152d599300fea6c\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:9-173
+174            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+174-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\d1fb6ac0b70e0061d152d599300fea6c\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:19-85
+175            android:exported="false"
+175-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\d1fb6ac0b70e0061d152d599300fea6c\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:146-170
+176            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+176-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\d1fb6ac0b70e0061d152d599300fea6c\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:86-145
+177
+178        <meta-data
+178-->[com.google.android.gms:play-services-basement:18.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\749296b4576eb02c585b5f2f8c6576fb\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:9-122
+179            android:name="com.google.android.gms.version"
+179-->[com.google.android.gms:play-services-basement:18.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\749296b4576eb02c585b5f2f8c6576fb\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:20-65
+180            android:value="@integer/google_play_services_version" />
+180-->[com.google.android.gms:play-services-basement:18.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\749296b4576eb02c585b5f2f8c6576fb\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:66-119
+181
+182        <receiver
+182-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\67ccfe49a0c36fdc14112a91dd88be9c\transformed\profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
+183            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+183-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\67ccfe49a0c36fdc14112a91dd88be9c\transformed\profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
+184            android:directBootAware="false"
+184-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\67ccfe49a0c36fdc14112a91dd88be9c\transformed\profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
+185            android:enabled="true"
+185-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\67ccfe49a0c36fdc14112a91dd88be9c\transformed\profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
+186            android:exported="true"
+186-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\67ccfe49a0c36fdc14112a91dd88be9c\transformed\profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
+187            android:permission="android.permission.DUMP" >
+187-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\67ccfe49a0c36fdc14112a91dd88be9c\transformed\profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
+188            <intent-filter>
+188-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\67ccfe49a0c36fdc14112a91dd88be9c\transformed\profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
+189                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+189-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\67ccfe49a0c36fdc14112a91dd88be9c\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
+189-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\67ccfe49a0c36fdc14112a91dd88be9c\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
+190            </intent-filter>
+191            <intent-filter>
+191-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\67ccfe49a0c36fdc14112a91dd88be9c\transformed\profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
+192                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+192-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\67ccfe49a0c36fdc14112a91dd88be9c\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
+192-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\67ccfe49a0c36fdc14112a91dd88be9c\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
+193            </intent-filter>
+194            <intent-filter>
+194-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\67ccfe49a0c36fdc14112a91dd88be9c\transformed\profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
+195                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+195-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\67ccfe49a0c36fdc14112a91dd88be9c\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
+195-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\67ccfe49a0c36fdc14112a91dd88be9c\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
+196            </intent-filter>
+197            <intent-filter>
+197-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\67ccfe49a0c36fdc14112a91dd88be9c\transformed\profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
+198                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+198-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\67ccfe49a0c36fdc14112a91dd88be9c\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
+198-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\67ccfe49a0c36fdc14112a91dd88be9c\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
+199            </intent-filter>
+200        </receiver> <!-- The activities will be merged into the manifest of the hosting app. -->
+201        <activity
+201-->[com.google.android.play:core-common:2.0.3] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\d614ab347b8502731cbfd14116317bd6\transformed\core-common-2.0.3\AndroidManifest.xml:14:9-18:65
+202            android:name="com.google.android.play.core.common.PlayCoreDialogWrapperActivity"
+202-->[com.google.android.play:core-common:2.0.3] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\d614ab347b8502731cbfd14116317bd6\transformed\core-common-2.0.3\AndroidManifest.xml:15:13-93
+203            android:exported="false"
+203-->[com.google.android.play:core-common:2.0.3] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\d614ab347b8502731cbfd14116317bd6\transformed\core-common-2.0.3\AndroidManifest.xml:16:13-37
+204            android:stateNotNeeded="true"
+204-->[com.google.android.play:core-common:2.0.3] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\d614ab347b8502731cbfd14116317bd6\transformed\core-common-2.0.3\AndroidManifest.xml:17:13-42
+205            android:theme="@style/Theme.PlayCore.Transparent" />
+205-->[com.google.android.play:core-common:2.0.3] C:\Users\LittleDragon\.gradle\caches\8.10.2\transforms\d614ab347b8502731cbfd14116317bd6\transformed\core-common-2.0.3\AndroidManifest.xml:18:13-62
+206    </application>
+207
+208</manifest>

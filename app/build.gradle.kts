@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -63,6 +64,12 @@ dependencies {
     implementation(libs.protolite.well.known.types)
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.appcompat)
+    implementation(libs.firebase.auth)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
+    implementation(libs.androidx.runtime.livedata)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -74,7 +81,7 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.51.1")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
     implementation ("androidx.hilt:hilt-navigation-compose:1.2.0")
-
+    implementation("com.google.firebase:firebase-auth:23.2.0")
     val room_version = "2.6.1"
 
     implementation("androidx.room:room-runtime:$room_version")
@@ -89,3 +96,5 @@ dependencies {
 kapt {
     correctErrorTypes = true
 }
+apply(plugin = "com.google.gms.google-services")
+

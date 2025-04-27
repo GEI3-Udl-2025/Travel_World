@@ -64,4 +64,5 @@
     <string name="user_preference_screen">User Preferences Screen</string>
     <string name="edit_subtrip">Edit Activity</string>
     <string name="new_subtrip">New Activity</string>
+    <string name="SignOut">Sign Out</string>
 </resources>
