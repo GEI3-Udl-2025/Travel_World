@@ -13,6 +13,8 @@ class AuthViewModel : ViewModel() {
 
     private val _authState = MutableLiveData<AuthState>()
     val authState: LiveData<AuthState> = _authState
+    private lateinit var authStateListener: FirebaseAuth.AuthStateListener
+
 
     init {
         checkAuthStatus()
@@ -32,30 +34,57 @@ class AuthViewModel : ViewModel() {
         // [END send_email_verification]
     }
 
-    fun checkAuthStatus(){
-        if(auth.currentUser==null){
+    private fun checkAuthStatus() {
+        val user = auth.currentUser
+        if (user != null) {
+            user.reload().addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    if (auth.currentUser != null) {
+                        _authState.value = AuthState.Authenticated
+                    } else {
+                        _authState.value = AuthState.Unauthenticated
+                    }
+                } else {
+                    _authState.value = AuthState.Unauthenticated
+                }
+            }
+        } else {
             _authState.value = AuthState.Unauthenticated
-        }else{
-            _authState.value = AuthState.Authenticated
         }
     }
 
-    fun login(email : String,password : String){
 
-        if(email.isEmpty() || password.isEmpty()){
+    fun login(email: String, password: String) {
+
+        if (email.isEmpty() || password.isEmpty()) {
             _authState.value = AuthState.Error("Email or password can't be empty")
             return
         }
         _authState.value = AuthState.Loading
-        auth.signInWithEmailAndPassword(email,password)
-            .addOnCompleteListener{task->
-                if (task.isSuccessful){
-                    _authState.value = AuthState.Authenticated
-                }else{
-                    _authState.value = AuthState.Error(task.exception?.message?:"Something went wrong")
+
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val user = auth.currentUser
+                    user?.reload()?.addOnCompleteListener { reloadTask ->
+                        if (reloadTask.isSuccessful) {
+                            if (user.isEmailVerified) {
+                                _authState.value = AuthState.Authenticated
+                            } else {
+                                _authState.value = AuthState.Error("Email address not verified. Please check your email before continuing.")
+                                sendEmailVerification()
+                                auth.signOut()
+                            }
+                        } else {
+                            _authState.value = AuthState.Error("Failed to refresh user data")
+                        }
+                    }
+                } else {
+                    _authState.value = AuthState.Error(task.exception?.message ?: "Something went wrong")
                 }
             }
     }
+
 
     fun signup(email : String,password : String){
 
@@ -67,8 +96,9 @@ class AuthViewModel : ViewModel() {
         auth.createUserWithEmailAndPassword(email,password)
             .addOnCompleteListener{task->
                 if (task.isSuccessful){
-                    _authState.value = AuthState.Authenticated
-                    //sendEmailVerification()
+                    sendEmailVerification()
+                    _authState.value = AuthState.Error("Please, confirm your email")
+                    auth.signOut()
                 }else{
                     _authState.value = AuthState.Error(task.exception?.message?:"Something went wrong")
                 }
@@ -79,10 +109,7 @@ class AuthViewModel : ViewModel() {
         auth.signOut()
         _authState.value = AuthState.Unauthenticated
     }
-
-
 }
-
 
 sealed class AuthState{
     object Authenticated : AuthState()
