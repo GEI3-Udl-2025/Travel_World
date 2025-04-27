@@ -16,6 +16,7 @@ import com.example.travelworld.ui.view.settings_option.TermsConditionsScreen
 
 import com.example.travelworld.ui.view.TravelApp
 import com.example.travelworld.ui.view.auth_page.LoginScreen
+import com.example.travelworld.ui.view.auth_page.RecoverPasswordScreen
 import com.example.travelworld.ui.view.auth_page.SignUpScreen
 import com.example.travelworld.ui.view.settings_option.ProfileScreen
 import com.example.travelworld.ui.view.settings_option.VersionScreen
@@ -28,9 +29,18 @@ fun NavGraph(navController: NavHostController, authViewModel: AuthViewModel) {
 
 
     NavHost(navController = navController, startDestination = "login") {
-        composable("login") { LoginScreen(navController, authViewModel) }
-        composable("signup"){ SignUpScreen(navController,authViewModel) }
+        composable("login") {
+            LoginScreen(navController, authViewModel)
+        }
+        composable("signup"){
+            SignUpScreen(navController,authViewModel)
+        }
+        composable("recover_password") {
+            RecoverPasswordScreen(navController, authViewModel)
+        }
+
         composable("main") { TravelApp(navController) }
+
         composable(
             route = "subtrips/{tripId}",
             arguments = listOf(

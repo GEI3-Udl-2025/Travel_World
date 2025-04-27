@@ -109,6 +109,26 @@ class AuthViewModel : ViewModel() {
         auth.signOut()
         _authState.value = AuthState.Unauthenticated
     }
+
+    fun recoverPassword(email: String) {
+        if (email.isEmpty()) {
+            _authState.value = AuthState.Error("Email can't be empty")
+            return
+        }
+        _authState.value = AuthState.Loading
+        auth.sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    _authState.value = AuthState.Message("Password reset email sent. Please check your inbox.")
+                } else {
+                    _authState.value = AuthState.Error(task.exception?.message ?: "Something went wrong")
+                }
+            }
+    }
+    fun resetAuthState() {
+        _authState.value = null
+    }
+
 }
 
 sealed class AuthState{
@@ -116,4 +136,5 @@ sealed class AuthState{
     object Unauthenticated : AuthState()
     object Loading : AuthState()
     data class Error(val message : String) : AuthState()
+    data class Message(val message: String) : AuthState()
 }
