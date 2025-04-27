@@ -11,9 +11,8 @@ class AuthViewModel : ViewModel() {
     private val TAG = "AuthViewModel"
     private val auth : FirebaseAuth = FirebaseAuth.getInstance()
 
-    private val _authState = MutableLiveData<AuthState>()
-    val authState: LiveData<AuthState> = _authState
-    private lateinit var authStateListener: FirebaseAuth.AuthStateListener
+    private val _authState = MutableLiveData<AuthState?>()
+    val authState: MutableLiveData<AuthState?> = _authState
 
 
     init {
@@ -97,7 +96,7 @@ class AuthViewModel : ViewModel() {
             .addOnCompleteListener{task->
                 if (task.isSuccessful){
                     sendEmailVerification()
-                    _authState.value = AuthState.Error("Please, confirm your email")
+                    _authState.value = AuthState.Message("Please, confirm your email")
                     auth.signOut()
                 }else{
                     _authState.value = AuthState.Error(task.exception?.message?:"Something went wrong")

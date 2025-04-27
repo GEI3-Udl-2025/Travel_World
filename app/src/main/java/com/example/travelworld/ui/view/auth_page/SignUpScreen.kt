@@ -28,10 +28,16 @@ fun SignUpScreen(navController: NavController, authViewModel: AuthViewModel) {
     val context = LocalContext.current
 
     LaunchedEffect(authState.value) {
-        when(authState.value){
-            is AuthState.Authenticated -> navController.navigate("main")
-            is AuthState.Error -> Toast.makeText(context,
-                (authState.value as AuthState.Error).message, Toast.LENGTH_SHORT).show()
+        when (val state = authState.value) {
+            is AuthState.Message -> {
+                Toast.makeText(context, state.message, Toast.LENGTH_LONG).show()
+                authViewModel.resetAuthState()
+                navController.popBackStack() // volver al login automáticamente
+            }
+            is AuthState.Error -> {
+                Toast.makeText(context, state.message, Toast.LENGTH_LONG).show()
+                authViewModel.resetAuthState()
+            }
             else -> Unit
         }
     }
@@ -43,7 +49,7 @@ fun SignUpScreen(navController: NavController, authViewModel: AuthViewModel) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "SignUp Screen", style = MaterialTheme.typography.headlineMedium)
+        Text(text = "Sign Up", style = MaterialTheme.typography.headlineMedium)
         Spacer(modifier = Modifier.height(20.dp))
         OutlinedTextField(
             value = email,
@@ -75,6 +81,4 @@ fun SignUpScreen(navController: NavController, authViewModel: AuthViewModel) {
             Text(text = "Already have an account? Login")
         }
     }
-
-
 }

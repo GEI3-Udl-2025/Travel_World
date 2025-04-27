@@ -42,7 +42,7 @@ fun LoginScreen(navController: NavController, authViewModel: AuthViewModel) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Login Screen", style = MaterialTheme.typography.headlineMedium)
+        Text(text = "Login", style = MaterialTheme.typography.headlineMedium)
         Spacer(modifier = Modifier.height(20.dp))
         OutlinedTextField(
             value = email,
