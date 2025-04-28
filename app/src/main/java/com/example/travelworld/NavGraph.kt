@@ -39,7 +39,7 @@ fun NavGraph(navController: NavHostController, authViewModel: AuthViewModel) {
             RecoverPasswordScreen(navController, authViewModel)
         }
 
-        composable("main") { TravelApp(navController) }
+        composable("main") { TravelApp(navController, authViewModel ) }
 
         composable(
             route = "subtrips/{tripId}",

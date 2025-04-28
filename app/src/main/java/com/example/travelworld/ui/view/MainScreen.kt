@@ -9,17 +9,21 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.travelworld.R
 import com.example.travelworld.ui.view.itinerary_icon.TripAppv1
 import com.example.travelworld.ui.view.trip_icon.TripApp
 import com.example.travelworld.ui.view.userpref_icon.UserPreferencesApp
+import com.example.travelworld.ui.viewmodel.AuthState
+import com.example.travelworld.ui.viewmodel.AuthViewModel
 
 // Enum para representar las pantallas principales
 enum class TravelMode {
@@ -29,7 +33,14 @@ enum class TravelMode {
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TravelApp(navController: NavController) {
+fun TravelApp(navController: NavController, authViewModel: AuthViewModel) {
+    val authState = authViewModel.authState.observeAsState()
+    LaunchedEffect(authState.value) {
+        when (authState.value) {
+            is AuthState.Unauthenticated -> navController.navigate("login")
+            else -> Unit
+        }
+    }
     // Estado que guarda la pantalla actual
     var selectedScreen by remember { mutableStateOf(TravelMode.TRIP) }
     var showSettingsMenu by remember { mutableStateOf(false) }
@@ -85,6 +96,14 @@ fun TravelApp(navController: NavController) {
                                 onClick = {
                                     showSettingsMenu = false
                                     navController.navigate("terms")
+                                }
+                            )
+                            DropdownMenuItem(
+                                leadingIcon = { Icon(Icons.Filled.ExitToApp, contentDescription = "Sign Out") },
+                                text = { Text(stringResource(id = R.string.SignOut))},
+                                onClick = {
+                                    showSettingsMenu = false
+                                    authViewModel.signout()
                                 }
                             )
                         }
@@ -201,5 +220,6 @@ fun UserPreferenceScreen() {
 @Preview
 @Composable
 fun MainAppPreview() {
-    TravelApp(navController = rememberNavController())
+    TravelApp(navController = rememberNavController(),
+        authViewModel = hiltViewModel())
 }
