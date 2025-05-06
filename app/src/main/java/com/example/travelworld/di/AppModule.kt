@@ -4,10 +4,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.room.Room
 /*import com.example.travelworld.data.SharedPrefsManager*/
-import com.example.travelworld.data.TripRepositoryImpl
-import com.example.travelworld.data.local.TripDatabase
+
 import com.example.travelworld.data.local.dao.SubTripDao
 import com.example.travelworld.data.local.dao.TripDao
+import com.example.travelworld.data.local.db.TripDatabase
+import com.example.travelworld.data.repo.TripRepositoryImpl
 import com.example.travelworld.domain.repository.TripRepository
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext

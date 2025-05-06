@@ -25,8 +25,10 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -36,11 +38,15 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.travelworld.domain.model.Trip
+import com.example.travelworld.ui.viewmodel.AuthState
+import com.example.travelworld.ui.viewmodel.AuthViewModel
 import com.example.travelworld.ui.viewmodel.TripViewModel
+
 
 @Composable
 fun TripApp(
     navController: NavController,
+    authViewModel: AuthViewModel = hiltViewModel(),
     viewModel: TripViewModel = hiltViewModel()
 ) {
     val trips by viewModel.trips.collectAsState(initial = emptyList())
@@ -50,6 +56,15 @@ fun TripApp(
     var currentTripId by remember { mutableStateOf(0) }
     var tripTitle by remember { mutableStateOf("") }
     var tripDescription by remember { mutableStateOf("") }
+    val authState = authViewModel.authState.observeAsState()
+
+    LaunchedEffect(authState.value) {
+        if (authState.value is AuthState.Authenticated) {
+            authViewModel.auth.currentUser?.uid?.let { userId ->
+                viewModel.loadTrips(userId)
+            }
+        }
+    }
 
     Scaffold(
         floatingActionButton = {

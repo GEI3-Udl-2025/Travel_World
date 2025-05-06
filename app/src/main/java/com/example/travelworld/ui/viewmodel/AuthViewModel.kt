@@ -4,12 +4,22 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.travelworld.data.local.entity.UserEntity
+import com.example.travelworld.domain.repository.TripRepository
 import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import java.sql.Date
+import javax.inject.Inject
 
-class AuthViewModel : ViewModel() {
+@HiltViewModel
+class AuthViewModel @Inject constructor(
+    private val repository: TripRepository
+) : ViewModel() {
 
     private val TAG = "AuthViewModel"
-    private val auth : FirebaseAuth = FirebaseAuth.getInstance()
+    val auth : FirebaseAuth = FirebaseAuth.getInstance()
 
     private val _authState = MutableLiveData<AuthState?>()
     val authState: MutableLiveData<AuthState?> = _authState
@@ -68,6 +78,24 @@ class AuthViewModel : ViewModel() {
                     user?.reload()?.addOnCompleteListener { reloadTask ->
                         if (reloadTask.isSuccessful) {
                             if (user.isEmailVerified) {
+                                // Persist user access
+                                viewModelScope.launch {
+                                    repository.logUserAccess(user.uid, "LOGIN")
+                                    // Check if user exists in local DB, if not create
+                                    if (repository.getUser(user.uid) == null) {
+                                        val newUser = UserEntity(
+                                            id = user.uid,
+                                            email = user.email ?: "",
+                                            username = "", // Default empty, to be set in profile
+                                            birthDate = java.util.Date(),
+                                            address = "",
+                                            country = "",
+                                            phoneNumber = "",
+                                            acceptEmails = false
+                                        )
+                                        repository.createUser(newUser)
+                                    }
+                                }
                                 _authState.value = AuthState.Authenticated
                             } else {
                                 _authState.value = AuthState.Error("Email address not verified. Please check your email before continuing.")
@@ -82,6 +110,7 @@ class AuthViewModel : ViewModel() {
                     _authState.value = AuthState.Error(task.exception?.message ?: "Something went wrong")
                 }
             }
+
     }
 
 
@@ -104,7 +133,12 @@ class AuthViewModel : ViewModel() {
             }
     }
 
-    fun signout(){
+    fun signout() {
+        auth.currentUser?.uid?.let { userId ->
+            viewModelScope.launch {
+                repository.logUserAccess(userId, "LOGOUT")
+            }
+        }
         auth.signOut()
         _authState.value = AuthState.Unauthenticated
     }
