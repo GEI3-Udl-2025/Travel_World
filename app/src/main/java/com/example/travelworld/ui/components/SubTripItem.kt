@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.ArrowDropUp
@@ -35,61 +36,76 @@ fun SubTripItem(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 8.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+            .padding(8.dp),
+        elevation = CardDefaults.cardElevation(4.dp)
     ) {
-        Row(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+                .padding(16.dp)
         ) {
-            Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = subTrip.title,
-                    style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)
-                )
-                Text(
-                    text = subTrip.location,
-                    style = MaterialTheme.typography.bodyLarge
-                )
-                Spacer(modifier = Modifier.height(4.dp))
-                Text(
-                    text = "${subTrip.date}  ${subTrip.time}",
-                    style = MaterialTheme.typography.bodyMedium,
-                )
-                if (subTrip.isExpanded && subTrip.description.isNotBlank()) {
+            Row(
+                verticalAlignment = Alignment.Top,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Column(
+                    modifier = Modifier.weight(1f)
+                ) {
                     Text(
-                        text = subTrip.description,
+                        text = subTrip.title,
+                        style = MaterialTheme.typography.titleLarge.copy(
+                            fontWeight = FontWeight.Bold
+                        )
+                    )
+                    Text(
+                        text = subTrip.location,
+                        style = MaterialTheme.typography.bodyLarge
+                    )
+                    Text(
+                        text = "${subTrip.date}  ${subTrip.time}",
                         style = MaterialTheme.typography.bodyMedium,
-                        modifier = Modifier.padding(top = 8.dp)
                     )
-                }
-            }
-
-            Row {
-                IconButton(onClick = onExpandClick) {
-                    Icon(
-                        imageVector = if (subTrip.isExpanded) Icons.Filled.ArrowDropUp
-                        else Icons.Filled.ArrowDropDown,
-                        contentDescription = if (subTrip.isExpanded) "Collapse"
-                        else "Expand"
-                    )
+                    if (subTrip.isExpanded && subTrip.description.isNotBlank()) {
+                        Text(
+                            text = subTrip.description,
+                            style = MaterialTheme.typography.bodyMedium,
+                            modifier = Modifier.padding(top = 8.dp)
+                        )
+                    }
                 }
 
-                IconButton(onClick = onEdit) {
-                    Icon(
-                        imageVector = Icons.Filled.Edit,
-                        contentDescription = "Edit SubTrip",
-                    )
-                }
-                IconButton(onClick = onDelete) {
-                    Icon(
-                        imageVector = Icons.Filled.Delete,
-                        contentDescription = "Delete SubTrip",
-                        tint = MaterialTheme.colorScheme.error
-                    )
+                Row {
+                    IconButton(
+                        onClick = onExpandClick,
+                        modifier = Modifier.size(40.dp)
+                    ) {
+                        Icon(
+                            imageVector = if (subTrip.isExpanded) Icons.Filled.ArrowDropUp
+                            else Icons.Filled.ArrowDropDown,
+                            contentDescription = if (subTrip.isExpanded) "Collapse"
+                            else "Expand"
+                        )
+                    }
+
+                    IconButton(
+                        onClick = onEdit,
+                        modifier = Modifier.size(40.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Edit,
+                            contentDescription = "Edit SubTrip",
+                        )
+                    }
+                    IconButton(
+                        onClick = onDelete,
+                        modifier = Modifier.size(40.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Delete,
+                            contentDescription = "Delete SubTrip",
+                            tint = MaterialTheme.colorScheme.error
+                        )
+                    }
                 }
             }
         }

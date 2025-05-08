@@ -78,7 +78,7 @@ fun TripItem(
                 Row {
                     IconButton(
                         onClick = onExpandClick,
-                        modifier = Modifier.size(30.dp)
+                        modifier = Modifier.size(35.dp)
                     ) {
                         Icon(
                             imageVector = if (trip.isExpanded) Icons.Filled.ArrowDropUp
@@ -90,7 +90,7 @@ fun TripItem(
 
                     IconButton(
                         onClick = onEdit,
-                        modifier = Modifier.size(30.dp)
+                        modifier = Modifier.size(35.dp)
                     ) {
                         Icon(
                             Icons.Filled.Edit,
@@ -101,7 +101,7 @@ fun TripItem(
 
                     IconButton(
                         onClick = onOpen,
-                        modifier = Modifier.size(30.dp)
+                        modifier = Modifier.size(35.dp)
                     ) {
                         Icon(
                             Icons.AutoMirrored.Filled.ArrowForward,
@@ -111,7 +111,7 @@ fun TripItem(
 
                     IconButton(
                         onClick = onDelete,
-                        modifier = Modifier.size(30.dp)
+                        modifier = Modifier.size(35.dp)
                     ) {
                         Icon(
                             Icons.Filled.Delete,
