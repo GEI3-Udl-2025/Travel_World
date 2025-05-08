@@ -10,7 +10,7 @@ import com.example.travelworld.data.local.entity.TripEntity
 
 @Database(
     entities = [TripEntity::class, SubTripEntity::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class TripDatabase : RoomDatabase() {

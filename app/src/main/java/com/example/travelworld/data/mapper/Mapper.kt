@@ -8,14 +8,14 @@ import com.example.travelworld.domain.model.Trip
 
 // De dominio a entidad
 fun Trip.toEntity(): TripEntity =
-    TripEntity(id = id, title = title, description = description)
+    TripEntity(id = id, title = title, startDate = startDate, endDate = endDate, description = description)
 
 fun SubTrip.toEntity(): SubTripEntity =
-    SubTripEntity(id = id, parentTripId = parentTripId, title = title, description = description)
+    SubTripEntity(id = id, parentTripId = parentTripId, title = title, date = date, time = time, location = location, description = description)
 
 // De entidad a dominio
 fun TripEntity.toDomain(subTrips: List<SubTrip>): Trip =
-    Trip(id = id, title = title, description = description, subTrips = subTrips)
+    Trip(id = id, title = title, description = description, startDate = startDate, endDate = endDate, subTrips = subTrips)
 
 fun SubTripEntity.toDomain(): SubTrip =
-    SubTrip(id = id, parentTripId = parentTripId, title = title, description = description)
+    SubTrip(id = id, parentTripId = parentTripId, title = title, date = date, time = time, location = location, description = description)

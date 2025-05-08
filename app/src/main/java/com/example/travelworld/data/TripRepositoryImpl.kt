@@ -19,7 +19,7 @@ class TripRepositoryImpl @Inject constructor(
 ) : TripRepository {
 
     // Listas mutables para almacenar datos en memoria
-    private val trips = mutableListOf<Trip>()
+    private val Trips = mutableListOf<Trip>()
     private val subTrips = mutableListOf<SubTrip>()
 
     override fun getTrips(): Flow<List<Trip>> {
@@ -32,15 +32,11 @@ class TripRepositoryImpl @Inject constructor(
     }
 
     override suspend  fun addTrip(trip: Trip) {
-        // Insertar la tarea en la DB
         tripDao.addTrip(trip.toEntity())
-        // SubTrips se gestionan por separado si fuera necesario
     }
 
     override suspend  fun deleteTrip(tripId: Int) {
         tripDao.deleteTrip(tripId)
-        // Por la ForeignKey con onDelete = CASCADE,
-        // las subtareas también se borran automáticamente
     }
 
     override suspend  fun updateTrip(trip: Trip) {

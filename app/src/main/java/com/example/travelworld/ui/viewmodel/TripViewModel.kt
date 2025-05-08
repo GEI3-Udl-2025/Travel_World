@@ -66,4 +66,15 @@ class TripViewModel @Inject constructor(
             loadTrips()
         }
     }
+    fun toggleTripExpansion(tripId: Int) {
+        viewModelScope.launch {
+            _trips.value = _trips.value.map { trip ->
+                if (trip.id == tripId) {
+                    trip.copy(isExpanded = !trip.isExpanded)
+                } else {
+                    trip
+                }
+            }
+        }
+    }
 }

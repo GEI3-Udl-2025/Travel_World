@@ -198,7 +198,7 @@ fun ItineraryScreen() {
         horizontalAlignment = Alignment.Start
     ) {
         Text(text = stringResource(id = R.string.itinerary_screen), style = MaterialTheme.typography.titleLarge)
-
+        TripAppv1()
     }
 }
 

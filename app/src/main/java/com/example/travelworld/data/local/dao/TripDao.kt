@@ -22,5 +22,5 @@ interface TripDao {
     suspend fun updateTrip(trip: TripEntity)
 
     @Query("SELECT * FROM trips")
-    fun getTripsFlow(): Flow<List<TripEntity>> // Nuevo método para Flow
+    fun getTripsFlow(): Flow<List<TripEntity>>
 }
