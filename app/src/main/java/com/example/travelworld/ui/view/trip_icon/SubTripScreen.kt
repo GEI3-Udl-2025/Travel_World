@@ -1,3 +1,4 @@
+
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
@@ -22,15 +23,22 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.TimePicker
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.rememberDatePickerState
+import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -40,6 +48,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -49,8 +58,10 @@ import com.example.travelworld.R
 import com.example.travelworld.domain.model.SubTrip
 import com.example.travelworld.ui.components.SubTripItem
 import com.example.travelworld.ui.viewmodel.SubTripViewModel
+import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalTime
+import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -69,10 +80,13 @@ fun SubTripApp(
     var currentSubTripId by remember { mutableIntStateOf(0) }
 
     var subTripTitle by remember { mutableStateOf("") }
-    var subTripDate by remember { mutableStateOf("") }
-    var subTripTime by remember { mutableStateOf("") }
+    var subTripDate by remember { mutableStateOf(LocalDate.now()) }
+    var subTripTime by remember { mutableStateOf(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm"))) }
     var subTripLocation by remember { mutableStateOf("") }
     var subTripDescription by remember { mutableStateOf("") }
+
+    var showDatePicker by remember { mutableStateOf(false) }
+    var showTimePicker by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -91,7 +105,7 @@ fun SubTripApp(
                 onClick = {
                     isEditing = false
                     subTripTitle = ""
-                    subTripDate= LocalDate.now().toString()
+                    subTripDate= LocalDate.now()
                     subTripTime = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm"))
                     subTripDescription = ""
                     showDialog = true
@@ -127,7 +141,7 @@ fun SubTripApp(
                                 isEditing = true
                                 currentSubTripId = subTrip.id
                                 subTripTitle = subTrip.title
-                                subTripDate = subTrip.date
+                                subTripDate = LocalDate.now()
                                 subTripTime = subTrip.time
                                 subTripLocation = subTrip.location
                                 subTripDescription = subTrip.description
@@ -176,27 +190,41 @@ fun SubTripApp(
                     )
 
                     Row {
-                        OutlinedTextField(
-                            value = subTripDate,
-                            onValueChange = { subTripDate = it },
-                            label = {Text(stringResource(id = R.string.date) + "* (YYYY-MM-DD)" )},
-                            singleLine = true,
-                            isError = errorMessage != null && (subTripDate.isEmpty() || !isValidDate(subTripDate)),
+                        OutlinedButton(
+                            onClick = { showDatePicker = true },
                             modifier = Modifier
                                 .weight(1f)
                                 .padding(8.dp)
-                        )
+                        ) {
+                            Text(
+                                text = subTripDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                                style = if (errorMessage != null && subTripDate == null) {
+                                    MaterialTheme.typography.bodyMedium.copy(
+                                        color = MaterialTheme.colorScheme.error
+                                    )
+                                } else {
+                                    MaterialTheme.typography.bodyMedium
+                                }
+                            )
+                        }
 
-                        OutlinedTextField(
-                            value = subTripTime,
-                            onValueChange = { subTripTime = it },
-                            label = { Text(stringResource(id = R.string.time) + "* (HH:MM)")},
-                            singleLine = true,
-                            isError = errorMessage != null && (subTripTime.isEmpty() || !isValidTime(subTripTime)),
+                        OutlinedButton(
+                            onClick = { showTimePicker = true },
                             modifier = Modifier
                                 .weight(1f)
                                 .padding(8.dp)
-                        )
+                        ) {
+                            Text(
+                                text = subTripTime.format(DateTimeFormatter.ofPattern("HH:mm")),
+                                style = if (errorMessage != null && subTripTime == null) {
+                                    MaterialTheme.typography.bodyMedium.copy(
+                                        color = MaterialTheme.colorScheme.error
+                                    )
+                                } else {
+                                    MaterialTheme.typography.bodyMedium
+                                }
+                            )
+                        }
                     }
 
                     OutlinedTextField(
@@ -227,17 +255,14 @@ fun SubTripApp(
                             subTripTitle.isBlank() -> {
                                 errorMessage = "The title is required"
                             }
-                            subTripDate.isBlank() -> {
-                                errorMessage = "The date is required"
-                            }
-                            !isValidDate(subTripDate) -> {
-                                errorMessage = "Date format is invalid (YYYY-MM-DD)"
+                            subTripDate.isBefore(LocalDate.now()) -> {
+                                errorMessage = "The date cannot be in the past"
                             }
                             subTripTime.isBlank() -> {
                                 errorMessage = "The time is required"
                             }
                             !isValidTime(subTripTime) -> {
-                                errorMessage = "Time format is invalid (HH:MM)"
+                                errorMessage = "The time is invalid"
                             }
                             subTripLocation.isBlank() -> {
                                 errorMessage = "The location is required"
@@ -249,8 +274,8 @@ fun SubTripApp(
                                             id = currentSubTripId,
                                             parentTripId = tripId,
                                             title = subTripTitle,
-                                            date = subTripDate,
-                                            time = subTripTime,
+                                            date = subTripDate.toString(),
+                                            time = subTripTime.toString(),
                                             location = subTripLocation,
                                             description = subTripDescription
                                         )
@@ -260,8 +285,8 @@ fun SubTripApp(
                                         SubTrip(
                                             parentTripId = tripId,
                                             title = subTripTitle,
-                                            date = subTripDate,
-                                            time = subTripTime,
+                                            date = subTripDate.toString(),
+                                            time = subTripTime.toString(),
                                             location = subTripLocation,
                                             description = subTripDescription
                                         )
@@ -290,6 +315,75 @@ fun SubTripApp(
             }
         )
     }
+
+    // DatePicker Dialog
+    if (showDatePicker) {
+        val datePickerState = rememberDatePickerState(
+            initialSelectedDateMillis = subTripDate.atStartOfDay(ZoneId.systemDefault())
+                .toInstant()
+                .toEpochMilli()
+        )
+
+        DatePickerDialog(
+            onDismissRequest = { showDatePicker = false },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        datePickerState.selectedDateMillis?.let {
+                            subTripDate = Instant.ofEpochMilli(it)
+                                .atZone(ZoneId.systemDefault())
+                                .toLocalDate()
+                        }
+                        showDatePicker = false
+                    }
+                ) {
+                    Text("OK")
+                }
+            },
+            dismissButton = {
+                TextButton(
+                    onClick = { showDatePicker = false }
+                ) {
+                    Text("Cancelar")
+                }
+            }
+        ) {
+            DatePicker(state = datePickerState)
+        }
+    }
+
+
+    // TimePicker Dialog
+    /*if (showTimePicker) {
+        val timePickerState = rememberTimePickerState(
+            initialHour = subTripTime.hour,
+            initialMinute = subTripTime.minute,
+            is24Hour = true
+        )
+
+        TimePickerDialog(
+            onDismissRequest = { showTimePicker = false },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        subTripTime = LocalTime.of(timePickerState.hour, timePickerState.minute)
+                        showTimePicker = false
+                    }
+                ) {
+                    Text("OK")
+                }
+            },
+            dismissButton = {
+                TextButton(
+                    onClick = { showTimePicker = false }
+                ) {
+                    Text("Cancelar")
+                }
+            }
+        ) {
+            TimePicker(state = timePickerState)
+        }
+    }*/
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
