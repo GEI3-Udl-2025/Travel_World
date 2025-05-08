@@ -1,5 +1,6 @@
 package com.example.travelworld.ui.components
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -65,7 +66,7 @@ fun SubTripItem(
                         text = "${subTrip.date}  ${subTrip.time}",
                         style = MaterialTheme.typography.bodyMedium,
                     )
-                    if (subTrip.isExpanded && subTrip.description.isNotBlank()) {
+                    AnimatedVisibility (subTrip.isExpanded && subTrip.description.isNotBlank()) {
                         Text(
                             text = subTrip.description,
                             style = MaterialTheme.typography.bodyMedium,

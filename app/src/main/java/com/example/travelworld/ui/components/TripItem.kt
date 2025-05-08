@@ -1,5 +1,6 @@
 package com.example.travelworld.ui.components
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -65,7 +66,7 @@ fun TripItem(
                         style = MaterialTheme.typography.bodyMedium
                     )
                     // Descripción (se expande debajo)
-                    if (trip.isExpanded && trip.description.isNotBlank()) {
+                    AnimatedVisibility (trip.isExpanded && trip.description.isNotBlank()) {
                         Text(
                             text = trip.description,
                             style = MaterialTheme.typography.bodyMedium,
