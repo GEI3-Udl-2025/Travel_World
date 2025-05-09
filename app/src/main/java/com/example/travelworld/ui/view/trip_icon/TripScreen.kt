@@ -2,6 +2,7 @@ package com.example.travelworld.ui.view.trip_icon
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,20 +13,16 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.ArrowForward
-import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -36,16 +33,18 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.travelworld.R
 import com.example.travelworld.domain.model.Trip
+import com.example.travelworld.ui.components.DatePickerDialog
 import com.example.travelworld.ui.components.TripItem
 import com.example.travelworld.ui.viewmodel.TripViewModel
 import java.time.LocalDate
 
+
+@OptIn(ExperimentalMaterial3Api::class)
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun TripApp(
@@ -62,6 +61,8 @@ fun TripApp(
     var tripStartDate by remember { mutableStateOf("") }
     var tripEndDate by remember { mutableStateOf("") }
     var tripDescription by remember { mutableStateOf("") }
+    var showStartDatePicker by remember { mutableStateOf(false) }
+    var showEndDatePicker by remember { mutableStateOf(false) }
 
     Scaffold(
         floatingActionButton = {
@@ -148,28 +149,59 @@ fun TripApp(
                                     .fillMaxWidth()
                                     .padding(8.dp)
                             )
-                             Row{
-                                OutlinedTextField(
-                                    value = tripStartDate,
-                                    onValueChange = { tripStartDate = it },
-                                    label = { Text(stringResource(id = R.string.start_date) + "*") },
-                                    singleLine = true,
-                                    isError = errorMessage != null && tripStartDate.isBlank() || !isValidDate(tripStartDate),
+                            Row {
+                                // START DATE
+                                Box(
                                     modifier = Modifier
                                         .weight(1f)
                                         .padding(8.dp)
-                                )
-                                OutlinedTextField(
-                                    value = tripEndDate,
-                                    onValueChange = { tripEndDate = it },
-                                    label = { Text(stringResource(id = R.string.end_date) + "*") },
-                                    singleLine = true,
-                                    isError = errorMessage != null && tripEndDate.isBlank() || !isValidDate(tripEndDate),
+                                        .clickable { showStartDatePicker = true }
+                                ) {
+                                    OutlinedTextField(
+                                        value = tripStartDate,
+                                        onValueChange = { /* no-op */ },
+                                        label = { Text(stringResource(id = R.string.start_date) + "*") },
+                                        readOnly = false,
+                                        enabled = false,              // disable field’s own gestures
+                                        isError = (errorMessage != null && (tripStartDate.isBlank() || !isValidDate(tripStartDate))),
+                                        modifier = Modifier.fillMaxWidth(),
+                                        colors = TextFieldDefaults.outlinedTextFieldColors(
+                                            disabledBorderColor    = MaterialTheme.colorScheme.primary,
+                                            disabledLabelColor     = MaterialTheme.colorScheme.onSurfaceVariant,
+                                            disabledTextColor      = MaterialTheme.colorScheme.onSurface,
+                                            disabledPlaceholderColor = MaterialTheme.colorScheme.onSurfaceVariant
+
+                                        )
+                                    )
+
+                                }
+
+                                // END DATE
+                                Box(
                                     modifier = Modifier
                                         .weight(1f)
                                         .padding(8.dp)
-                                )
-                             }
+                                        .clickable { showEndDatePicker = true }
+                                ) {
+                                    OutlinedTextField(
+                                        value = tripEndDate,
+                                        onValueChange = { /* no-op */ },
+                                        label = { Text(stringResource(id = R.string.end_date) + "*") },
+                                        readOnly = true,
+                                        enabled = false,              // disable field’s own gestures
+                                        isError = (errorMessage != null && (tripEndDate.isBlank() || !isValidDate(tripEndDate))),
+                                        modifier = Modifier.fillMaxWidth(),
+                                        colors = TextFieldDefaults.outlinedTextFieldColors(
+                                            disabledBorderColor    = MaterialTheme.colorScheme.primary,
+                                            disabledLabelColor     = MaterialTheme.colorScheme.onSurfaceVariant,
+                                            disabledTextColor      = MaterialTheme.colorScheme.onSurface,
+                                            disabledPlaceholderColor = MaterialTheme.colorScheme.onSurfaceVariant
+
+                                        )
+                                    )
+                                }
+                            }
+
 
                             OutlinedTextField(
                                 value = tripDescription,
@@ -188,17 +220,11 @@ fun TripApp(
                                     tripTitle.isBlank() -> {
                                         errorMessage = "The destination is required"
                                     }
-                                    tripStartDate.isBlank() -> {
-                                        errorMessage = "The start date is required"
+                                    LocalDate.parse(tripStartDate).isBefore(LocalDate.now()) -> {
+                                        errorMessage = "La fecha de inicio no puede ser anterior a hoy"
                                     }
-                                    !isValidDate(tripStartDate) -> {
-                                        errorMessage = "Invalid start date format (YYYY-MM-DD)"
-                                    }
-                                    tripEndDate.isBlank() -> {
-                                        errorMessage = "The end date is required"
-                                    }
-                                    !isValidDate(tripEndDate) -> {
-                                        errorMessage = "Invalid end date format (YYYY-MM-DD)"
+                                    LocalDate.parse(tripEndDate).isBefore(LocalDate.now()) -> {
+                                        errorMessage = "La fecha de fin no puede ser anterior a hoy"
                                     }
                                     !isEndDateAfterStartDate(tripStartDate, tripEndDate) -> {
                                         errorMessage = "The end date must be after the start date"
@@ -242,6 +268,23 @@ fun TripApp(
                     }
                 )
             }
+            DatePickerDialog(
+                showDialog = showStartDatePicker,
+                initialDate = tripStartDate.takeIf { isValidDate(it) }?.let { LocalDate.parse(it) } ?: LocalDate.now(),
+                onDismiss = { showStartDatePicker = false },
+                onDateSelected = { selected ->
+                    tripStartDate = selected.toString()
+                }
+            )
+
+            DatePickerDialog(
+                showDialog = showEndDatePicker,
+                initialDate = tripEndDate.takeIf { isValidDate(it) }?.let { LocalDate.parse(it) } ?: LocalDate.now().plusDays(7),
+                onDismiss = { showEndDatePicker = false },
+                onDateSelected = { selected ->
+                    tripEndDate = selected.toString()
+                }
+            )
         }
     }
 }
@@ -266,3 +309,6 @@ private fun isEndDateAfterStartDate(startDateStr: String, endDateStr: String): B
         false
     }
 }
+//todo fecha no usar string, usar LocalDate
+//todo revisar stateflow/mutableListOf en trip y subTrip
+//todo datapicker y timepicker metologia de implementacion en codigo diferente entrp y subtrip
