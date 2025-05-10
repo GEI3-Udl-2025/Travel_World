@@ -1,4 +1,4 @@
-package com.example.travelworld.data
+package com.example.travelworld.domain.repo
 
 import com.example.travelworld.data.local.dao.SubTripDao
 import com.example.travelworld.data.local.dao.TripDao
@@ -6,7 +6,6 @@ import com.example.travelworld.data.mapper.toDomain
 import com.example.travelworld.data.mapper.toEntity
 import com.example.travelworld.domain.model.SubTrip
 import com.example.travelworld.domain.model.Trip
-import com.example.travelworld.domain.repository.TripRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

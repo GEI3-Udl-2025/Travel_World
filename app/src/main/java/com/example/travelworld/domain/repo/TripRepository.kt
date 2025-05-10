@@ -1,4 +1,4 @@
-package com.example.travelworld.domain.repository
+package com.example.travelworld.domain.repo
 
 import com.example.travelworld.domain.model.SubTrip
 import com.example.travelworld.domain.model.Trip

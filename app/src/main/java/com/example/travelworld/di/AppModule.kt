@@ -3,12 +3,13 @@ package com.example.travelworld.di
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.room.Room
-/*import com.example.travelworld.data.SharedPrefsManager*/
-import com.example.travelworld.data.TripRepositoryImpl
+import com.example.travelworld.domain.repo.TripRepositoryImpl
 import com.example.travelworld.data.local.TripDatabase
 import com.example.travelworld.data.local.dao.SubTripDao
 import com.example.travelworld.data.local.dao.TripDao
-import com.example.travelworld.domain.repository.TripRepository
+import com.example.travelworld.data.local.dao.UserDao
+import com.example.travelworld.domain.repo.TripRepository
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
@@ -19,35 +20,18 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-    @dagger.Provides
+    @Provides
     @Singleton
     fun provideSharedPreferences(
         @ApplicationContext context: Context
     ): SharedPreferences =
-        context.getSharedPreferences("${BuildConfig.APPLICATION_ID}_preferences", Context.MODE_PRIVATE)
-
-    // context.getSharedPreferences("my_preferences", Context.MODE_PRIVATE) //bad implementation
-
-/*    @dagger.Provides
-    @Singleton
-    fun provideSharedPrefsManager(
-        sharedPreferences: SharedPreferences,
-        @ApplicationContext context: Context
-    ): SharedPrefsManager =
-        SharedPrefsManager(sharedPreferences, context)*/
+        context.getSharedPreferences(
+            "${BuildConfig.APPLICATION_ID}_preferences",
+            Context.MODE_PRIVATE
+        )
 
 
-
-/*
-    @dagger.Provides
-    @Singleton
-    fun provideFormValidationViewModel(
-        @ApplicationContext context: Context
-    ): FormValidationViewModel = FormValidationViewModel(context)
-*/
-
-
-    @dagger.Provides
+    @Provides
     @Singleton
     fun provideTripDatabase(@ApplicationContext context: Context): TripDatabase {
         return Room.databaseBuilder(
@@ -57,14 +41,18 @@ object AppModule {
         ).build()
     }
 
-    @dagger.Provides
+    @Provides
     fun provideTripDao(db: TripDatabase): TripDao = db.tripDao()
 
-    @dagger.Provides
+    @Provides
     fun provideSubTripDao(db: TripDatabase): SubTripDao = db.subTripDao()
 
-    @dagger.Provides
+    @Provides
     @Singleton
-    fun provideTripRepository(tripDao: TripDao, subTripDao: SubTripDao): TripRepository = TripRepositoryImpl(tripDao, subTripDao)
+    fun provideTripRepository(tripDao: TripDao, subTripDao: SubTripDao): TripRepository =
+        TripRepositoryImpl(tripDao, subTripDao)
+
+    @Provides
+    fun provideUserDao(db: TripDatabase): UserDao = db.userDao()
 
 }

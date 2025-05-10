@@ -52,7 +52,7 @@ fun NavGraph(navController: NavHostController, authViewModel: AuthViewModel) {
         }
 
         composable("about") { AboutScreen(navController) }
-        composable("profile") { ProfileScreen(navController,authViewModel) }
+        composable("profile") { ProfileScreen(navController) }
         composable("terms") { TermsConditionsScreen(navController) }
         composable("version") { VersionScreen(navController) }
         composable("settings") { SettingsScreen(navController) }

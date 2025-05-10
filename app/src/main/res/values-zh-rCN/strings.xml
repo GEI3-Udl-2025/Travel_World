@@ -66,4 +66,15 @@
     <string name="edit_subtrip">编辑活动</string>
     <string name="new_subtrip">新建活动</string>
     <string name="SignOut">登出</string>
+    <string name="birthdate">出生日期</string>
+    <string name="address">地址</string>
+    <string name="country">国家</string>
+    <string name="phone">电话号码</string>
+    <string name="accept_emails">您想接收电子邮件吗？</string>
+    <string name="field_changed">Changed</string>
+    <string name="edit">Edit</string>
+    <string name="back">Back</string>
+    <string name="profile_saved">Profile Saved!!</string>
+    <string name="confirm">Confirm</string>
+
 </resources>
