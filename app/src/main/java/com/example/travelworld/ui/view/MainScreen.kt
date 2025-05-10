@@ -59,6 +59,24 @@ fun TravelApp(navController: NavController, authViewModel: AuthViewModel) {
                             onDismissRequest = { showSettingsMenu = false }
                         ) {
                             DropdownMenuItem(
+                                leadingIcon = { Icon(Icons.Filled.Person, contentDescription = "Profile Icon") },
+                                text = { Text(stringResource(id = R.string.profile)) },
+                                onClick = {
+                                    showSettingsMenu = false
+                                    navController.navigate("profile")
+                                }
+                            )
+
+
+//                            DropdownMenuItem(
+//                                leadingIcon = { Icon(Icons.Filled.Settings, contentDescription = "Settings Icon") },
+//                                text = { Text(stringResource(id = R.string.settings)) },
+//                                onClick = {
+//                                    showSettingsMenu = false
+//                                    navController.navigate("settings")
+//                                }
+//                            )
+                            DropdownMenuItem(
                                 leadingIcon = { Icon(Icons.Filled.Info, contentDescription = "About Icon") },
                                 text = { Text(text = stringResource(id = R.string.about)) },
                                 onClick = {
@@ -72,22 +90,6 @@ fun TravelApp(navController: NavController, authViewModel: AuthViewModel) {
                                 onClick = {
                                     showSettingsMenu = false
                                     navController.navigate("version")
-                                }
-                            )
-                            DropdownMenuItem(
-                                leadingIcon = { Icon(Icons.Filled.Person, contentDescription = "Profile Icon") },
-                                text = { Text(stringResource(id = R.string.profile)) },
-                                onClick = {
-                                    showSettingsMenu = false
-                                    navController.navigate("profile")
-                                }
-                            )
-                            DropdownMenuItem(
-                                leadingIcon = { Icon(Icons.Filled.Settings, contentDescription = "Settings Icon") },
-                                text = { Text(stringResource(id = R.string.settings)) },
-                                onClick = {
-                                    showSettingsMenu = false
-                                    navController.navigate("settings")
                                 }
                             )
                             DropdownMenuItem(
