@@ -9,17 +9,23 @@
 ### Ramas Principales
 1. **`main`**
     - **Producción**: Contiene el código estable y probado.
-    - *Restricción*: Solo se actualiza mediante PRs aprobados desde `master`.
+    - *Restricción*: Solo se actualiza mediante PRs aprobados desde `SprinX-Main`.
+      
+2. **`SprintX-main`**
+    - **Producción**: Contiene el código estable y probado de cada Sprint.
+    - *Flujo*: Todas las ramas de usuario de cada Sprint respectivo se fusionan aquí.
+    - *Restricción*: Solo se actualiza mediante PRs aprobados desde `SprinX-<Usuario>`.
 
-2. **`master`**
+2. **`Sprinx-<Usuario>`**
     - **Desarrollo**: Rama base para integrar nuevas funcionalidades.
-    - *Flujo*: Todas las ramas de usuario se fusionan aquí.
+    - *Flujo*: X indica el número de Sprint en desarrollo y <Usuario> el usuario desarrollador.
 
 ### Ramas de Usuario
-- **Formato**: `usuario/<tu-nombre>/<tipo>-<descripción>`  
+- **Formato**: `SprintX-<tu-nombre>/<tipo>-<descripción>(opcional)`  
   Ejemplos:
-    - `usuario/maria/feature-mapas`
-    - `usuario/carlos/fix-login`
+    - `Sprint1-Xiaolong/feature-mapas`
+    - `Sprint3-Jan`
+    - `Sprint4-Xiaolong/test`
 
 ---
 
@@ -38,7 +44,7 @@ git pull origin master
 
 ### 3. Crea tu Rama de Usuario
 ```bash
-git checkout -b usuario/<tu-nombre>/<descripción>
+git checkout -b SprintX-<tu-nombre>/<descripción>
 ```
 
 ### 4. Desarrolla y Haz Commits
@@ -54,10 +60,10 @@ git pull origin master  # Resuelve conflictos si los hay
 ### 6. Sube tu Rama
 
 ```bash
-git push origin usuario/<tu-nombre>/<descripción>
+git push origin SprintX-<tu-nombre>/<descripción>
 ```
 ### 7. Abre un Pull Request (PR)
-- **Destino**: `master`
+- **Destino**: `SprintX-main`
 - **Descripción**: Incluye:
   - **Objetivo del PR**: Explica brevemente qué cambios introduces y por qué son necesarios.
   - **Capturas de pantalla** (si aplica): Adjunta imágenes que muestren los cambios visuales o funcionales.

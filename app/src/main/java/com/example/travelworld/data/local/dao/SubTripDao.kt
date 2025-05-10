@@ -19,4 +19,6 @@ interface SubTripDao {
 
     @Update
     suspend fun updateSubTrip(subTrip: SubTripEntity)
+
+
 }

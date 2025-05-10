@@ -66,4 +66,14 @@
     <string name="edit_subtrip">Editar actividad</string>
     <string name="new_subtrip">Nueva actividad</string>
     <string name="SignOut">Cerrar Sesión</string>
+    <string name="birthdate">Fecha de nacimiento</string>
+    <string name="address">Dirección</string>
+    <string name="country">País</string>
+    <string name="phone">Número de teléfono</string>
+    <string name="accept_emails">¿Deseas recibir correos electrónicos?</string>
+    <string name="field_changed">Changed</string>
+    <string name="edit">Edit</string>
+    <string name="back">Back</string>
+    <string name="profile_saved">Profile Saved!!</string>
+    <string name="confirm">Confirm</string>
 </resources>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "703066269922",
+    "project_id": "sprint4-autenticathion",
+    "storage_bucket": "sprint4-autenticathion.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:703066269922:android:ebddff402de7517f3056bb",
+        "android_client_info": {
+          "package_name": "com.example.travelworld"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJnVZ1KTZCrLZsvf2rh9CKNbpWwKKeSks"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

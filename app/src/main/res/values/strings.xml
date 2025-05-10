@@ -65,4 +65,14 @@
     <string name="edit_subtrip">Edit Activity</string>
     <string name="new_subtrip">New Activity</string>
     <string name="SignOut">Sign Out</string>
+    <string name="birthdate">Birthday</string>
+    <string name="address">Adress</string>
+    <string name="country">Country</string>
+    <string name="phone">Phone Number</string>
+    <string name="accept_emails">Do you want to receive emails?</string>
+    <string name="field_changed">Changed</string>
+    <string name="edit">Edit</string>
+    <string name="back">Back</string>
+    <string name="profile_saved">Profile Saved!!</string>
+    <string name="confirm">Confirm</string>
 </resources>

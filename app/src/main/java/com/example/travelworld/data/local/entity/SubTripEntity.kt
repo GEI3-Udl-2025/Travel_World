@@ -18,5 +18,8 @@ data class SubTripEntity(
     val id: Int = 0,
     val parentTripId: Int,
     val title: String,
+    val date: String,
+    val time: String,
+    val location: String,
     val description: String
 )

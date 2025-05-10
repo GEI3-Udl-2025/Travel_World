@@ -28,7 +28,7 @@ import com.example.travelworld.ui.viewmodel.AuthViewModel
 fun NavGraph(navController: NavHostController, authViewModel: AuthViewModel) {
 
 
-    NavHost(navController = navController, startDestination = "login") {
+    NavHost(navController = navController, startDestination = "main") {
         composable("login") {
             LoginScreen(navController, authViewModel)
         }
@@ -39,7 +39,7 @@ fun NavGraph(navController: NavHostController, authViewModel: AuthViewModel) {
             RecoverPasswordScreen(navController, authViewModel)
         }
 
-        composable("main") { TravelApp(navController) }
+        composable("main") { TravelApp(navController, authViewModel ) }
 
         composable(
             route = "subtrips/{tripId}",
@@ -52,7 +52,7 @@ fun NavGraph(navController: NavHostController, authViewModel: AuthViewModel) {
         }
 
         composable("about") { AboutScreen(navController) }
-        composable("profile") { ProfileScreen(navController,authViewModel) }
+        composable("profile") { ProfileScreen(navController) }
         composable("terms") { TermsConditionsScreen(navController) }
         composable("version") { VersionScreen(navController) }
         composable("settings") { SettingsScreen(navController) }

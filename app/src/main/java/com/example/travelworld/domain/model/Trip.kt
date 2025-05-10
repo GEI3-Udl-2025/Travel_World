@@ -3,7 +3,10 @@ package com.example.travelworld.domain.model
 // Trip.kt
 data class Trip(
     val id: Int = 0,
-    val title: String,
-    val description: String,
-    val subTrips: List<SubTrip> = emptyList()
+    var title: String,
+    var startDate: String,
+    var endDate: String,
+    var description: String,
+    var isExpanded: Boolean = false,
+    var subTrips: List<SubTrip> = emptyList(),
 )

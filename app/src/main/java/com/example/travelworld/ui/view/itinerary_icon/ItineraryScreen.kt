@@ -425,7 +425,7 @@ fun TripCard(
                                 }
                             )
                         } else {
-                            SubTripItem(
+                            SubTripCard(
                                 subTrip = subTrip,
                                 onEditClick = { onSubTripEdit(subTrip) },
                                 onDeleteClick = { onSubTripDelete(subTrip) }
@@ -439,7 +439,7 @@ fun TripCard(
 }
 
 @Composable
-fun SubTripItem(
+fun SubTripCard(
     subTrip: SubTrip,
     onEditClick: () -> Unit,
     onDeleteClick: () -> Unit
