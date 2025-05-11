@@ -48,6 +48,7 @@ fun LoginScreen(navController: NavController, authViewModel: AuthViewModel) {
             value = email,
             onValueChange = { email = it },
             label = { Text("Email") },
+            singleLine = true,
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(10.dp))
@@ -55,6 +56,7 @@ fun LoginScreen(navController: NavController, authViewModel: AuthViewModel) {
             value = password,
             onValueChange = { password = it },
             label = { Text("Password") },
+            singleLine = true,
             modifier = Modifier.fillMaxWidth(),
             visualTransformation = PasswordVisualTransformation()
         )

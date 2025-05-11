@@ -50,6 +50,7 @@ fun RecoverPasswordScreen(navController: NavController, authViewModel: AuthViewM
             value = email,
             onValueChange = { email = it },
             label = { Text("Enter your email") },
+            singleLine = true,
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(20.dp))
