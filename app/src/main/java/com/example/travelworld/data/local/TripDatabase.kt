@@ -13,7 +13,7 @@ import com.example.travelworld.data.local.entity.UserEntity
 
 @Database(
     entities = [TripEntity::class, SubTripEntity::class, UserEntity::class],
-    version = 3,
+    version = 4,
     exportSchema = false
 )
 @TypeConverters(DateConverter::class)
