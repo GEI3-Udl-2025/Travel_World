@@ -2,7 +2,7 @@
 
 ¡Bienvenido/a a **Travel Planner**!
 
-El primer hito en el desarrollo de aplicaciones móviles es completar el primer sprint (Sprint I) construyendo la estructura inicial de la aplicación Travel Planner.
+Aplicación Travel Planner.
 ---
 
 ##  Características principales
