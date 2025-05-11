@@ -28,7 +28,7 @@ import com.example.travelworld.ui.viewmodel.AuthViewModel
 fun NavGraph(navController: NavHostController, authViewModel: AuthViewModel) {
 
 
-    NavHost(navController = navController, startDestination = "main") {
+    NavHost(navController = navController, startDestination = "login") {
         composable("login") {
             LoginScreen(navController, authViewModel)
         }
