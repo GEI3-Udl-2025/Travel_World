@@ -129,7 +129,8 @@ fun TripApp(
                         showTripDialog = false
                         errorMessage = null
                     },
-                    title = { Text(text = if (isEditingTrip) stringResource(id = R.string.edit_trip) else stringResource(id = R.string.new_trip)) },
+                    title = { Text(text = if (isEditingTrip) stringResource(id = R.string.edit_trip)
+                    else stringResource(id = R.string.new_trip)) },
                     text = {
                         Column {
                             if (errorMessage != null) {

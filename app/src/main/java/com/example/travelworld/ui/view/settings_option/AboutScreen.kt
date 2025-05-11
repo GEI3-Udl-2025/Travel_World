@@ -46,7 +46,7 @@ fun AboutScreen(navController: NavController) {
             )
             // Agrega más elementos básicos
             Divider(thickness = 1.dp)
-            Text(text = "Versión: 0.0.1")
+            Text(text = "Versión: 0.4.2")
             Text(text = "Contacto: contact@example.com")
         }
     }

@@ -10,11 +10,11 @@ flowchart TD
     D --> G[Itinerary]
     D --> H[User Preferences]
     C --> I{{Menú Configuración}}
-    I --> J[About]
-    I --> K[Version]
-    I --> L[Profile]
-    I --> M[Settings]
-    I --> N[Terms]
+    I --> J[Profile]
+    I --> K[About]
+    I --> L[Version]
+    I --> M[Terms]
+    I --> N[SignOut]
     E --> O[SubTrips]
 ```
 

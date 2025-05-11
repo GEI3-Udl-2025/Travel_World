@@ -6,6 +6,7 @@ import com.example.travelworld.data.mapper.toDomain
 import com.example.travelworld.data.mapper.toEntity
 import com.example.travelworld.domain.model.SubTrip
 import com.example.travelworld.domain.model.Trip
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -17,29 +18,31 @@ class TripRepositoryImpl @Inject constructor(
     private val subTripDao: SubTripDao
 ) : TripRepository {
 
-    // Listas mutables para almacenar datos en memoria
-    private val Trips = mutableListOf<Trip>()
-    private val subTrips = mutableListOf<SubTrip>()
+    // Esto ya existía en tu código:
+    private val currentLogin: String
+        get() = FirebaseAuth.getInstance().currentUser
+            ?.email
+            ?: throw IllegalStateException("Usuario no autenticado")
 
-    override fun getTrips(): Flow<List<Trip>> {
-        return tripDao.getTripsFlow().map { tripEntities ->
-            tripEntities.map { tripEntity ->
-                val subs = subTripDao.getSubTripsForTrip(tripEntity.id).map { it.toDomain() }
-                tripEntity.toDomain(subs)
+    override fun getTrips(): Flow<List<Trip>> =
+        tripDao.getTripsFlowForUser(currentLogin)
+            .map { entities ->
+                entities.map { e ->
+                    val subs = subTripDao.getSubTripsForTrip(e.id).map { it.toDomain() }
+                    e.toDomain(subs)
+                }
             }
-        }
+
+    override suspend fun addTrip(trip: Trip) {
+        tripDao.addTrip(trip.toEntity(currentLogin))
     }
 
-    override suspend  fun addTrip(trip: Trip) {
-        tripDao.addTrip(trip.toEntity())
+    override suspend fun updateTrip(trip: Trip) {
+        tripDao.updateTrip(trip.toEntity(currentLogin))
     }
 
-    override suspend  fun deleteTrip(tripId: Int) {
-        tripDao.deleteTrip(tripId)
-    }
-
-    override suspend  fun updateTrip(trip: Trip) {
-        tripDao.updateTrip(trip.toEntity())
+    override suspend fun deleteTrip(tripId: Int) {
+        tripDao.deleteTripForUser(tripId, currentLogin)
     }
 
     override suspend  fun getSubTripsForTrip(tripId: Int): List<SubTrip> {
