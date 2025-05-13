@@ -115,6 +115,12 @@ fun TravelApp(navController: NavController, authViewModel: AuthViewModel) {
         },
         bottomBar = {
             NavigationBar {
+                NavigationBarItem(
+                    icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
+                    selected = selectedScreen == TravelMode.HOME,
+                    onClick = { selectedScreen = TravelMode.HOME },
+                    label = { Text(stringResource(id = R.string.home)) }
+                )
 
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Flight, contentDescription = "Trip") },
@@ -122,12 +128,7 @@ fun TravelApp(navController: NavController, authViewModel: AuthViewModel) {
                     onClick = { selectedScreen = TravelMode.TRIP },
                     label = { Text(stringResource(id = R.string.trip))}
                 )
-                NavigationBarItem(
-                    icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
-                    selected = selectedScreen == TravelMode.HOME,
-                    onClick = { selectedScreen = TravelMode.HOME },
-                    label = { Text(stringResource(id = R.string.home)) }
-                )
+
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.List, contentDescription = "Itinerary") },
                     selected = selectedScreen == TravelMode.ITINERARY,
@@ -159,21 +160,6 @@ fun TravelApp(navController: NavController, authViewModel: AuthViewModel) {
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
-@Composable
-fun TripScreen(navController: NavController) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.Start
-    ) {
-        Text(text = stringResource(id = R.string.trip_screen), style = MaterialTheme.typography.titleLarge)
-        TripApp(navController = navController)
-    }
-}
-
 @Composable
 fun HomeScreen() {
     Column(
@@ -188,6 +174,20 @@ fun HomeScreen() {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
+@Composable
+fun TripScreen(navController: NavController) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.Start
+    ) {
+        Text(text = stringResource(id = R.string.trip_screen), style = MaterialTheme.typography.titleLarge)
+        TripApp(navController = navController)
+    }
+}
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
