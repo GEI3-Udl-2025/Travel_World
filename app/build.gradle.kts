@@ -89,6 +89,20 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     implementation(libs.kotlinx.coroutines.android)
 
+    //retrofit
+
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    //image
+    implementation("io.coil-kt:coil:2.5.0")
+    implementation("io.coil-kt:coil-compose:2.5.0")
+
+    implementation("androidx.compose.material:material-icons-extended")
+
+    //carrusel
+    implementation("androidx.compose.foundation:foundation:1.6.0")
+
 }
 
 // Allow references to generated code
