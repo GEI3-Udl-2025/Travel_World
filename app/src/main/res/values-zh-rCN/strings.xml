@@ -57,11 +57,11 @@
     <string name="version">版本</string>
     <string name="profile">个人资料</string>
     <string name="home">首页</string>
-    <string name="itinerary">行程安排</string>
+    <string name="hotel">酒店</string>
     <string name="user_preference">用户偏好</string>
     <string name="trip_screen">行程页面</string>
     <string name="home_screen">首页</string>
-    <string name="itinerary_screen">行程安排页面</string>
+    <string name="hotel_screen">酒店页面</string>
     <string name="user_preference_screen">用户偏好页面</string>
     <string name="edit_subtrip">编辑活动</string>
     <string name="new_subtrip">新建活动</string>

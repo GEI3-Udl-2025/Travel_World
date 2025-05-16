@@ -162,6 +162,7 @@ fun ProfileScreen(
                     readOnly = readOnly,
                     enabled = !readOnly,
                     label = { Text(stringResource(label)) },
+                    singleLine = true,
                     trailingIcon = trailing,
                     modifier = Modifier
                         .fillMaxWidth()

@@ -1,6 +1,5 @@
 package com.example.travelworld.ui.view
 
-import HomeApp
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.*
@@ -19,7 +18,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.travelworld.R
-import com.example.travelworld.ui.view.itinerary_icon.TripAppv1
+import com.example.travelworld.ui.view.itinerary_icon.HotelApp
 import com.example.travelworld.ui.view.trip_icon.TripApp
 import com.example.travelworld.ui.view.userpref_icon.UserPreferencesApp
 import com.example.travelworld.ui.viewmodel.AuthState
@@ -27,7 +26,7 @@ import com.example.travelworld.ui.viewmodel.AuthViewModel
 
 // Enum para representar las pantallas principales
 enum class TravelMode {
-    HOME, TRIP, ITINERARY, USER_PREFERENCE
+    HOME, TRIP, HOTEL, USER_PREFERENCE
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -130,10 +129,10 @@ fun TravelApp(navController: NavController, authViewModel: AuthViewModel) {
                 )
 
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.List, contentDescription = "Itinerary") },
-                    selected = selectedScreen == TravelMode.ITINERARY,
-                    onClick = { selectedScreen = TravelMode.ITINERARY },
-                    label = { Text(stringResource(id = R.string.itinerary)) }
+                    icon = { Icon(Icons.Default.List, contentDescription = "Hotel") },
+                    selected = selectedScreen == TravelMode.HOTEL,
+                    onClick = { selectedScreen = TravelMode.HOTEL },
+                    label = { Text(stringResource(id = R.string.hotel)) }
                 )
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Person, contentDescription = "User Preference") },
@@ -153,7 +152,7 @@ fun TravelApp(navController: NavController, authViewModel: AuthViewModel) {
             when (selectedScreen) {
                 TravelMode.TRIP -> TripScreen(navController)
                 TravelMode.HOME -> HomeScreen()
-                TravelMode.ITINERARY -> ItineraryScreen()
+                TravelMode.HOTEL -> HotelScreen()
                 TravelMode.USER_PREFERENCE -> UserPreferenceScreen()
             }
         }
@@ -191,7 +190,7 @@ fun TripScreen(navController: NavController) {
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun ItineraryScreen() {
+fun HotelScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -199,8 +198,8 @@ fun ItineraryScreen() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.Start
     ) {
-        Text(text = stringResource(id = R.string.itinerary_screen), style = MaterialTheme.typography.titleLarge)
-        TripAppv1()
+        Text(text = stringResource(id = R.string.hotel_screen), style = MaterialTheme.typography.titleLarge)
+        HotelApp()
     }
 }
 

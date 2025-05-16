@@ -57,11 +57,11 @@
     <string name="version">Versió</string>
     <string name="profile">Perfil</string>
     <string name="home">Inici</string>
-    <string name="itinerary">Itinerari</string>
+    <string name="hotel">Hotel</string>
     <string name="user_preference">Preferències</string>
     <string name="trip_screen">Pantalla de viatge</string>
     <string name="home_screen">Pantalla d\'inici</string>
-    <string name="itinerary_screen">Pantalla d\'itinerari</string>
+    <string name="hotel_screen">Pantalla d\'Hotel</string>
     <string name="user_preference_screen">Pantalla de preferències</string>
     <string name="edit_subtrip">Editar activitat</string>
     <string name="new_subtrip">Nova activitat</string>
