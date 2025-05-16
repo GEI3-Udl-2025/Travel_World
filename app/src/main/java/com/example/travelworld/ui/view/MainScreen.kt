@@ -18,7 +18,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.travelworld.R
-import com.example.travelworld.ui.view.itinerary_icon.HotelApp
+import com.example.travelworld.ui.view.hotel_icon.HotelApp
 import com.example.travelworld.ui.view.trip_icon.TripApp
 import com.example.travelworld.ui.view.userpref_icon.UserPreferencesApp
 import com.example.travelworld.ui.viewmodel.AuthState

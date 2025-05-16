@@ -1,5 +1,7 @@
-package com.example.travelworld.ui.view.itinerary_icon
+package com.example.travelworld.ui.view.hotel_icon
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Tab
@@ -7,17 +9,18 @@ import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable
 fun HotelApp() {
-    val tabs = listOf("Reservar", "Mis reserves", "Todas las reservas")
-    var selectedTab by remember { mutableStateOf(0) }
+    val tabs = listOf("Reservar", "Mis reservas", "Todas las reservas")
+    var selectedTab by remember { mutableIntStateOf(0) }
 
     Column(modifier = Modifier.fillMaxSize()) {
         TabRow(selectedTabIndex = selectedTab) {
@@ -31,9 +34,9 @@ fun HotelApp() {
         }
 
         when (selectedTab) {
-            0 -> ReservarHotelScreen()
-            1 -> MisReservasScreen()
-            2 -> TodasReservasScreen()
+            0 -> BookApp()
+            1 -> ReservationApp()
+            2 -> AllReservationsApp()
         }
     }
 }
