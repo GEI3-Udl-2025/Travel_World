@@ -8,12 +8,17 @@ import com.example.travelworld.data.local.TripDatabase
 import com.example.travelworld.data.local.dao.SubTripDao
 import com.example.travelworld.data.local.dao.TripDao
 import com.example.travelworld.data.local.dao.UserDao
+import com.example.travelworld.data.remote.api.HotelApiService
+import com.example.travelworld.data.repositoryImpl.HotelRepositoryImpl
+import com.example.travelworld.domain.repo.HotelRepository
 import com.example.travelworld.domain.repo.TripRepository
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import firebase.com.protolitewrapper.BuildConfig
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @dagger.Module
@@ -54,5 +59,22 @@ object AppModule {
 
     @Provides
     fun provideUserDao(db: TripDatabase): UserDao = db.userDao()
+
+    @Provides
+    @Singleton
+    fun provideHotelApi(): HotelApiService {
+        return Retrofit.Builder()
+            .baseUrl(BuildConfig.HOTELS_API_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(HotelApiService::class.java)
+    }
+
+    /* --- Repository --- */
+    @Provides
+    @Singleton
+    fun provideHotelRepo(api: HotelApiService, taskDao: TripDao): HotelRepository =
+        HotelRepositoryImpl(api, taskDao)
+
 
 }

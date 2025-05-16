@@ -26,7 +26,13 @@ android {
     }
 
     buildTypes {
+        debug{
+            buildConfigField("String", "HOTELS_API_URL", "\"http://13.39.162.212\"")
+            buildConfigField("String", "GROUP_ID", "\"G08\"")
+        }
         release {
+            buildConfigField("String", "GROUP_ID", "\"G08\"")
+            buildConfigField("String", "HOTELS_API_URL", "\"http://13.39.162.212\"")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -34,6 +40,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
