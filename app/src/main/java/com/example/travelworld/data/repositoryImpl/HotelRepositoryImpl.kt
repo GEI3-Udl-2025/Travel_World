@@ -1,11 +1,14 @@
 package com.example.travelworld.data.repositoryImpl
 
 import com.example.travelworld.data.local.dao.TripDao
-import com.example.travelworld.domain.model.Hotel
+import com.example.travelworld.data.remote.mapper.toDomain
+import com.example.travelworld.data.remote.mapper.toEntity
 import com.example.travelworld.data.remote.api.HotelApiService
+import com.example.travelworld.domain.model.Hotel
 import com.example.travelworld.domain.model.Reservation
 import com.example.travelworld.domain.model.ReserveRequest
 import com.example.travelworld.domain.repo.HotelRepository
+
 import javax.inject.Inject
 import javax.inject.Singleton
 
