@@ -17,6 +17,8 @@ import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
+import com.example.travelworld.BuildConfig
+
 
 @HiltViewModel
 class BookViewModel @Inject constructor(
@@ -28,8 +30,8 @@ class BookViewModel @Inject constructor(
     @RequiresApi(Build.VERSION_CODES.O)
     val uiState: StateFlow<BookUiState> = _uiState
 
-    val cities = listOf("London", "Paris", "Barcelona")
-    val groupId = "G08" // O cámbialo por tu groupId
+    val cities = listOf("Londres", "Paris", "Barcelona")
+    val groupId = BuildConfig.GROUP_ID
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun toggleCityMenu() = _uiState.update { it.copy(cityMenu = !it.cityMenu) }
@@ -73,7 +75,7 @@ class BookViewModel @Inject constructor(
 data class BookUiState @RequiresApi(Build.VERSION_CODES.O) constructor(
     val loading: Boolean = false,
     val cityMenu: Boolean = false,
-    val city: String = "London",
+    val city: String = "Londres",
     val startDate: LocalDate? = LocalDate.now(),
     val endDate: LocalDate? = LocalDate.now().plusDays(2),
     val hotels: List<Hotel> = emptyList(),

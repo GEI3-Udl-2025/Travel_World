@@ -17,7 +17,7 @@ fun ReservationApp(
     vm: ReservationsViewModel = hiltViewModel()
 ) {
     // TODO: pon el email real del usuario autenticado
-    val userEmail = "usuario@email.com"
+    val userEmail = "xj3@udl.cat"
     val ui by vm.uiState.collectAsState()
     var reservaToCancel by remember { mutableStateOf<String?>(null) }
 

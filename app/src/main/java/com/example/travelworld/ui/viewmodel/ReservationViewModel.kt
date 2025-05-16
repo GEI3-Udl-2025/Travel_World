@@ -10,6 +10,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import com.example.travelworld.BuildConfig
+
 
 @HiltViewModel
 class ReservationsViewModel @Inject constructor(
@@ -18,8 +20,9 @@ class ReservationsViewModel @Inject constructor(
 
     private val _uiState = MutableStateFlow(ReservationsUiState())
     val uiState: StateFlow<ReservationsUiState> = _uiState
+    val groupId = BuildConfig.GROUP_ID
 
-    fun load(userEmail: String, groupId: String = "G08") = viewModelScope.launch {
+    fun load(userEmail: String) = viewModelScope.launch {
         _uiState.update { it.copy(loading = true, message = null) }
         try {
             val res = hotelRepo.getGroupReservations(groupId, guestEmail = userEmail)
@@ -29,7 +32,7 @@ class ReservationsViewModel @Inject constructor(
         }
     }
 
-    fun cancelReservationById(resId: String, userEmail: String, groupId: String = "G08") = viewModelScope.launch {
+    fun cancelReservationById(resId: String, userEmail: String,) = viewModelScope.launch {
         _uiState.update { it.copy(loading = true, message = null) }
         try {
             hotelRepo.cancelById(resId)

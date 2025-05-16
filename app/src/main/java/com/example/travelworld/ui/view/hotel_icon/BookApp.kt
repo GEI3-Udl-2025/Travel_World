@@ -6,6 +6,7 @@ import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CalendarToday
 import androidx.compose.material3.*
@@ -30,10 +31,19 @@ fun BookApp(
     val formatter = DateTimeFormatter.ISO_DATE
 
     var showDialog by remember { mutableStateOf(false) }
-    var guestName by remember { mutableStateOf("") }
-    var guestEmail by remember { mutableStateOf("") }
+    var guestName by remember { mutableStateOf("XiaoLong") }
+    var guestEmail by remember { mutableStateOf("xj3@udl.cat") }
     var roomToBook by remember { mutableStateOf<Triple<String, String, Float>?>(null) }
     var bookingMessage by remember { mutableStateOf<String?>(null) }
+
+    var expanded by remember { mutableStateOf(true) }
+    // Estado del scroll de la lista de hoteles
+    val hotelListState = rememberLazyListState()
+
+    // Si hace scroll (no está arriba del todo), colapsa la búsqueda
+    LaunchedEffect(hotelListState.firstVisibleItemIndex, hotelListState.isScrollInProgress) {
+        if (hotelListState.firstVisibleItemIndex > 0 && expanded) expanded = false
+    }
 
     Column(
         modifier = Modifier
