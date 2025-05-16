@@ -1,11 +1,11 @@
-package com.example.travelworld.domain.repo
+package com.example.travelworld.data.repositoryImpl
 
 import com.example.travelworld.data.local.dao.UserDao
 import com.example.travelworld.data.local.entity.UserEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class UserRepository @Inject constructor(
+class UserRepositoryImpl @Inject constructor(
     private val userDao: UserDao
 ) {
     fun getUser(login: String): Flow<UserEntity?> =

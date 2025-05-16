@@ -6,7 +6,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.travelworld.data.local.entity.UserEntity
-import com.example.travelworld.domain.repo.UserRepository
+import com.example.travelworld.data.repositoryImpl.UserRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.util.Date
@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
-    private val repo: UserRepository,
+    private val repo: UserRepositoryImpl,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 

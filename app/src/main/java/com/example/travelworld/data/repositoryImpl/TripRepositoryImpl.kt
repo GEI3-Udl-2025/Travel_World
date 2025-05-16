@@ -1,11 +1,12 @@
-package com.example.travelworld.domain.repo
+package com.example.travelworld.data.repositoryImpl
 
 import com.example.travelworld.data.local.dao.SubTripDao
 import com.example.travelworld.data.local.dao.TripDao
-import com.example.travelworld.data.mapper.toDomain
-import com.example.travelworld.data.mapper.toEntity
+import com.example.travelworld.data.local.mapper.toDomain
+import com.example.travelworld.data.local.mapper.toEntity
 import com.example.travelworld.domain.model.SubTrip
 import com.example.travelworld.domain.model.Trip
+import com.example.travelworld.domain.repo.TripRepository
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

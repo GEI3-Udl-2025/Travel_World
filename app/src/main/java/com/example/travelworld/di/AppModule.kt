@@ -3,7 +3,7 @@ package com.example.travelworld.di
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.room.Room
-import com.example.travelworld.domain.repo.TripRepositoryImpl
+import com.example.travelworld.data.repositoryImpl.TripRepositoryImpl
 import com.example.travelworld.data.local.TripDatabase
 import com.example.travelworld.data.local.dao.SubTripDao
 import com.example.travelworld.data.local.dao.TripDao

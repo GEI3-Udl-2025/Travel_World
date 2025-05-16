@@ -1,4 +1,4 @@
-package com.example.travelworld.data.mapper
+package com.example.travelworld.data.local.mapper
 
 import com.example.travelworld.data.local.entity.SubTripEntity
 import com.example.travelworld.data.local.entity.TripEntity
