@@ -37,14 +37,10 @@ fun BookApp(
     var bookingMessage by remember { mutableStateOf<String?>(null) }
     var bookingSuccess by remember { mutableStateOf<Boolean?>(null) }
 
-    var expanded by remember { mutableStateOf(true) }
+
     // Estado del scroll de la lista de hoteles
     val hotelListState = rememberLazyListState()
 
-    // Si hace scroll (no está arriba del todo), colapsa la búsqueda
-    LaunchedEffect(hotelListState.firstVisibleItemIndex, hotelListState.isScrollInProgress) {
-        if (hotelListState.firstVisibleItemIndex > 0 && expanded) expanded = false
-    }
 
     Column(
         modifier = Modifier
