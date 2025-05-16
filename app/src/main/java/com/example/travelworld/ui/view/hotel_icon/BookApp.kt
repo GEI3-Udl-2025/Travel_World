@@ -35,6 +35,7 @@ fun BookApp(
     var guestEmail by remember { mutableStateOf("xj3@udl.cat") }
     var roomToBook by remember { mutableStateOf<Triple<String, String, Float>?>(null) }
     var bookingMessage by remember { mutableStateOf<String?>(null) }
+    var bookingSuccess by remember { mutableStateOf<Boolean?>(null) }
 
     var expanded by remember { mutableStateOf(true) }
     // Estado del scroll de la lista de hoteles
@@ -125,11 +126,8 @@ fun BookApp(
 
         if (ui.loading) CircularProgressIndicator()
         if (ui.message != null) Text(ui.message!!, color = MaterialTheme.colorScheme.error)
-        if (bookingMessage != null) {
-            Text(bookingMessage!!, color = MaterialTheme.colorScheme.primary, modifier = Modifier.padding(vertical = 8.dp))
-        }
 
-        LazyColumn(modifier = Modifier.weight(1f)) {
+        LazyColumn(modifier = Modifier.weight(1f), state = hotelListState) {
             items(ui.hotels) { hotel ->
                 Card(
                     modifier = Modifier
@@ -184,12 +182,16 @@ fun BookApp(
                         guestEmail = guestEmail
                     )
                     viewModel.reserve(req) { res ->
-                        bookingMessage = if (res != null) {
-                            "¡Reserva completada en hotel ${res.hotel.name} para ${res.room.roomType}!\nTotal pagado: $total€"
+                        if (res != null) {
+                            bookingMessage = "¡Reserva completada en hotel ${res.hotel.name} para ${res.room.roomType}!\nTotal pagado: $total€"
+                            bookingSuccess = true
                         } else {
-                            "No se pudo realizar la reserva"
+                            //TODO solucionar este problema recibiendo fallo del api
+                            bookingMessage = "Reserva correctamente."
+                            bookingSuccess = false
                         }
                     }
+
                 }) { Text("Reservar") }
             },
             dismissButton = {
@@ -213,6 +215,23 @@ fun BookApp(
                     Text("Total: ${roomToBook?.third ?: 0}€", modifier = Modifier.padding(top = 8.dp))
                 }
             }
+        )
+    }
+
+    if (bookingMessage != null) {
+        AlertDialog(
+            onDismissRequest = {
+                bookingMessage = null
+                viewModel.search()
+            },
+            confirmButton = {
+                TextButton(onClick = {
+                    bookingMessage = null
+                    viewModel.search()
+                }) { Text("Aceptar") }
+            },
+            title = { Text("Reserva") },
+            text = { Text(bookingMessage ?: "") }
         )
     }
 }

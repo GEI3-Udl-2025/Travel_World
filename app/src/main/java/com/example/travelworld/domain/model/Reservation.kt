@@ -11,3 +11,9 @@ data class Reservation(
     val hotel: Hotel,
     val room:  Room
 )
+
+//todo implementa API request
+data class ReservationResult(
+    val reservation: Reservation,
+    val message: String
+)
