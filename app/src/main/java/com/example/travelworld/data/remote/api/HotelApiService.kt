@@ -56,6 +56,12 @@ interface HotelApiService {
     @GET("reservations")
     suspend fun getAllReservations(): AllReservationsEntity       // { groups:{ G01:[...], G02:[...] } }
 
+    //TODO: filtrar reserva por grupo
+    @GET("hotels/{group_id}/reservations")
+    suspend fun getGroupReservations(
+        @Path("group_id") groupId: String,
+    ): ReservationsWrapperEntity
+
     @GET("reservations/{res_id}")
     suspend fun getReservationById(
         @Path("res_id") resId: String
