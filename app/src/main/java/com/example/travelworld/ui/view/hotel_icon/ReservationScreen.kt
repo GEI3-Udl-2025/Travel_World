@@ -17,6 +17,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.travelworld.ui.viewmodel.ReservationsViewModel
 import coil.compose.AsyncImage
 import com.example.travelworld.BuildConfig
+import com.example.travelworld.ui.components.ReservationRow
 
 
 @Composable
@@ -32,65 +33,20 @@ fun ReservationApp(
 
     LazyColumn(modifier = Modifier.fillMaxSize()) {
         items(ui.reservations) { reserva ->
-            val base = BuildConfig.HOTELS_API_URL.trimEnd('/')
-            val hotelImg = base + (reserva.hotel.imageUrl ?: "")
-
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 8.dp),
                 elevation = CardDefaults.cardElevation(4.dp)
             ) {
-                Row(
-                    modifier = Modifier
-                        .padding(12.dp)
-                        .fillMaxWidth()
-                        .height(IntrinsicSize.Min)
-                ) {
-                    // Imagen izquierda
-                    AsyncImage(
-                        model = hotelImg,
-                        contentDescription = "Imagen del hotel",
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .width(100.dp)
-                            .fillMaxHeight()
-                            .padding(end = 12.dp)
-                    )
-
-                    // Box: texto arriba, icono basura abajo derecha
-                    Box(
-                        modifier = Modifier
-                            .weight(1f)
-                            .fillMaxHeight()
-                    ) {
-                        Column(
-                            modifier = Modifier.align(Alignment.TopStart)
-                        ) {
-                            Text("Hotel: ${reserva.hotel.name}",
-                                fontWeight = FontWeight.Bold
-                            )
-                            Text("Check-in: ${reserva.startDate}")
-                            Text("Check-out: ${reserva.endDate}")
-                            Text("Habitación: ${reserva.room.roomType}")
-                        }
-                        // Icono de basura abajo derecha
-                        IconButton(
-                            onClick = { reservaToCancel = reserva.id },
-                            modifier = Modifier.align(Alignment.BottomEnd)
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.Delete,
-                                contentDescription = "Cancelar reserva",
-                                tint = MaterialTheme.colorScheme.error
-                            )
-                        }
-                    }
-                }
-
+                ReservationRow(
+                    reserva = reserva,
+                    onDelete = { reservaToCancel = reserva.id }
+                )
             }
         }
     }
+
 
 
     if (reservaToCancel != null) {

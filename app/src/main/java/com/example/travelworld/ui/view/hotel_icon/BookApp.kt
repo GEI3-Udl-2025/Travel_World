@@ -3,18 +3,26 @@ package com.example.travelworld.ui.view.hotel_icon
 import android.app.DatePickerDialog
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CalendarToday
+import androidx.compose.material.icons.filled.PhotoLibrary
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.AsyncImage
+import com.example.travelworld.BuildConfig
 import com.example.travelworld.domain.model.ReserveRequest
 import com.example.travelworld.ui.viewmodel.BookViewModel
 import java.time.LocalDate
@@ -36,11 +44,10 @@ fun BookApp(
     var roomToBook by remember { mutableStateOf<Triple<String, String, Float>?>(null) }
     var bookingMessage by remember { mutableStateOf<String?>(null) }
     var bookingSuccess by remember { mutableStateOf<Boolean?>(null) }
+    var roomImgToShow by remember { mutableStateOf<String?>(null) }
 
-
-    // Estado del scroll de la lista de hoteles
     val hotelListState = rememberLazyListState()
-
+    val base = BuildConfig.HOTELS_API_URL.trimEnd('/')
 
     Column(
         modifier = Modifier
@@ -125,6 +132,12 @@ fun BookApp(
 
         LazyColumn(modifier = Modifier.weight(1f), state = hotelListState) {
             items(ui.hotels) { hotel ->
+                // ----- IMAGEN DEL HOTEL (arriba de la Card) -----
+                val hotelImg = if ((hotel.imageUrl ?: "").startsWith("http"))
+                    hotel.imageUrl!!
+                else
+                    base + (hotel.imageUrl ?: "")
+
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -132,6 +145,15 @@ fun BookApp(
                     elevation = CardDefaults.cardElevation(4.dp)
                 ) {
                     Column(modifier = Modifier.padding(16.dp)) {
+                        // Imagen del hotel
+                        AsyncImage(
+                            model = hotelImg,
+                            contentDescription = "Foto hotel",
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(180.dp)
+                        )
                         Text(hotel.name, style = MaterialTheme.typography.titleMedium)
                         Text("Dirección: ${hotel.address}")
                         Text("Rating: ${hotel.rating}")
@@ -141,13 +163,42 @@ fun BookApp(
                                 val nights = if (ui.startDate != null && ui.endDate != null)
                                     java.time.temporal.ChronoUnit.DAYS.between(ui.startDate, ui.endDate).toInt() else 1
                                 val total = room.price * nights
-                                Text("- ${room.roomType} - ${room.price}€/noche, Total: $total€")
+
+                                val roomImg = room.images.firstOrNull()
+                                val fullRoomImgUrl =
+                                    if (roomImg != null && roomImg.startsWith("http")) roomImg else base + (roomImg ?: "")
+
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(vertical = 4.dp),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    // Info básica de la habitación
+                                    Column(modifier = Modifier.weight(1f)) {
+                                        Text(
+                                            "- ${room.roomType} - ${room.price}€/noche, Total: $total€",
+                                            fontWeight = FontWeight.Medium
+                                        )
+                                    }
+                                    // Imagen y lupa
+                                    if (!roomImg.isNullOrBlank()) {
+                                        IconButton(
+                                            onClick = { roomImgToShow = fullRoomImgUrl }
+                                        ) {
+                                            Icon(
+                                                imageVector = Icons.Default.PhotoLibrary,
+                                                contentDescription = "Ver foto habitación"
+                                            )
+                                        }
+                                    }
+                                }
                                 Button(
                                     onClick = {
                                         roomToBook = Triple(hotel.id, room.id, total)
                                         showDialog = true
                                     },
-                                    modifier = Modifier.padding(vertical = 4.dp)
+                                    modifier = Modifier.padding(start = 4.dp)
                                 ) {
                                     Text("Reservar esta habitación")
                                 }
@@ -179,15 +230,14 @@ fun BookApp(
                     )
                     viewModel.reserve(req) { res ->
                         if (res != null) {
-                            bookingMessage = "¡Reserva completada en hotel ${res.hotel.name} para ${res.room.roomType}!\nTotal pagado: $total€"
+                            bookingMessage =
+                                "¡Reserva completada en hotel ${res.hotel.name} para ${res.room.roomType}!\nTotal pagado: $total€"
                             bookingSuccess = true
                         } else {
-                            //TODO solucionar este problema recibiendo fallo del api
                             bookingMessage = "Reserva correctamente."
                             bookingSuccess = false
                         }
                     }
-
                 }) { Text("Reservar") }
             },
             dismissButton = {
@@ -228,6 +278,26 @@ fun BookApp(
             },
             title = { Text("Reserva") },
             text = { Text(bookingMessage ?: "") }
+        )
+    }
+
+    // Diálogo para mostrar la imagen ampliada de la habitación
+    if (roomImgToShow != null) {
+        AlertDialog(
+            onDismissRequest = { roomImgToShow = null },
+            confirmButton = {
+                TextButton(onClick = { roomImgToShow = null }) { Text("Cerrar") }
+            },
+            text = {
+                AsyncImage(
+                    model = roomImgToShow,
+                    contentDescription = "Foto ampliada de la habitación",
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(1f)
+                )
+            }
         )
     }
 }
