@@ -2,11 +2,11 @@ package com.example.travelworld.ui.components
 
 import android.net.Uri
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,7 +14,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.ArrowDropUp
-import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Card
@@ -33,10 +32,10 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.travelworld.domain.model.Trip
 
-
 @Composable
 fun TripItem(
     trip: Trip,
+    onPhotoClick: (Uri) -> Unit,
     onEdit: () -> Unit,
     onOpen: () -> Unit,
     onDelete: () -> Unit,
@@ -58,24 +57,23 @@ fun TripItem(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                // 1️⃣ MINIATURA: justo al inicio del Row
+                // 1️⃣ MINIATURA clicable
                 trip.photoUri?.let { uriString ->
+                    val uri = Uri.parse(uriString)
                     AsyncImage(
-                        model = Uri.parse(uriString),
+                        model = uri,
                         contentDescription = "Miniatura de ${trip.title}",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
-                            .size(56.dp)                       // tamaño de miniatura
-                            .clip(RoundedCornerShape(4.dp))    // esquinas
+                            .size(56.dp)
+                            .clip(RoundedCornerShape(4.dp))
+                            .clickable { onPhotoClick(uri) }
                             .padding(end = 12.dp)
                     )
                 }
 
                 // 2️⃣ Texto principal
-                // Columna con texto (izquierda)
-                Column(
-                    modifier = Modifier.weight(1f)
-                ) {
+                Column(modifier = Modifier.weight(1f)) {
                     Text(
                         text = trip.title,
                         style = MaterialTheme.typography.titleLarge.copy(
@@ -83,11 +81,10 @@ fun TripItem(
                         )
                     )
                     Text(
-                        text = "${trip.startDate} to ${trip.endDate}",
+                        text = "${trip.startDate} – ${trip.endDate}",
                         style = MaterialTheme.typography.bodyMedium
                     )
-                    // Descripción (se expande debajo)
-                    AnimatedVisibility (trip.isExpanded && trip.description.isNotBlank()) {
+                    AnimatedVisibility(trip.isExpanded && trip.description.isNotBlank()) {
                         Text(
                             text = trip.description,
                             style = MaterialTheme.typography.bodyMedium,
@@ -97,45 +94,27 @@ fun TripItem(
                 }
 
                 // 3️⃣ Botones de acción
-                // Contenedor de botones (derecha)
                 Row {
-                    IconButton(
-                        onClick = onExpandClick,
-                        modifier = Modifier.size(35.dp)
-                    ) {
+                    IconButton(onClick = onExpandClick, modifier = Modifier.size(35.dp)) {
                         Icon(
-                            imageVector = if (trip.isExpanded) Icons.Filled.ArrowDropUp
-                            else Icons.Filled.ArrowDropDown,
-                            contentDescription = if (trip.isExpanded) "Collapse"
-                            else "Expand"
+                            imageVector = if (trip.isExpanded) Icons.Filled.ArrowDropUp else Icons.Filled.ArrowDropDown,
+                            contentDescription = null
                         )
                     }
-
-                    IconButton(
-                        onClick = onEdit,
-                        modifier = Modifier.size(35.dp)
-                    ) {
+                    IconButton(onClick = onEdit, modifier = Modifier.size(35.dp)) {
                         Icon(
                             Icons.Filled.Edit,
                             contentDescription = "Edit Trip",
                             tint = MaterialTheme.colorScheme.primary
                         )
                     }
-
-                    IconButton(
-                        onClick = onOpen,
-                        modifier = Modifier.size(35.dp)
-                    ) {
+                    IconButton(onClick = onOpen, modifier = Modifier.size(35.dp)) {
                         Icon(
                             Icons.AutoMirrored.Filled.ArrowForward,
                             contentDescription = "Open Trip"
                         )
                     }
-
-                    IconButton(
-                        onClick = onDelete,
-                        modifier = Modifier.size(35.dp)
-                    ) {
+                    IconButton(onClick = onDelete, modifier = Modifier.size(35.dp)) {
                         Icon(
                             Icons.Filled.Delete,
                             contentDescription = "Delete Trip",

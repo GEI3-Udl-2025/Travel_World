@@ -2,26 +2,12 @@ package com.example.travelworld.ui.components
 
 import android.net.Uri
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material.icons.filled.ArrowDropUp
-import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,6 +21,7 @@ import com.example.travelworld.domain.model.SubTrip
 @Composable
 fun SubTripItem(
     subTrip: SubTrip,
+    onPhotoClick: (Uri) -> Unit,    // ← nuevo callback
     onEdit: () -> Unit,
     onDelete: () -> Unit,
     onExpandClick: () -> Unit
@@ -52,24 +39,26 @@ fun SubTripItem(
         ) {
             Row(
                 verticalAlignment = Alignment.Top,
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth()
             ) {
-                // 1️⃣ MINIATURA: justo al inicio del Row
+                // 1️⃣ MINIATURA clicable
                 subTrip.photoUri?.let { uriString ->
+                    val uri = Uri.parse(uriString)
                     AsyncImage(
-                        model = Uri.parse(uriString),
+                        model = uri,
                         contentDescription = "Miniatura de ${subTrip.title}",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
-                            .size(56.dp)                       // tamaño de miniatura
-                            .clip(RoundedCornerShape(4.dp))    // esquinas
+                            .size(56.dp)
+                            .clip(RoundedCornerShape(4.dp))
+                            .clickable { onPhotoClick(uri) }
                             .padding(end = 12.dp)
                     )
                 }
+
                 // 2️⃣ Texto principal
-                Column(
-                    modifier = Modifier.weight(1f)
-                ) {
+                Column(modifier = Modifier.weight(1f)) {
                     Text(
                         text = subTrip.title,
                         style = MaterialTheme.typography.titleLarge.copy(
@@ -82,9 +71,9 @@ fun SubTripItem(
                     )
                     Text(
                         text = "${subTrip.date}  ${subTrip.time}",
-                        style = MaterialTheme.typography.bodyMedium,
+                        style = MaterialTheme.typography.bodyMedium
                     )
-                    AnimatedVisibility (subTrip.isExpanded && subTrip.description.isNotBlank()) {
+                    AnimatedVisibility(subTrip.isExpanded && subTrip.description.isNotBlank()) {
                         Text(
                             text = subTrip.description,
                             style = MaterialTheme.typography.bodyMedium,
@@ -92,38 +81,21 @@ fun SubTripItem(
                         )
                     }
                 }
-                // 3️⃣ Espacio entre texto y botones
+
+                // 3️⃣ Botones
                 Row {
-                    IconButton(
-                        onClick = onExpandClick,
-                        modifier = Modifier.size(40.dp)
-                    ) {
+                    IconButton(onClick = onExpandClick, modifier = Modifier.size(40.dp)) {
                         Icon(
                             imageVector = if (subTrip.isExpanded) Icons.Filled.ArrowDropUp
                             else Icons.Filled.ArrowDropDown,
-                            contentDescription = if (subTrip.isExpanded) "Collapse"
-                            else "Expand"
+                            contentDescription = null
                         )
                     }
-
-                    IconButton(
-                        onClick = onEdit,
-                        modifier = Modifier.size(40.dp)
-                    ) {
-                        Icon(
-                            imageVector = Icons.Filled.Edit,
-                            contentDescription = "Edit SubTrip",
-                        )
+                    IconButton(onClick = onEdit, modifier = Modifier.size(40.dp)) {
+                        Icon(Icons.Filled.Edit, contentDescription = "Editar")
                     }
-                    IconButton(
-                        onClick = onDelete,
-                        modifier = Modifier.size(40.dp)
-                    ) {
-                        Icon(
-                            imageVector = Icons.Filled.Delete,
-                            contentDescription = "Delete SubTrip",
-                            tint = MaterialTheme.colorScheme.error
-                        )
+                    IconButton(onClick = onDelete, modifier = Modifier.size(40.dp)) {
+                        Icon(Icons.Filled.Delete, contentDescription = "Eliminar", tint = MaterialTheme.colorScheme.error)
                     }
                 }
             }

@@ -44,7 +44,6 @@ import com.example.travelworld.ui.viewmodel.TripViewModel
 import java.time.LocalDate
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
@@ -56,7 +55,12 @@ import androidx.compose.ui.draw.clip
 import coil.compose.AsyncImage
 import android.content.Intent
 import androidx.activity.result.contract.ActivityResultContracts.OpenDocument
+import androidx.compose.foundation.background
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material3.IconButton
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.window.Dialog
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -94,33 +98,32 @@ fun TripApp(
         }
         tripPhotoUri = uri
     }
+    // Estados para ver imagen en grande
+    var showImageDialog by remember { mutableStateOf(false) }
+    var imageToShow by remember { mutableStateOf<Uri?>(null) }
+    var selectedTripForImage by remember { mutableStateOf<Trip?>(null) }
 
     LaunchedEffect(showTripDialog) {
         if (showTripDialog && isEditingTrip) {
-            // cargo la foto del trip que voy a editar
-            tripPhotoUri = trips
-                .find { it.id == currentTripId }
+            tripPhotoUri = trips.find { it.id == currentTripId }
                 ?.photoUri
                 ?.let { Uri.parse(it) }
         } else {
-            // si es un nuevo trip limpio el estado
             tripPhotoUri = null
         }
     }
 
     Scaffold(
         floatingActionButton = {
-            FloatingActionButton(
-                onClick = {
-                    isEditingTrip = false
-                    tripTitle = ""
-                    tripStartDate = LocalDate.now().toString()
-                    tripEndDate = LocalDate.now().plusDays(7).toString()
-                    tripDescription = ""
-                    showTripDialog = true
-                }
-            ) {
-                Icon(Icons.Default.Add, contentDescription = "Add Trip")
+            FloatingActionButton(onClick = {
+                isEditingTrip = false
+                tripTitle = ""
+                tripStartDate = LocalDate.now().toString()
+                tripEndDate = LocalDate.now().plusDays(7).toString()
+                tripDescription = ""
+                showTripDialog = true
+            }) {
+                Icon(Icons.Filled.Add, contentDescription = null)
             }
         }
     ) { innerPadding ->
@@ -134,13 +137,18 @@ fun TripApp(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(text = stringResource(id = R.string.no_trips))
+                    Text(stringResource(R.string.no_trips))
                 }
             } else {
                 LazyColumn(modifier = Modifier.fillMaxSize()) {
                     items(trips) { trip ->
                         TripItem(
                             trip = trip,
+                            onPhotoClick = { uri ->
+                                selectedTripForImage = trip
+                                imageToShow = uri
+                                showImageDialog = true
+                            },
                             onEdit = {
                                 isEditingTrip = true
                                 currentTripId = trip.id
@@ -154,17 +162,45 @@ fun TripApp(
                                 viewModel.setSelectedTrip(trip)
                                 navController.navigate("subtrips/${trip.id}")
                             },
-                            onDelete = {
-                                viewModel.deleteTrip(trip.id)
-                            },
-                            onExpandClick = {
-                                viewModel.toggleTripExpansion(trip.id)
-                            }
+                            onDelete = { viewModel.deleteTrip(trip.id) },
+                            onExpandClick = { viewModel.toggleTripExpansion(trip.id) }
                         )
                     }
                 }
             }
-
+            // Dialog para ver imagen en grande
+            if (showImageDialog && imageToShow != null && selectedTripForImage != null) {
+                Dialog(onDismissRequest = { showImageDialog = false }) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f))
+                    ) {
+                        AsyncImage(
+                            model = imageToShow,
+                            contentDescription = null,
+                            contentScale = ContentScale.Fit,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .align(Alignment.Center)
+                        )
+                        IconButton(
+                            onClick = {
+                                viewModel.updateTrip(
+                                    selectedTripForImage!!.copy(photoUri = null)
+                                )
+                                showImageDialog = false
+                            },
+                            modifier = Modifier
+                                .align(Alignment.TopEnd)
+                                .padding(16.dp)
+                        ) {
+                            Icon(Icons.Filled.Delete, contentDescription = null)
+                        }
+                    }
+                }
+            }
+            // Dialog para crear o editar un viaje
             if (showTripDialog) {
                 var errorMessage by remember { mutableStateOf<String?>(null) }
 
