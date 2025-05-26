@@ -42,6 +42,18 @@ import com.example.travelworld.ui.components.DatePickerDialog
 import com.example.travelworld.ui.components.TripItem
 import com.example.travelworld.ui.viewmodel.TripViewModel
 import java.time.LocalDate
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.filled.CameraAlt
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.draw.clip
+import coil.compose.AsyncImage
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -63,6 +75,29 @@ fun TripApp(
     var tripDescription by remember { mutableStateOf("") }
     var showStartDatePicker by remember { mutableStateOf(false) }
     var showEndDatePicker by remember { mutableStateOf(false) }
+
+    // For image selection
+    var tripPhotoUri by remember { mutableStateOf<Uri?>(null) }
+    val photoUriString = tripPhotoUri?.toString()
+
+    val pickImageLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetContent()
+    ) { uri: Uri? ->
+        tripPhotoUri = uri
+    }
+
+    LaunchedEffect(showTripDialog) {
+        if (showTripDialog && isEditingTrip) {
+            // cargo la foto del trip que voy a editar
+            tripPhotoUri = trips
+                .find { it.id == currentTripId }
+                ?.photoUri
+                ?.let { Uri.parse(it) }
+        } else {
+            // si es un nuevo trip limpio el estado
+            tripPhotoUri = null
+        }
+    }
 
     Scaffold(
         floatingActionButton = {
@@ -140,6 +175,27 @@ fun TripApp(
                                     modifier = Modifier.padding(bottom = 8.dp)
                                 )
                             }
+                            //seccion imagen
+                            tripPhotoUri?.let { uri ->
+                                AsyncImage(
+                                    model = uri,
+                                    contentDescription = "Trip photo",
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(180.dp)
+                                        .padding(8.dp)
+                                        .clip(RoundedCornerShape(8.dp))
+                                )
+                            }
+                            OutlinedButton(
+                                onClick = { pickImageLauncher.launch("image/*") },
+                                modifier = Modifier.padding(8.dp)
+                            ) {
+                                Icon(Icons.Default.CameraAlt, contentDescription = null)
+                                Spacer(Modifier.width(8.dp))
+                                Text(text = if (tripPhotoUri == null) "Añadir foto" else "Cambiar foto")
+                            }
+                            //seccion titulo y fechas
                             OutlinedTextField(
                                 value = tripTitle,
                                 onValueChange = { tripTitle = it },
@@ -202,8 +258,7 @@ fun TripApp(
                                     )
                                 }
                             }
-
-
+                            //seccion descripcion
                             OutlinedTextField(
                                 value = tripDescription,
                                 onValueChange = { tripDescription = it },
@@ -239,6 +294,7 @@ fun TripApp(
                                                     startDate = tripStartDate,
                                                     endDate = tripEndDate,
                                                     description = tripDescription,
+                                                    photoUri = photoUriString,
                                                 )
                                             )
                                         } else {
@@ -248,6 +304,7 @@ fun TripApp(
                                                     startDate = tripStartDate,
                                                     endDate = tripEndDate,
                                                     description = tripDescription,
+                                                    photoUri = photoUriString,
                                                 )
                                             )
                                         }

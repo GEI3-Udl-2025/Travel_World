@@ -21,5 +21,6 @@ data class SubTripEntity(
     val date: String,
     val time: String,
     val location: String,
-    val description: String
+    val description: String,
+    val photoUri: String? = null         // ← nuevo
 )
