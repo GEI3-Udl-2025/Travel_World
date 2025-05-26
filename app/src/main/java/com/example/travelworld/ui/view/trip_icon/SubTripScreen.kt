@@ -81,6 +81,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.ui.draw.clip
 import coil.compose.AsyncImage
+import android.content.Intent
+import androidx.activity.result.contract.ActivityResultContracts.OpenDocument
+import androidx.compose.ui.platform.LocalContext
 
 @SuppressLint("DefaultLocale")
 @RequiresApi(Build.VERSION_CODES.O)
@@ -114,13 +117,18 @@ fun SubTripApp(
     //imagen
     var subTripPhotoUri by remember { mutableStateOf<Uri?>(null) }
 
-    val pickSubTripImageLauncher =
-        rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-            subTripPhotoUri = uri
-        }
+    val context = LocalContext.current
 
-    if (isEditing) {
-        subTripPhotoUri = subTrips.find { it.id == currentSubTripId }?.photoUri?.let { Uri.parse(it) }
+    val pickSubTripImageLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.OpenDocument()
+    ) { uri: Uri? ->
+        uri?.let {
+            context.contentResolver.takePersistableUriPermission(
+                it,
+                Intent.FLAG_GRANT_READ_URI_PERMISSION
+            )
+        }
+        subTripPhotoUri = uri
     }
 
     Scaffold(
@@ -235,7 +243,7 @@ fun SubTripApp(
 
                     // 2️⃣ Botón para añadir/cambiar foto
                     OutlinedButton(
-                        onClick = { pickSubTripImageLauncher.launch("image/*") },
+                        onClick = { pickSubTripImageLauncher.launch(arrayOf("image/*")) },
                         modifier = Modifier.padding(vertical = 8.dp)
                     ) {
                         Icon(Icons.Default.CameraAlt, contentDescription = null)
