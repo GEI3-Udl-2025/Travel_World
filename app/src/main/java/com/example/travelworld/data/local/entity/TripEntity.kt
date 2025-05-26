@@ -11,5 +11,6 @@ data class TripEntity(
     val description: String,
     val startDate: String,
     val endDate: String,
-    val userLogin: String
+    val userLogin: String,
+    val photoUri: String? = null         // ← nuevo
 )

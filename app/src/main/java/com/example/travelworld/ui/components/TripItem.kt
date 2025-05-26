@@ -1,12 +1,15 @@
 package com.example.travelworld.ui.components
 
+import android.net.Uri
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.ArrowDropDown
@@ -23,9 +26,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.example.travelworld.domain.model.Trip
+
 
 @Composable
 fun TripItem(
@@ -46,6 +52,18 @@ fun TripItem(
                 .fillMaxWidth()
                 .padding(16.dp)
         ) {
+            // 1) Mostrar foto si existe
+            trip.photoUri?.let { uriString ->
+                AsyncImage(
+                    model = Uri.parse(uriString),
+                    contentDescription = "Foto de ${trip.title}",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(140.dp)
+                        .padding(bottom = 12.dp)
+                        .clip(RoundedCornerShape(8.dp))
+                )
+            }
             // Fila superior con título/fechas y botones
             Row(
                 verticalAlignment = Alignment.Top,

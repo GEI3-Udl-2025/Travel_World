@@ -9,5 +9,6 @@ data class SubTrip(
     var time: String,
     var location: String,
     var description: String,
+    var photoUri: String? = null,        // ← nuevo
     var isExpanded: Boolean = false
 )

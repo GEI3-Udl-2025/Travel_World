@@ -74,6 +74,13 @@ import java.time.LocalDate
 import java.time.LocalTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.filled.CameraAlt
+import androidx.compose.ui.draw.clip
+import coil.compose.AsyncImage
 
 @SuppressLint("DefaultLocale")
 @RequiresApi(Build.VERSION_CODES.O)
@@ -103,6 +110,18 @@ fun SubTripApp(
 
     var showDatePicker by remember { mutableStateOf(false) }
     var showTimePicker by remember { mutableStateOf(false) }
+
+    //imagen
+    var subTripPhotoUri by remember { mutableStateOf<Uri?>(null) }
+
+    val pickSubTripImageLauncher =
+        rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+            subTripPhotoUri = uri
+        }
+
+    if (isEditing) {
+        subTripPhotoUri = subTrips.find { it.id == currentSubTripId }?.photoUri?.let { Uri.parse(it) }
+    }
 
     Scaffold(
         topBar = {
@@ -200,6 +219,30 @@ fun SubTripApp(
                             modifier = Modifier.padding(bottom = 8.dp)
                         )
                     }
+                    //imagen
+                    // 1️⃣ Vista previa de la foto
+                    subTripPhotoUri?.let { uri ->
+                        AsyncImage(
+                            model = uri,
+                            contentDescription = "Foto de ${subTripTitle}",
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(140.dp)
+                                .clip(RoundedCornerShape(8.dp))
+                                .padding(bottom = 8.dp)
+                        )
+                    }
+
+                    // 2️⃣ Botón para añadir/cambiar foto
+                    OutlinedButton(
+                        onClick = { pickSubTripImageLauncher.launch("image/*") },
+                        modifier = Modifier.padding(vertical = 8.dp)
+                    ) {
+                        Icon(Icons.Default.CameraAlt, contentDescription = null)
+                        Spacer(Modifier.width(6.dp))
+                        Text(if (subTripPhotoUri == null) "Añadir foto" else "Cambiar foto")
+                    }
+
                     OutlinedTextField(
                         value = subTripTitle,
                         onValueChange = { subTripTitle = it },
@@ -319,7 +362,8 @@ fun SubTripApp(
                                             date = subTripDate.toString(),
                                             time = subTripTime.toString(),
                                             location = subTripLocation,
-                                            description = subTripDescription
+                                            description = subTripDescription,
+                                            photoUri     = subTripPhotoUri?.toString()
                                         )
                                     )
                                 } else {
@@ -330,7 +374,8 @@ fun SubTripApp(
                                             date = subTripDate.toString(),
                                             time = subTripTime.toString(),
                                             location = subTripLocation,
-                                            description = subTripDescription
+                                            description = subTripDescription,
+                                            photoUri     = subTripPhotoUri?.toString()
                                         )
                                     )
                                 }

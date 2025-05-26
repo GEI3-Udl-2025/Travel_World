@@ -14,7 +14,8 @@ fun Trip.toEntity(userLogin: String): TripEntity =
         description = description,
         startDate   = startDate,
         endDate     = endDate,
-        userLogin   = userLogin
+        userLogin   = userLogin,
+        photoUri = photoUri           // ← nuevo
     )
 
 // De entidad a dominio
@@ -25,7 +26,8 @@ fun TripEntity.toDomain(subTrips: List<SubTrip>): Trip =
         description = description,
         startDate = startDate,
         endDate = endDate,
-        subTrips = subTrips
+        subTrips = subTrips,
+        photoUri = photoUri           // ← nuevo
     )
 
 //SubTrip
@@ -38,7 +40,8 @@ fun SubTrip.toEntity(): SubTripEntity =
         date = date,
         time = time,
         location = location,
-        description = description
+        description = description,
+        photoUri = photoUri           // ← nuevo
     )
 
 // De entidad a dominio
@@ -50,5 +53,6 @@ fun SubTripEntity.toDomain(): SubTrip =
         date = date,
         time = time,
         location = location,
-        description = description
+        description = description,
+        photoUri = photoUri           // ← nuevo
     )
