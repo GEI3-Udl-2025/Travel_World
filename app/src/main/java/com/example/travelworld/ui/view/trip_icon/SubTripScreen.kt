@@ -81,6 +81,12 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.ui.draw.clip
 import coil.compose.AsyncImage
+import android.content.Intent
+import androidx.activity.result.contract.ActivityResultContracts.OpenDocument
+import androidx.compose.foundation.background
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.window.Dialog
 
 @SuppressLint("DefaultLocale")
 @RequiresApi(Build.VERSION_CODES.O)
@@ -113,15 +119,22 @@ fun SubTripApp(
 
     //imagen
     var subTripPhotoUri by remember { mutableStateOf<Uri?>(null) }
-
-    val pickSubTripImageLauncher =
-        rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-            subTripPhotoUri = uri
+    val context = LocalContext.current
+    val pickSubTripImageLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.OpenDocument()
+    ) { uri: Uri? ->
+        uri?.let {
+            context.contentResolver.takePersistableUriPermission(
+                it,
+                Intent.FLAG_GRANT_READ_URI_PERMISSION
+            )
         }
-
-    if (isEditing) {
-        subTripPhotoUri = subTrips.find { it.id == currentSubTripId }?.photoUri?.let { Uri.parse(it) }
+        subTripPhotoUri = uri
     }
+    // Estados para ver imagen en grande
+    var showImageDialog by remember { mutableStateOf(false) }
+    var imageToShow by remember { mutableStateOf<Uri?>(null) }
+    var selectedSubTrip by remember { mutableStateOf<SubTrip?>(null) }
 
     Scaffold(
         topBar = {
@@ -131,7 +144,6 @@ fun SubTripApp(
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Volver")
                     }
-
                 }
             )
         },
@@ -172,6 +184,11 @@ fun SubTripApp(
                     items(subTrips) { subTrip ->
                         SubTripItem(
                             subTrip = subTrip,
+                            onPhotoClick = { uri ->
+                                selectedSubTrip = subTrip
+                                imageToShow = uri
+                                showImageDialog = true
+                            },
                             onEdit = {
                                 isEditing = true
                                 currentSubTripId = subTrip.id
@@ -180,6 +197,7 @@ fun SubTripApp(
                                 subTripTime = subTrip.time
                                 subTripLocation = subTrip.location
                                 subTripDescription = subTrip.description
+                                subTripPhotoUri = subTrip.photoUri?.let { Uri.parse(it) }
                                 showDialog = true
                             },
                             onDelete = {
@@ -192,216 +210,250 @@ fun SubTripApp(
                     }
                 }
             }
-        }
-    }
-
-    if (showDialog) {
-        var errorMessage by remember { mutableStateOf<String?>(null) }
-
-        AlertDialog(
-            onDismissRequest = {
-                showDialog = false
-                errorMessage = null
-            },
-            title = {
-                Text(
-                    if (isEditing) stringResource(id = R.string.edit_subtrip) else stringResource(
-                        id = R.string.new_subtrip
-                    )
-                )
-            },
-            text = {
-                Column {
-                    if (errorMessage != null) {
-                        Text(
-                            text = errorMessage!!,
-                            color = MaterialTheme.colorScheme.error,
-                            modifier = Modifier.padding(bottom = 8.dp)
-                        )
-                    }
-                    //imagen
-                    // 1️⃣ Vista previa de la foto
-                    subTripPhotoUri?.let { uri ->
+            // Diálogo ver imagen grande
+            if (showImageDialog && imageToShow != null && selectedSubTrip != null) {
+                Dialog(onDismissRequest = { showImageDialog = false }) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f))
+                    ) {
                         AsyncImage(
-                            model = uri,
-                            contentDescription = "Foto de ${subTripTitle}",
+                            model = imageToShow,
+                            contentDescription = null,
+                            contentScale = ContentScale.Fit,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(140.dp)
-                                .clip(RoundedCornerShape(8.dp))
-                                .padding(bottom = 8.dp)
+                                .align(Alignment.Center)
                         )
-                    }
-
-                    // 2️⃣ Botón para añadir/cambiar foto
-                    OutlinedButton(
-                        onClick = { pickSubTripImageLauncher.launch("image/*") },
-                        modifier = Modifier.padding(vertical = 8.dp)
-                    ) {
-                        Icon(Icons.Default.CameraAlt, contentDescription = null)
-                        Spacer(Modifier.width(6.dp))
-                        Text(if (subTripPhotoUri == null) "Añadir foto" else "Cambiar foto")
-                    }
-
-                    OutlinedTextField(
-                        value = subTripTitle,
-                        onValueChange = { subTripTitle = it },
-                        label = { Text(stringResource(id = R.string.title) + "*") },
-                        singleLine = true,
-                        isError = errorMessage != null && subTripTitle.isEmpty(),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(8.dp)
-                    )
-
-                    Row(modifier = Modifier.fillMaxWidth()) {
-                        // Fecha
-                        OutlinedTextField(
-                            value = subTripDate.format(DateTimeFormatter.ISO_LOCAL_DATE),
-                            onValueChange = { /* no dejar que el usuario escriba manualmente */ },
-                            label = { Text(stringResource(id = R.string.date) + "*") },
-                            singleLine = true,
-                            readOnly = true,
-                            enabled = false,
-                            isError = errorMessage != null && (
-                                    subTripDate.toString().isEmpty() || !isValidDate(subTripDate.toString())
-                                    ),
+                        IconButton(
+                            onClick = {
+                                viewModel.updateSubTrip(
+                                    selectedSubTrip!!.copy(photoUri = null)
+                                )
+                                showImageDialog = false
+                            },
                             modifier = Modifier
-                                .weight(1f)
-                                .padding(8.dp)
-                                .clickable { showDatePicker = true },
-                            colors = TextFieldDefaults.outlinedTextFieldColors(
-                                disabledBorderColor    = MaterialTheme.colorScheme.primary,
-                                disabledLabelColor     = MaterialTheme.colorScheme.onSurfaceVariant,
-                                disabledTextColor      = MaterialTheme.colorScheme.onSurface,
-                                disabledPlaceholderColor = MaterialTheme.colorScheme.onSurfaceVariant
-
-                            )
-
-                        )
-
-                        // Hora
-                        OutlinedTextField(
-                            value = subTripTime,
-                            onValueChange = { /* no dejar que el usuario escriba manualmente */ },
-                            label = { Text(stringResource(id = R.string.time) + "*") },
-                            singleLine = true,
-                            readOnly = true,
-                            enabled = false,
-                            isError = errorMessage != null && (
-                                    subTripTime.isEmpty() || !isValidTime(subTripTime)
-                                    ),
-                            modifier = Modifier
-                                .weight(1f)
-                                .padding(8.dp)
-                                .clickable { showTimePicker = true },
-                            colors = TextFieldDefaults.outlinedTextFieldColors(
-                                disabledBorderColor    = MaterialTheme.colorScheme.primary,
-                                disabledLabelColor     = MaterialTheme.colorScheme.onSurfaceVariant,
-                                disabledTextColor      = MaterialTheme.colorScheme.onSurface,
-                                disabledPlaceholderColor = MaterialTheme.colorScheme.onSurfaceVariant
-
-                            )
-
-                        )
-                    }
-
-
-                    OutlinedTextField(
-                        value = subTripLocation,
-                        onValueChange = { subTripLocation = it },
-                        label = { Text(stringResource(id = R.string.location) + "*") },
-                        singleLine = true,
-                        isError = errorMessage != null && subTripLocation.isEmpty(),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(8.dp)
-                    )
-
-                    OutlinedTextField(
-                        value = subTripDescription,
-                        onValueChange = { subTripDescription = it },
-                        label = { Text(stringResource(id = R.string.description)) },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(8.dp)
-                    )
-                }
-            },
-            confirmButton = {
-                Button(
-                    onClick = {
-                        when {
-                            subTripTitle.isBlank() -> {
-                                errorMessage = "The title is required"
-                            }
-
-                            subTripDate.isBefore(LocalDate.now()) -> {
-                                errorMessage = "The date cannot be in the past"
-                            }
-
-                            subTripTime.isBlank() -> {
-                                errorMessage = "The time is required"
-                            }
-
-                            !isValidTime(subTripTime) -> {
-                                errorMessage = "The time is invalid"
-                            }
-
-                            subTripLocation.isBlank() -> {
-                                errorMessage = "The location is required"
-                            }
-
-                            else -> {
-                                if (isEditing) {
-                                    viewModel.updateSubTrip(
-                                        SubTrip(
-                                            id = currentSubTripId,
-                                            parentTripId = tripId,
-                                            title = subTripTitle,
-                                            date = subTripDate.toString(),
-                                            time = subTripTime.toString(),
-                                            location = subTripLocation,
-                                            description = subTripDescription,
-                                            photoUri     = subTripPhotoUri?.toString()
-                                        )
-                                    )
-                                } else {
-                                    viewModel.addSubTrip(
-                                        SubTrip(
-                                            parentTripId = tripId,
-                                            title = subTripTitle,
-                                            date = subTripDate.toString(),
-                                            time = subTripTime.toString(),
-                                            location = subTripLocation,
-                                            description = subTripDescription,
-                                            photoUri     = subTripPhotoUri?.toString()
-                                        )
-                                    )
-                                }
-                                showDialog = false
-                            }
+                                .align(Alignment.TopEnd)
+                                .padding(16.dp)
+                        ) {
+                            Icon(Icons.Filled.Delete, contentDescription = null, tint = MaterialTheme.colorScheme.error)
                         }
                     }
-                ) {
-                    Text(stringResource(id = R.string.save))
                 }
-            },
-            dismissButton = {
-                Button(
-                    onClick = {
+            }
+
+            if (showDialog) {
+                var errorMessage by remember { mutableStateOf<String?>(null) }
+
+                AlertDialog(
+                    onDismissRequest = {
                         showDialog = false
                         errorMessage = null
                     },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.surfaceVariant
-                    )
-                ) {
-                    Text(stringResource(id = R.string.cancel))
-                }
+                    title = {
+                        Text(
+                            if (isEditing) stringResource(id = R.string.edit_subtrip) else stringResource(
+                                id = R.string.new_subtrip
+                            )
+                        )
+                    },
+                    text = {
+                        Column {
+                            if (errorMessage != null) {
+                                Text(
+                                    text = errorMessage!!,
+                                    color = MaterialTheme.colorScheme.error,
+                                    modifier = Modifier.padding(bottom = 8.dp)
+                                )
+                            }
+                            //imagen
+                            // 1️⃣ Vista previa de la foto
+                            subTripPhotoUri?.let { uri ->
+                                AsyncImage(
+                                    model = uri,
+                                    contentDescription = "Foto de ${subTripTitle}",
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(140.dp)
+                                        .clip(RoundedCornerShape(8.dp))
+                                        .padding(bottom = 8.dp)
+                                )
+                            }
+
+                            // 2️⃣ Botón para añadir/cambiar foto
+                            OutlinedButton(
+                                onClick = { pickSubTripImageLauncher.launch(arrayOf("image/*")) },
+                                modifier = Modifier.padding(vertical = 8.dp)
+                            ) {
+                                Icon(Icons.Default.CameraAlt, contentDescription = null)
+                                Spacer(Modifier.width(6.dp))
+                                Text(if (subTripPhotoUri == null) "Añadir foto" else "Cambiar foto")
+                            }
+
+                            OutlinedTextField(
+                                value = subTripTitle,
+                                onValueChange = { subTripTitle = it },
+                                label = { Text(stringResource(id = R.string.title) + "*") },
+                                singleLine = true,
+                                isError = errorMessage != null && subTripTitle.isEmpty(),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(8.dp)
+                            )
+
+                            Row(modifier = Modifier.fillMaxWidth()) {
+                                // Fecha
+                                OutlinedTextField(
+                                    value = subTripDate.format(DateTimeFormatter.ISO_LOCAL_DATE),
+                                    onValueChange = { /* no dejar que el usuario escriba manualmente */ },
+                                    label = { Text(stringResource(id = R.string.date) + "*") },
+                                    singleLine = true,
+                                    readOnly = true,
+                                    enabled = false,
+                                    isError = errorMessage != null && (
+                                            subTripDate.toString().isEmpty() || !isValidDate(subTripDate.toString())
+                                            ),
+                                    modifier = Modifier
+                                        .weight(1f)
+                                        .padding(8.dp)
+                                        .clickable { showDatePicker = true },
+                                    colors = TextFieldDefaults.outlinedTextFieldColors(
+                                        disabledBorderColor    = MaterialTheme.colorScheme.primary,
+                                        disabledLabelColor     = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        disabledTextColor      = MaterialTheme.colorScheme.onSurface,
+                                        disabledPlaceholderColor = MaterialTheme.colorScheme.onSurfaceVariant
+
+                                    )
+
+                                )
+
+                                // Hora
+                                OutlinedTextField(
+                                    value = subTripTime,
+                                    onValueChange = { /* no dejar que el usuario escriba manualmente */ },
+                                    label = { Text(stringResource(id = R.string.time) + "*") },
+                                    singleLine = true,
+                                    readOnly = true,
+                                    enabled = false,
+                                    isError = errorMessage != null && (
+                                            subTripTime.isEmpty() || !isValidTime(subTripTime)
+                                            ),
+                                    modifier = Modifier
+                                        .weight(1f)
+                                        .padding(8.dp)
+                                        .clickable { showTimePicker = true },
+                                    colors = TextFieldDefaults.outlinedTextFieldColors(
+                                        disabledBorderColor    = MaterialTheme.colorScheme.primary,
+                                        disabledLabelColor     = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        disabledTextColor      = MaterialTheme.colorScheme.onSurface,
+                                        disabledPlaceholderColor = MaterialTheme.colorScheme.onSurfaceVariant
+
+                                    )
+
+                                )
+                            }
+
+
+                            OutlinedTextField(
+                                value = subTripLocation,
+                                onValueChange = { subTripLocation = it },
+                                label = { Text(stringResource(id = R.string.location) + "*") },
+                                singleLine = true,
+                                isError = errorMessage != null && subTripLocation.isEmpty(),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(8.dp)
+                            )
+
+                            OutlinedTextField(
+                                value = subTripDescription,
+                                onValueChange = { subTripDescription = it },
+                                label = { Text(stringResource(id = R.string.description)) },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(8.dp)
+                            )
+                        }
+                    },
+                    confirmButton = {
+                        Button(
+                            onClick = {
+                                when {
+                                    subTripTitle.isBlank() -> {
+                                        errorMessage = "The title is required"
+                                    }
+
+                                    subTripDate.isBefore(LocalDate.now()) -> {
+                                        errorMessage = "The date cannot be in the past"
+                                    }
+
+                                    subTripTime.isBlank() -> {
+                                        errorMessage = "The time is required"
+                                    }
+
+                                    !isValidTime(subTripTime) -> {
+                                        errorMessage = "The time is invalid"
+                                    }
+
+                                    subTripLocation.isBlank() -> {
+                                        errorMessage = "The location is required"
+                                    }
+
+                                    else -> {
+                                        if (isEditing) {
+                                            viewModel.updateSubTrip(
+                                                SubTrip(
+                                                    id = currentSubTripId,
+                                                    parentTripId = tripId,
+                                                    title = subTripTitle,
+                                                    date = subTripDate.toString(),
+                                                    time = subTripTime.toString(),
+                                                    location = subTripLocation,
+                                                    description = subTripDescription,
+                                                    photoUri     = subTripPhotoUri?.toString()
+                                                )
+                                            )
+                                        } else {
+                                            viewModel.addSubTrip(
+                                                SubTrip(
+                                                    parentTripId = tripId,
+                                                    title = subTripTitle,
+                                                    date = subTripDate.toString(),
+                                                    time = subTripTime.toString(),
+                                                    location = subTripLocation,
+                                                    description = subTripDescription,
+                                                    photoUri     = subTripPhotoUri?.toString()
+                                                )
+                                            )
+                                        }
+                                        showDialog = false
+                                    }
+                                }
+                            }
+                        ) {
+                            Text(stringResource(id = R.string.save))
+                        }
+                    },
+                    dismissButton = {
+                        Button(
+                            onClick = {
+                                showDialog = false
+                                errorMessage = null
+                            },
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = MaterialTheme.colorScheme.surfaceVariant
+                            )
+                        ) {
+                            Text(stringResource(id = R.string.cancel))
+                        }
+                    }
+                )
             }
-        )
+        }
     }
+
+
 
     // DatePicker Dialog
     if (showDatePicker) {
