@@ -27,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -52,23 +53,25 @@ fun TripItem(
                 .fillMaxWidth()
                 .padding(16.dp)
         ) {
-            // 1) Mostrar foto si existe
-            trip.photoUri?.let { uriString ->
-                AsyncImage(
-                    model = Uri.parse(uriString),
-                    contentDescription = "Foto de ${trip.title}",
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(140.dp)
-                        .padding(bottom = 12.dp)
-                        .clip(RoundedCornerShape(8.dp))
-                )
-            }
-            // Fila superior con título/fechas y botones
             Row(
                 verticalAlignment = Alignment.Top,
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth()
             ) {
+                // 1️⃣ MINIATURA: justo al inicio del Row
+                trip.photoUri?.let { uriString ->
+                    AsyncImage(
+                        model = Uri.parse(uriString),
+                        contentDescription = "Miniatura de ${trip.title}",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .size(56.dp)                       // tamaño de miniatura
+                            .clip(RoundedCornerShape(4.dp))    // esquinas
+                            .padding(end = 12.dp)
+                    )
+                }
+
+                // 2️⃣ Texto principal
                 // Columna con texto (izquierda)
                 Column(
                     modifier = Modifier.weight(1f)
@@ -93,6 +96,7 @@ fun TripItem(
                     }
                 }
 
+                // 3️⃣ Botones de acción
                 // Contenedor de botones (derecha)
                 Row {
                     IconButton(

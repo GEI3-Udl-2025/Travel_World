@@ -26,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -49,22 +50,23 @@ fun SubTripItem(
                 .fillMaxWidth()
                 .padding(16.dp)
         ) {
-            // 1) Mostrar foto si existe
-            subTrip.photoUri?.let { uriString ->
-                AsyncImage(
-                    model = Uri.parse(uriString),
-                    contentDescription = "Foto de ${subTrip.title}",
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(140.dp)
-                        .padding(bottom = 12.dp)
-                        .clip(RoundedCornerShape(8.dp))
-                )
-            }
             Row(
                 verticalAlignment = Alignment.Top,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
+                // 1️⃣ MINIATURA: justo al inicio del Row
+                subTrip.photoUri?.let { uriString ->
+                    AsyncImage(
+                        model = Uri.parse(uriString),
+                        contentDescription = "Miniatura de ${subTrip.title}",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .size(56.dp)                       // tamaño de miniatura
+                            .clip(RoundedCornerShape(4.dp))    // esquinas
+                            .padding(end = 12.dp)
+                    )
+                }
+                // 2️⃣ Texto principal
                 Column(
                     modifier = Modifier.weight(1f)
                 ) {
@@ -90,7 +92,7 @@ fun SubTripItem(
                         )
                     }
                 }
-
+                // 3️⃣ Espacio entre texto y botones
                 Row {
                     IconButton(
                         onClick = onExpandClick,
